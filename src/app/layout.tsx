@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/lib/config/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -35,6 +38,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "./",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
   },
   icons: {
     icon: [
@@ -106,6 +112,22 @@ export default function RootLayout({
             `,
           }}
         />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body className="flex min-h-screen flex-col bg-slate-50 dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 selection:bg-brand-500 selection:text-white antialiased transition-colors duration-150">
         <ThemeProvider>
@@ -114,6 +136,8 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
