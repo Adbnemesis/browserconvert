@@ -4,26 +4,107 @@
 
 :root {
   --background: #f8fafc;
-  --foreground: #0f172a;
+  --foreground: #09090b;
   color-scheme: light;
+
+  /* Default Accent: Cyber Emerald / Green Light */
+  --brand-50: 236 253 245;
+  --brand-100: 209 250 229;
+  --brand-200: 167 243 208;
+  --brand-300: 110 231 183;
+  --brand-400: 52 211 153;
+  --brand-500: 16 185 129;
+  --brand-600: 5 150 105;
+  --brand-700: 4 120 87;
+  --brand-800: 6 95 70;
+  --brand-900: 6 78 59;
+  --brand-950: 2 44 34;
+  --brand-glow: 16 185 129;
+}
+
+[data-accent="red"] {
+  /* Cyberpunk Crimson / Neon Red */
+  --brand-50: 255 241 242;
+  --brand-100: 255 228 230;
+  --brand-200: 254 205 211;
+  --brand-300: 253 164 175;
+  --brand-400: 251 113 133;
+  --brand-500: 244 63 94;
+  --brand-600: 225 29 72;
+  --brand-700: 190 18 60;
+  --brand-800: 159 18 57;
+  --brand-900: 136 19 55;
+  --brand-950: 76 5 25;
+  --brand-glow: 244 63 94;
 }
 
 .dark {
-  --background: #0b1120;
-  --foreground: #f8fafc;
+  --background: #09090b;
+  --foreground: #f4f4f5;
   color-scheme: dark;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Custom scrollbar */
+/* Subtle atmospheric ambient glow in dark mode */
+.dark body {
+  background-color: #09090b !important;
+  background-image: 
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgb(var(--brand-glow) / 0.14), transparent),
+    radial-gradient(ellipse 60% 30% at 85% 15%, rgb(var(--brand-glow) / 0.06), transparent) !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* Elevate dark mode surfaces across all cards and sections */
+.dark .bg-white {
+  background-color: #121216 !important;
+}
+
+.dark .border-slate-200 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: #18181f !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: #202028 !important;
+}
+
+.dark .text-slate-900 {
+  color: #ffffff !important;
+}
+
+.dark .text-slate-800 {
+  color: #f4f4f5 !important;
+}
+
+.dark .text-slate-700 {
+  color: #e4e4e7 !important;
+}
+
+.dark .text-slate-600 {
+  color: #a1a1aa !important;
+}
+
+.dark .text-slate-500 {
+  color: #71717a !important;
+}
+
+/* Smooth custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -32,30 +113,30 @@ body {
   background: #f1f5f9;
 }
 .dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 4px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #27272a;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3f3f46;
 }
 
-/* Focus styles for keyboard navigation accessibility */
+/* Focus styles for keyboard accessibility */
 *:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid rgb(var(--brand-500));
   outline-offset: 2px;
 }
 
-/* Prevent layout shift animations */
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

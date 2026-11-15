@@ -81,17 +81,19 @@ export default function RootLayout({
             __html: `
               try {
                 var stored = localStorage.getItem('theme');
-                if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark');
-                } else {
+                if (stored === 'light') {
                   document.documentElement.classList.remove('dark');
+                } else {
+                  document.documentElement.classList.add('dark');
                 }
+                var accent = localStorage.getItem('accent') || 'green';
+                document.documentElement.setAttribute('data-accent', accent);
               } catch (e) {}
             `,
           }}
         />
       </head>
-      <body className="flex min-h-screen flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-brand-500 selection:text-white antialiased transition-colors duration-150">
+      <body className="flex min-h-screen flex-col bg-slate-50 dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 selection:bg-brand-500 selection:text-white antialiased transition-colors duration-150">
         <ThemeProvider>
           <JsonLd />
           <Navbar />

@@ -98,8 +98,8 @@ export function Dropzone({
         aria-label="Upload files area"
         className={`group relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 sm:p-12 text-center transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
           isDragOver
-            ? "border-brand-500 bg-brand-50/70 dark:bg-brand-950/40 scale-[0.99]"
-            : "border-slate-300 dark:border-slate-700/80 bg-white dark:bg-slate-900/90 hover:border-brand-400 dark:hover:border-brand-500 hover:bg-slate-50/70 dark:hover:bg-slate-850/80 shadow-sm"
+            ? "border-brand-500 bg-brand-50/70 dark:bg-brand-950/40 scale-[0.99] dark:shadow-[0_0_50px_-10px_rgb(var(--brand-glow)/0.35)]"
+            : "border-slate-300 dark:border-white/10 bg-white dark:bg-[#121216] hover:border-brand-400 dark:hover:border-brand-500/80 hover:bg-slate-50/70 dark:hover:bg-[#15151b] shadow-sm dark:shadow-[0_0_40px_-15px_rgb(var(--brand-glow)/0.15)]"
         }`}
       >
         <input
@@ -114,13 +114,13 @@ export function Dropzone({
 
         {/* Upload Icon with badges */}
         <div className="relative mb-4 flex items-center justify-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-transform group-hover:scale-105 duration-200 shadow-sm border border-brand-100">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 dark:bg-brand-950/80 text-brand-600 dark:text-brand-400 transition-transform group-hover:scale-105 duration-200 shadow-sm border border-brand-100 dark:border-brand-800/60 dark:shadow-[0_0_20px_rgb(var(--brand-glow)/0.25)]">
             <UploadCloud className="h-8 w-8" />
           </div>
-          <div className="absolute -left-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow-xs border border-white">
+          <div className="absolute -left-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/90 text-emerald-700 dark:text-emerald-300 shadow-xs border border-white dark:border-zinc-800">
             <FileAudio className="h-3.5 w-3.5" />
           </div>
-          <div className="absolute -right-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 shadow-xs border border-white">
+          <div className="absolute -right-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950/90 text-indigo-700 dark:text-indigo-300 shadow-xs border border-white dark:border-zinc-800">
             <Film className="h-3.5 w-3.5" />
           </div>
         </div>
@@ -129,12 +129,12 @@ export function Dropzone({
         <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
           {headline}
         </h3>
-        <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md">
+        <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-zinc-400 max-w-md">
           {subheadline}
         </p>
 
         {/* Button pill */}
-        <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-all group-hover:bg-brand-700 active:scale-95">
+        <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm dark:shadow-[0_0_20px_rgb(var(--brand-glow)/0.3)] transition-all group-hover:bg-brand-700 active:scale-95">
           <UploadCloud className="h-4 w-4" />
           <span>Choose Files</span>
         </div>

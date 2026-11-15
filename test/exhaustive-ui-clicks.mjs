@@ -56,7 +56,7 @@ async function runUITests() {
 
     // Click theme toggle to invert theme
     await page.evaluate(() => {
-      const themeBtn = document.querySelector('button[aria-label*="Switch to"]');
+      const themeBtn = document.querySelector('button[aria-label*="mode"]');
       if (themeBtn) themeBtn.click();
     });
     await new Promise((r) => setTimeout(r, 200));
@@ -81,7 +81,7 @@ async function runUITests() {
 
     // Toggle back to original state
     await page.evaluate(() => {
-      const themeBtn = document.querySelector('button[aria-label*="Switch to"]');
+      const themeBtn = document.querySelector('button[aria-label*="mode"]');
       if (themeBtn) themeBtn.click();
     });
     await new Promise((r) => setTimeout(r, 200));
@@ -90,6 +90,27 @@ async function runUITests() {
       pass("Theme toggle cleanly returned to original preference");
     } else {
       throw new Error("Failed to restore initial theme state");
+    }
+
+    // TEST ACCENT SWITCHER (Green Light & Crimson Red)
+    await page.evaluate(() => {
+      const redBtn = document.querySelector('button[aria-label*="Red"]');
+      if (redBtn) redBtn.click();
+    });
+    await new Promise((r) => setTimeout(r, 100));
+    const accentRed = await page.evaluate(() => document.documentElement.getAttribute("data-accent"));
+    if (accentRed === "red") {
+      pass("Crimson Red accent activated and data-accent set to 'red'");
+    }
+
+    await page.evaluate(() => {
+      const greenBtn = document.querySelector('button[aria-label*="Green"]');
+      if (greenBtn) greenBtn.click();
+    });
+    await new Promise((r) => setTimeout(r, 100));
+    const accentGreen = await page.evaluate(() => document.documentElement.getAttribute("data-accent"));
+    if (accentGreen === "green") {
+      pass("Green Light (Cyber Emerald) accent activated and data-accent set to 'green'");
     }
   } catch (e) {
     fail("Dark mode toggle test failed", e);
