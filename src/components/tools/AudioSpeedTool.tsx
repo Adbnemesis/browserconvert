@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { conversionEngine } from "@/lib/conversion/engine";
 import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/formatters";
-import { FastForward, Download, AlertCircle, Loader2, UploadCloud, CheckCircle2 } from "lucide-react";
+import { FastForward, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 
 export function AudioSpeedTool() {
@@ -15,13 +15,12 @@ export function AudioSpeedTool() {
   const [error, setError] = useState<string | null>(null);
 
   const speedOptions = [
-    { label: "0.5x (Slow Half-Speed)", value: 0.5 },
-    { label: "0.75x (Slightly Slower)", value: 0.75 },
-    { label: "1.0x (Normal)", value: 1.0 },
-    { label: "1.25x (Fast - Podcast Speed)", value: 1.25 },
-    { label: "1.5x (Speedy)", value: 1.5 },
-    { label: "1.75x (Very Fast)", value: 1.75 },
-    { label: "2.0x (Double Speed)", value: 2.0 },
+    { label: "0.5x", desc: "Half speed", value: 0.5 },
+    { label: "0.75x", desc: "Slightly slower", value: 0.75 },
+    { label: "1.0x", desc: "Normal speed", value: 1.0 },
+    { label: "1.25x", desc: "Podcast speed", value: 1.25 },
+    { label: "1.5x", desc: "Fast", value: 1.5 },
+    { label: "2.0x", desc: "Double speed", value: 2.0 },
   ];
 
   const handleProcess = async () => {
@@ -67,14 +66,16 @@ export function AudioSpeedTool() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 sm:p-6">
       {!file ? (
-        <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-slate-50">
-          <UploadCloud className="h-10 w-10 text-brand-600 mb-3" />
-          <h3 className="text-base font-semibold text-slate-800">Select an audio file to change speed</h3>
-          <p className="text-xs text-slate-500 mt-1">Supports MP3, WAV, M4A, FLAC, OGG, OPUS, AAC</p>
-          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white shadow-xs cursor-pointer hover:bg-brand-700">
-            <span>Browse Audio</span>
+        <div className="flex flex-col items-center justify-center p-8 sm:p-10 text-center border border-dashed border-slate-300 dark:border-white/10 rounded-xl hover:border-slate-400 dark:hover:border-white/20 transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-white/10 mb-3">
+            <FastForward className="h-5 w-5" />
+          </div>
+          <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100">Select an audio file</h3>
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-mono">Supports MP3 · WAV · M4A · FLAC · OGG · OPUS</p>
+          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-brand-700 transition-colors">
+            <span>Browse audio</span>
             <input
               type="file"
               accept="audio/*"
@@ -90,41 +91,40 @@ export function AudioSpeedTool() {
           </label>
         </div>
       ) : (
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div className="space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-3">
             <div>
-              <h4 className="text-sm font-bold text-slate-900 truncate max-w-md">{file.name}</h4>
-              <p className="text-xs text-slate-500">{formatBytes(file.size)}</p>
+              <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 truncate max-w-md">{file.name}</h4>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono mt-0.5">{formatBytes(file.size)}</p>
             </div>
             <button
               onClick={() => {
                 setFile(null);
                 setOutputResult(null);
               }}
-              className="text-xs text-slate-500 hover:text-red-600 underline"
+              className="text-xs text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Choose different file
             </button>
           </div>
 
           {/* Speed Presets */}
-          <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-800">Select Desired Playback Speed</label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="space-y-2.5">
+            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300">Target playback rate</label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {speedOptions.map((opt) => (
-                <button
+                <div
                   key={opt.value}
-                  type="button"
                   onClick={() => setSpeed(opt.value)}
-                  className={`rounded-lg border p-3 text-center transition-all ${
+                  className={`cursor-pointer rounded-lg border p-3 transition-colors ${
                     speed === opt.value
-                      ? "border-brand-600 bg-brand-50/70 font-bold text-brand-900 ring-1 ring-brand-500"
-                      : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs"
+                      ? "border-brand-500 bg-brand-50/50 dark:bg-brand-950/20 text-brand-900 dark:text-brand-300"
+                      : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:border-slate-300 dark:hover:border-white/20"
                   }`}
                 >
-                  <div className="text-sm font-bold">{opt.value}x</div>
-                  <div className="text-[10px] text-slate-500">{opt.label.split(" ")[1]}</div>
-                </button>
+                  <div className="font-mono text-xs font-medium">{opt.label}</div>
+                  <div className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">{opt.desc}</div>
+                </div>
               ))}
             </div>
           </div>
@@ -133,47 +133,50 @@ export function AudioSpeedTool() {
           <button
             onClick={handleProcess}
             disabled={isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-600 py-3 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-50 active:scale-98 transition-all"
+            className="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
           >
             {isProcessing ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Processing speed change ({progress}%)...</span>
+                <span>Adjusting speed ({progress}%)...</span>
               </>
             ) : (
               <>
                 <FastForward className="h-4 w-4" />
-                <span>Apply {speed}x Playback Speed</span>
+                <span>Apply {speed}x playback speed</span>
               </>
             )}
           </button>
 
           {/* Result */}
           {outputResult && (
-            <div className="flex items-center justify-between rounded-xl bg-emerald-50 p-4 border border-emerald-200">
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-900">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span>Audio Speed Adjusted Successfully!</span>
+            <div className="rounded-lg bg-slate-50 dark:bg-white/5 p-3.5 border border-slate-200/80 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-900 dark:text-zinc-100">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>Playback speed adjusted</span>
                 </div>
-                <div className="text-xs text-emerald-700 mt-1">
-                  {outputResult.name} • {formatBytes(outputResult.blob.size)}
-                </div>
+                <a
+                  href={outputResult.url}
+                  download={outputResult.name}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download</span>
+                </a>
               </div>
-              <a
-                href={outputResult.url}
-                download={outputResult.name}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
-              >
-                <Download className="h-4 w-4" />
-                <span>Download</span>
-              </a>
+
+              <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-slate-600 dark:text-zinc-400 pt-1 border-t border-slate-200/60 dark:border-white/5">
+                <span>Output: {outputResult.name}</span>
+                <span>·</span>
+                <span>Size: {formatBytes(outputResult.blob.size)}</span>
+              </div>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center gap-2 text-xs text-red-700 bg-red-50 p-3 rounded-lg border border-red-200">
-              <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-200 dark:border-red-900/60">
+              <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}

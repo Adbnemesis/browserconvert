@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { conversionEngine } from "@/lib/conversion/engine";
 import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/formatters";
-import { Volume2, Download, AlertCircle, Loader2, UploadCloud, CheckCircle2, VolumeX, Volume1 } from "lucide-react";
+import { Volume2, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 
 export function AudioVolumeTool() {
@@ -15,12 +15,12 @@ export function AudioVolumeTool() {
   const [error, setError] = useState<string | null>(null);
 
   const presets = [
-    { label: "Quiet (-50%)", value: 0.5 },
-    { label: "Slight Soften (-25%)", value: 0.75 },
+    { label: "Quiet (50%)", value: 0.5 },
+    { label: "Soften (75%)", value: 0.75 },
     { label: "Original (100%)", value: 1.0 },
-    { label: "Boost (+25%)", value: 1.25 },
-    { label: "Louder (+50%)", value: 1.5 },
-    { label: "Maximum Boost (+100%)", value: 2.0 },
+    { label: "Boost (125%)", value: 1.25 },
+    { label: "Louder (150%)", value: 1.5 },
+    { label: "Maximum (200%)", value: 2.0 },
   ];
 
   const handleProcess = async () => {
@@ -66,14 +66,16 @@ export function AudioVolumeTool() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 sm:p-6">
       {!file ? (
-        <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-slate-50">
-          <UploadCloud className="h-10 w-10 text-brand-600 mb-3" />
-          <h3 className="text-base font-semibold text-slate-800">Select an audio file to adjust volume</h3>
-          <p className="text-xs text-slate-500 mt-1">Supports MP3, WAV, M4A, FLAC, OGG, OPUS, AAC</p>
-          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white shadow-xs cursor-pointer hover:bg-brand-700">
-            <span>Browse Audio</span>
+        <div className="flex flex-col items-center justify-center p-8 sm:p-10 text-center border border-dashed border-slate-300 dark:border-white/10 rounded-xl hover:border-slate-400 dark:hover:border-white/20 transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-white/10 mb-3">
+            <Volume2 className="h-5 w-5" />
+          </div>
+          <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100">Select an audio file</h3>
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-mono">Supports MP3 · WAV · M4A · FLAC · OGG · OPUS</p>
+          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-brand-700 transition-colors">
+            <span>Browse audio</span>
             <input
               type="file"
               accept="audio/*"
@@ -89,37 +91,49 @@ export function AudioVolumeTool() {
           </label>
         </div>
       ) : (
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div className="space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-3">
             <div>
-              <h4 className="text-sm font-bold text-slate-900 truncate max-w-md">{file.name}</h4>
-              <p className="text-xs text-slate-500">{formatBytes(file.size)}</p>
+              <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 truncate max-w-md">{file.name}</h4>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono mt-0.5">{formatBytes(file.size)}</p>
             </div>
             <button
               onClick={() => {
                 setFile(null);
                 setOutputResult(null);
               }}
-              className="text-xs text-slate-500 hover:text-red-600 underline"
+              className="text-xs text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Choose different file
             </button>
           </div>
 
-          {/* Volume Slider & Percent Display */}
-          <div className="rounded-xl bg-slate-50 p-5 border border-slate-200 space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-800 flex items-center gap-2">
-                <Volume2 className="h-4 w-4 text-brand-600" />
-                Target Volume Level:
-              </span>
-              <span className="text-sm font-extrabold text-brand-700 font-mono">
-                {Math.round(volume * 100)}%
-              </span>
+          {/* Volume Presets */}
+          <div className="space-y-2.5">
+            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300">Volume level</label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {presets.map((p) => (
+                <button
+                  key={p.value}
+                  type="button"
+                  onClick={() => setVolume(p.value)}
+                  className={`rounded-lg border p-3 text-left transition-colors ${
+                    volume === p.value
+                      ? "border-brand-500 bg-brand-50/50 dark:bg-brand-950/20 text-brand-900 dark:text-brand-300 font-medium"
+                      : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:border-slate-300 dark:hover:border-white/20 text-slate-800 dark:text-zinc-200"
+                  }`}
+                >
+                  <div className="font-mono text-xs">{p.label}</div>
+                </button>
+              ))}
             </div>
 
-            <div className="flex items-center gap-3">
-              <VolumeX className="h-4 w-4 text-slate-400" />
+            {/* Custom slider */}
+            <div className="pt-2">
+              <div className="flex items-center justify-between text-xs mb-1.5">
+                <span className="text-slate-600 dark:text-zinc-400">Custom level:</span>
+                <span className="font-mono text-brand-600 dark:text-brand-400 font-medium tabular-nums">{Math.round(volume * 100)}%</span>
+              </div>
               <input
                 type="range"
                 min="0.1"
@@ -127,27 +141,8 @@ export function AudioVolumeTool() {
                 step="0.05"
                 value={volume}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
-                className="w-full accent-brand-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
+                className="w-full accent-brand-600 cursor-pointer"
               />
-              <Volume2 className="h-5 w-5 text-brand-600" />
-            </div>
-
-            {/* Quick Presets */}
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 pt-2">
-              {presets.map((p) => (
-                <button
-                  key={p.value}
-                  type="button"
-                  onClick={() => setVolume(p.value)}
-                  className={`rounded py-1 px-2 text-[11px] font-medium transition-colors ${
-                    volume === p.value
-                      ? "bg-brand-600 text-white font-bold"
-                      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
-                  }`}
-                >
-                  {Math.round(p.value * 100)}%
-                </button>
-              ))}
             </div>
           </div>
 
@@ -155,7 +150,7 @@ export function AudioVolumeTool() {
           <button
             onClick={handleProcess}
             disabled={isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-600 py-3 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-50 active:scale-98 transition-all"
+            className="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
           >
             {isProcessing ? (
               <>
@@ -164,38 +159,41 @@ export function AudioVolumeTool() {
               </>
             ) : (
               <>
-                <Volume1 className="h-4 w-4" />
-                <span>Apply {Math.round(volume * 100)}% Volume & Save</span>
+                <Volume2 className="h-4 w-4" />
+                <span>Apply {Math.round(volume * 100)}% volume</span>
               </>
             )}
           </button>
 
           {/* Result */}
           {outputResult && (
-            <div className="flex items-center justify-between rounded-xl bg-emerald-50 p-4 border border-emerald-200">
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-900">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span>Volume Adjusted Successfully!</span>
+            <div className="rounded-lg bg-slate-50 dark:bg-white/5 p-3.5 border border-slate-200/80 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-900 dark:text-zinc-100">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>Volume adjusted successfully</span>
                 </div>
-                <div className="text-xs text-emerald-700 mt-1">
-                  {outputResult.name} • {formatBytes(outputResult.blob.size)}
-                </div>
+                <a
+                  href={outputResult.url}
+                  download={outputResult.name}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download</span>
+                </a>
               </div>
-              <a
-                href={outputResult.url}
-                download={outputResult.name}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
-              >
-                <Download className="h-4 w-4" />
-                <span>Download</span>
-              </a>
+
+              <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-slate-600 dark:text-zinc-400 pt-1 border-t border-slate-200/60 dark:border-white/5">
+                <span>Output: {outputResult.name}</span>
+                <span>·</span>
+                <span>Size: {formatBytes(outputResult.blob.size)}</span>
+              </div>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center gap-2 text-xs text-red-700 bg-red-50 p-3 rounded-lg border border-red-200">
-              <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-200 dark:border-red-900/60">
+              <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}

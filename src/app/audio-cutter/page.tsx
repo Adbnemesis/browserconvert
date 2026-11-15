@@ -7,7 +7,7 @@ import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
 import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
-import { Scissors, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
+import { Scissors, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Audio Cutter Online - Trim Audio & Music Files Free",
@@ -37,7 +37,7 @@ export default function AudioCutterPage() {
       a: "BrowserConvert uses WebAssembly-compiled FFmpeg directly in your browser. When you select an audio track, the HTML5 Web Audio API parses the file for playback preview while FFmpeg slices the exact start and end timestamps in memory.",
     },
     {
-      q: "Can I cut audio on iPhone, Android, or mobile devices?",
+      q: "Can I cut audio on mobile devices?",
       a: "Yes. The Audio Cutter is fully responsive and supports touch range sliders and numerical inputs on iOS Safari and Android Chrome.",
     },
     {
@@ -47,7 +47,7 @@ export default function AudioCutterPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
         title="Online Audio Cutter & Trimmer"
         description="Cut and trim MP3, WAV, M4A, and FLAC audio tracks with live playback preview and 100% private browser processing."
@@ -64,7 +64,7 @@ export default function AudioCutterPage() {
             },
             {
               name: "Adjust Start & End Markers",
-              text: "Use the interactive sliders or type exact start and end seconds with live playback verification.",
+              text: "Use the range sliders or enter exact seconds with playback preview.",
             },
             {
               name: "Cut & Download",
@@ -74,75 +74,75 @@ export default function AudioCutterPage() {
         }}
       />
 
-      <Breadcrumbs items={[{ label: "Audio Tools", href: "/audio-converter" }, { label: "Audio Cutter", href: "/audio-cutter" }]} />
+      <Breadcrumbs items={[{ label: "Audio tools", href: "/audio-converter" }, { label: "Audio cutter", href: "/audio-cutter" }]} />
 
-      <div className="text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 border border-brand-200 mb-3">
-          <Scissors className="h-3.5 w-3.5" />
-          <span>Precision Audio Trimming</span>
+      <div className="text-center max-w-2xl mx-auto">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 px-3 py-1 text-xs text-slate-600 dark:text-zinc-300 mb-3">
+          <Scissors className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />
+          <span className="font-mono text-[11px]">Precision trimming</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-          Free Online Audio Cutter
+        <h1 className="text-2xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+          Audio cutter and trimmer
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-          Trim start and end points of any audio file with live playback preview.
-          Extract sound bites, ringtones, and podcast highlights with 100% private in-browser processing.
+        <p className="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
+          Trim start and end points of audio tracks with live playback preview.
+          Extract clips, ringtones, and voice highlights locally in your browser.
         </p>
       </div>
 
       <DirectAnswer
         question="How do I cut an audio file online for free without uploading it to a server?"
-        answer="To trim an audio file privately, upload it to BrowserConvert's Audio Cutter tool below. Set your desired start and end points using the interactive range sliders or type exact timestamps, preview the selection using the built-in player, and click Cut & Save. The file is trimmed locally using browser-native WebAssembly FFmpeg with 100% confidentiality."
+        answer="Upload your track to the Audio Cutter below. Set your desired start and end points using the interactive range sliders or type exact timestamps, preview the selection with the built-in player, and click Cut & Save. The file is sliced locally in memory with 100% privacy."
       />
 
       <AudioCutterTool />
 
       <AdSlot position="headerBanner" />
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6 max-w-4xl mx-auto">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-          How to Cut & Trim Audio Files
+      <section className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 sm:p-6 space-y-4 max-w-3xl mx-auto">
+        <h2 className="text-base font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+          How to cut audio files
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-slate-600">
-          <div className="space-y-1.5">
-            <h3 className="font-bold text-slate-900">1. Upload Audio Track</h3>
-            <p>Select any MP3, WAV, M4A, FLAC, or OGG file from your computer or smartphone.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-600 dark:text-zinc-400">
+          <div className="space-y-1">
+            <h3 className="font-medium text-slate-800 dark:text-zinc-200">1. Select track</h3>
+            <p>Load MP3, WAV, M4A, FLAC, or OGG files from your computer or smartphone.</p>
           </div>
           <div className="space-y-1.5">
-            <h3 className="font-bold text-slate-900">2. Set Start & End Sliders</h3>
-            <p>Use the range slider controls or input exact seconds to define your trimmed segment.</p>
+            <h3 className="font-medium text-slate-800 dark:text-zinc-200">2. Set markers</h3>
+            <p>Use the range slider controls or input exact seconds to define your segment.</p>
           </div>
           <div className="space-y-1.5">
-            <h3 className="font-bold text-slate-900">3. Cut & Download</h3>
-            <p>Click &ldquo;Cut & Save Selection&rdquo; to process locally and download your trimmed clip.</p>
+            <h3 className="font-medium text-slate-800 dark:text-zinc-200">3. Save clip</h3>
+            <p>Click Cut & Save to process locally and download your trimmed audio track.</p>
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs">
-          <Link href="/audio-merger" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
-            Audio Merger
+        <div className="pt-3 border-t border-slate-100 dark:border-white/5 flex flex-wrap gap-2 text-xs">
+          <Link href="/audio-merger" className="rounded-lg bg-slate-50 dark:bg-white/5 px-2.5 py-1 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white border border-slate-200/80 dark:border-white/10 transition-colors">
+            Audio merger
           </Link>
-          <Link href="/audio-compressor" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
-            Audio Compressor
+          <Link href="/audio-compressor" className="rounded-lg bg-slate-50 dark:bg-white/5 px-2.5 py-1 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white border border-slate-200/80 dark:border-white/10 transition-colors">
+            Audio compressor
           </Link>
-          <Link href="/audio-converter" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
-            All Audio Converters
+          <Link href="/audio-converter" className="rounded-lg bg-slate-50 dark:bg-white/5 px-2.5 py-1 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white border border-slate-200/80 dark:border-white/10 transition-colors">
+            All audio converters
           </Link>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="space-y-4 max-w-4xl mx-auto">
-        <h2 className="text-xl font-bold tracking-tight text-slate-900 text-center mb-6">
-          Frequently Asked Questions About Audio Trimming
+      <section className="space-y-3 max-w-3xl mx-auto">
+        <h2 className="text-base font-medium tracking-tight text-slate-900 dark:text-zinc-100 text-center mb-4">
+          Frequently asked questions
         </h2>
         {faqs.map((faq) => (
-          <div key={faq.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-            <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2.5">
-              <HelpCircle className="h-4 w-4 text-brand-600 shrink-0 mt-0.5" />
+          <div key={faq.q} className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-4">
+            <h3 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 flex items-start gap-2">
+              <HelpCircle className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400 shrink-0 mt-0.5" />
               <span>{faq.q}</span>
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6.5">
+            <p className="mt-1.5 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed pl-5.5">
               {faq.a}
             </p>
           </div>

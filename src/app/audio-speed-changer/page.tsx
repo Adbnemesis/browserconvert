@@ -81,7 +81,7 @@ export default function AudioSpeedChangerPage() {
           <FastForward className="h-3.5 w-3.5" />
           <span>Tempo & Speed Adjustment</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Audio Speed Changer Online
         </h1>
         <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">

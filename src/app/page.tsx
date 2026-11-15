@@ -6,6 +6,7 @@ import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
 import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { AudioVisualizer } from "@/components/ui/AudioVisualizer";
 import {
   FileAudio,
   Film,
@@ -14,9 +15,7 @@ import {
   Sliders,
   FolderArchive,
   ArrowRight,
-  CheckCircle,
   HelpCircle,
-  Sparkles,
 } from "lucide-react";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
 
@@ -41,94 +40,88 @@ export default function HomePage() {
     {
       title: "MP4 to MP3",
       href: "/mp4-to-mp3",
-      description: "Extract clean audio tracks from MP4 video clips directly in your browser.",
-      badge: "Video to Audio",
-      badgeColor: "bg-indigo-50 text-indigo-700",
+      description: "Extract audio streams from MP4 clips directly in your browser.",
+      badge: "Video to audio",
     },
     {
       title: "WAV to MP3",
       href: "/wav-to-mp3",
-      description: "Compress uncompressed master WAV recordings into portable high-bitrate MP3s.",
-      badge: "Audio Compression",
-      badgeColor: "bg-emerald-50 text-emerald-700",
+      description: "Compress master WAV recordings into high-bitrate MP3 files.",
+      badge: "Compression",
     },
     {
       title: "M4A to MP3",
       href: "/m4a-to-mp3",
-      description: "Convert Apple Voice Memos and iTunes audio files to universally compatible MP3.",
-      badge: "Universal Compatibility",
-      badgeColor: "bg-blue-50 text-blue-700",
+      description: "Convert Apple Voice Memos and AAC audio to standard MP3.",
+      badge: "Universal",
     },
     {
       title: "FLAC to MP3",
       href: "/flac-to-mp3",
-      description: "Transform lossless studio FLAC albums into 320 kbps MP3 files for mobile players.",
-      badge: "Audiophile",
-      badgeColor: "bg-purple-50 text-purple-700",
+      description: "Transform studio FLAC tracks into 320 kbps MP3 files for mobile listening.",
+      badge: "Lossless to MP3",
     },
     {
       title: "MOV to MP3",
       href: "/mov-to-mp3",
-      description: "Rip audio from Apple QuickTime MOV recordings without sending video to any server.",
-      badge: "Video to Audio",
-      badgeColor: "bg-indigo-50 text-indigo-700",
+      description: "Extract audio from QuickTime MOV recordings without sending video to any server.",
+      badge: "Video to audio",
     },
     {
       title: "MP3 to WAV",
       href: "/mp3-to-wav",
-      description: "Decompress MP3 audio into uncompressed 16-bit PCM WAV for audio editing and DAWs.",
-      badge: "Audio Editing",
-      badgeColor: "bg-amber-50 text-amber-700",
+      description: "Decompress MP3 audio into uncompressed 16-bit PCM WAV for DAWs.",
+      badge: "Editing",
     },
   ];
 
   const features = [
     {
       icon: ShieldCheck,
-      title: "100% Client-Side Privacy",
-      desc: "Your files never touch our servers. WebAssembly executes the entire conversion locally inside your own browser window.",
+      title: "Client-side privacy",
+      desc: "Files never leave your computer. WebAssembly executes FFmpeg locally inside your browser memory sandbox.",
     },
     {
       icon: Zap,
-      title: "Fast & Registration-Free",
-      desc: "No account creation, no email verification, and no wait times. Drop your files and download the converted audio immediately.",
+      title: "No account required",
+      desc: "Drop files and convert immediately. No sign-up, no email confirmation, and no daily conversion quotas.",
     },
     {
       icon: Sliders,
-      title: "Custom Bitrate & Audio Controls",
-      desc: "Fine-tune output parameters from 64 kbps to 320 kbps, adjust sample rates, select mono/stereo, or trim start and end times.",
+      title: "Exact audio controls",
+      desc: "Set bitrates from 64 to 320 kbps, configure sample rates, select mono or stereo, and trim timestamps.",
     },
     {
       icon: FolderArchive,
-      title: "Batch Conversion & ZIP Download",
-      desc: "Process multiple tracks simultaneously. When finished, download all converted tracks packaged into a single ZIP archive.",
+      title: "Batch queue & ZIP export",
+      desc: "Process multiple tracks simultaneously and download the converted batch in a single archive.",
     },
   ];
 
   const faqs = [
     {
       q: "How does BrowserConvert process files without uploading them?",
-      a: "BrowserConvert runs WebAssembly (Wasm) compiled FFmpeg directly inside your web browser. When you select a file, your browser's CPU processes and re-encodes the audio data in memory. No file data is ever transmitted across the internet to our servers.",
+      a: "BrowserConvert runs WebAssembly-compiled FFmpeg inside your web browser. When you select a file, your CPU processes and re-encodes the stream locally. No media data travels across the internet.",
     },
     {
       q: "Which video formats can I extract audio from?",
-      a: "You can upload common video containers including MP4, MOV, MKV, WEBM, AVI, WMV, FLV, 3GP, and TS. The engine extracts the underlying audio stream and encodes it into your chosen output format such as MP3 or WAV.",
+      a: "Supported containers include MP4, MOV, MKV, WEBM, AVI, WMV, FLV, 3GP, and TS. The engine extracts the raw audio stream and encodes it directly to your target format.",
     },
     {
-      q: "What audio bitrate should I choose?",
-      a: "For general listening, 192 kbps is the recommended sweet spot between file size and audio fidelity. For spoken word and voice memos, 96-128 kbps is sufficient. For high-fidelity music playback on quality speakers, select 256 or 320 kbps.",
+      q: "What audio bitrate is recommended?",
+      a: "For music and general listening, 192 or 256 kbps offers the best balance of fidelity and size. For podcasts and speech, 96 to 128 kbps is sufficient. For mastering or archiving, choose 320 kbps or lossless WAV/FLAC.",
     },
     {
-      q: "Will converting MP3 to WAV restore lost audio quality?",
-      a: "No. MP3 is a lossy format, meaning data was permanently discarded during its initial encoding. Converting MP3 to WAV creates an uncompressed PCM stream suitable for editing software, but cannot restore the frequencies lost during the original MP3 compression.",
+      q: "Will converting MP3 to WAV improve audio quality?",
+      a: "No. MP3 is lossy, so lost frequencies cannot be restored. Converting to WAV produces an uncompressed stream suitable for editing in audio workstations, but does not recover missing data.",
     },
     {
       q: "Is there a file size limit?",
-      a: "Because processing happens in your browser's memory, we recommend files under 1 GB for smooth performance. Very large video files may be constrained by your device's available RAM.",
+      a: "Because processing runs entirely in your device RAM, files up to 1 GB run smoothly on modern hardware. Very large video files may be constrained by available system memory.",
     },
     {
-      q: "Can I use BrowserConvert on my smartphone?",
-      a: "Yes. BrowserConvert is fully responsive and functions on modern mobile browsers including Safari on iOS and Chrome on Android with WebAssembly support.",
+      q: "Does this work on mobile devices?",
+      a: "Yes. BrowserConvert functions on mobile browsers supporting WebAssembly, including Safari on iOS and Chrome on Android.",
     },
   ];
 
@@ -144,7 +137,7 @@ export default function HomePage() {
           description: "Convert audio and video files locally in your browser in three simple steps with complete privacy.",
           steps: [
             {
-              name: "Upload Media Files",
+              name: "Select Media Files",
               text: "Drag and drop single or multiple audio or video files into the converter. Files remain stored safely on your device.",
             },
             {
@@ -159,36 +152,38 @@ export default function HomePage() {
         }}
       />
 
-      {/* SECTION 1: HERO & WORKING CONVERTER */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 dark:from-transparent dark:via-transparent dark:to-transparent pt-8 sm:pt-14 pb-12 border-b border-slate-200/60 dark:border-white/10">
+      {/* SECTION 1: HERO & CONVERTER DECK */}
+      <section className="pt-8 sm:pt-12 pb-12 border-b border-slate-200/80 dark:border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 dark:bg-brand-950/80 px-3 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/60 mb-4 shadow-xs dark:shadow-[0_0_15px_rgb(var(--brand-glow)/0.25)]">
-              <Sparkles className="h-3.5 w-3.5 text-brand-500" />
-              <span>Browser-Native FFmpeg • Free & Unlimited</span>
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            {/* Studio Status Indicator with Live Audio Equalizer */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 px-3 py-1 text-xs text-slate-600 dark:text-zinc-300 mb-4 shadow-xs">
+              <AudioVisualizer bars={3} className="h-3 gap-0.5" barWidth="w-0.5" />
+              <span className="font-mono text-[11px]">WebAssembly FFmpeg · Zero Uploads</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-              Convert Audio Files Online. <br className="hidden sm:inline" />
-              <span className="text-brand-600 dark:text-brand-400 dark:drop-shadow-[0_0_25px_rgb(var(--brand-glow)/0.35)]">Fast, Free & Private.</span>
+
+            <h1 className="text-3xl sm:text-5xl font-medium tracking-tight text-slate-900 dark:text-zinc-100 leading-tight">
+              Convert audio and video files. <br className="hidden sm:inline" />
+              <span className="text-brand-600 dark:text-brand-400">Locally in your browser</span>
             </h1>
-            <p className="mt-3.5 text-sm sm:text-base text-slate-600 dark:text-zinc-200 leading-relaxed max-w-2xl mx-auto font-normal">
-              Convert MP3, WAV, M4A, FLAC, and more. Extract crystal-clear audio from video files with a simple,
-              private browser converter. Zero file uploads.
+
+            <p className="mt-3.5 text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xl mx-auto font-normal">
+              Convert MP3, WAV, M4A, FLAC, and extract audio from MP4 or MOV videos. Processing runs in browser memory with zero file uploads.
             </p>
           </div>
 
-          {/* WORKING CONVERTER MOUNTED RIGHT IN HERO */}
+          {/* CONVERTER DECK */}
           <div className="relative">
             <Converter
               defaultOutputFormat="mp3"
-              dropzoneHeadline="Drop your audio or video files here to convert"
-              dropzoneSubheadline="MP3, WAV, M4A, FLAC, MP4, MOV, MKV and more • 100% Client-Side"
+              dropzoneHeadline="Drop audio or video files here"
+              dropzoneSubheadline="MP3, WAV, M4A, FLAC, MP4, MOV, MKV and more · Processed on device"
             />
           </div>
         </div>
       </section>
 
-      {/* OPTIONAL AD BANNER */}
+      {/* AD BANNER */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AdSlot position="headerBanner" />
       </div>
@@ -200,21 +195,21 @@ export default function HomePage() {
           answer="BrowserConvert executes WebAssembly-compiled FFmpeg directly inside your web browser sandbox. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your local device memory with 100% privacy and zero server uploads."
         />
 
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Popular Media Conversions
+            <h2 className="text-lg sm:text-xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+              Popular conversions
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-500">
-              Dedicated converters with pre-configured settings for the most requested formats.
+            <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+              Preset converters configured for standard audio workflows.
             </p>
           </div>
           <Link
             href="/audio-converter"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700"
+            className="inline-flex items-center gap-1 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline"
           >
-            <span>View All Audio Formats</span>
-            <ArrowRight className="h-3.5 w-3.5" />
+            <span>All audio formats</span>
+            <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
 
@@ -223,21 +218,19 @@ export default function HomePage() {
             <Link
               key={conv.href}
               href={conv.href}
-              className="group relative flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-5 shadow-xs transition-all hover:border-brand-300 hover:shadow-card-hover hover:-translate-y-0.5"
+              className="group relative flex flex-col justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-brand-500/50 hover:shadow-lg"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${conv.badgeColor}`}>
+                  <span className="font-mono text-[11px] text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 rounded px-2 py-0.5">
                     {conv.badge}
                   </span>
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-brand-50 group-hover:text-brand-600 transition-colors">
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </div>
+                  <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-brand-500 group-hover:translate-x-1.5 transition-all duration-200" />
                 </div>
-                <h3 className="text-base font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100 group-hover:text-brand-500 transition-colors">
                   {conv.title}
                 </h3>
-                <p className="mt-2 text-xs text-slate-600 leading-relaxed">
+                <p className="mt-1.5 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
                   {conv.description}
                 </p>
               </div>
@@ -246,40 +239,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 3: SUPPORTED FORMATS MATRIX */}
-      <section className="bg-slate-100/70 dark:bg-white/[0.02] py-12 border-y border-slate-200/80 dark:border-white/10">
+      {/* SECTION 3: SUPPORTED CODECS */}
+      <section className="bg-slate-50 dark:bg-white/[0.02] py-12 border-y border-slate-200/80 dark:border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Supported Audio & Video Codecs
+          <div className="max-w-xl mb-8">
+            <h2 className="text-lg sm:text-xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+              Supported codecs and containers
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-500">
-              Every format is processed by our client-side WebAssembly multimedia engine.
+            <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+              Processed through native WebAssembly compilation without server interaction.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Audio Formats Card */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-xs">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                  <FileAudio className="h-4 w-4" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900">Supported Audio Outputs</h3>
-                  <p className="text-xs text-slate-500">Available target formats for all conversions</p>
-                </div>
+            {/* Audio Outputs */}
+            <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <FileAudio className="h-4 w-4 text-brand-600 dark:text-brand-400" />
+                <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Audio outputs</h3>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {Object.values(SUPPORTED_OUTPUT_FORMATS).map((fmt) => (
-                  <div key={fmt.id} className="flex items-start justify-between border-b border-slate-100 pb-2.5 text-xs">
+                  <div key={fmt.id} className="flex items-start justify-between border-b border-slate-100 dark:border-white/5 pb-2.5 text-xs">
                     <div>
-                      <span className="font-bold text-slate-800">{fmt.name}</span>
-                      <span className="ml-2 text-slate-400 font-mono">({fmt.extension})</span>
-                      <p className="text-[11px] text-slate-500 mt-0.5">{fmt.description}</p>
+                      <span className="font-medium text-slate-800 dark:text-zinc-200">{fmt.name}</span>
+                      <span className="ml-1.5 text-slate-400 font-mono">({fmt.extension})</span>
+                      <p className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">{fmt.description}</p>
                     </div>
-                    <span className="shrink-0 text-[10px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                    <span className="shrink-0 font-mono text-[10px] text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-white/5 px-2 py-0.5 rounded border border-slate-200/60 dark:border-white/5">
                       {fmt.isLossless ? "Lossless" : fmt.defaultBitrate}
                     </span>
                   </div>
@@ -287,142 +275,127 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Video Input Extraction Card */}
-            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-xs">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
-                  <Film className="h-4 w-4" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900">Video Extraction Formats</h3>
-                  <p className="text-xs text-slate-500">Containers supported for direct audio extraction</p>
-                </div>
+            {/* Video Extraction */}
+            <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <Film className="h-4 w-4 text-brand-600 dark:text-brand-400" />
+                <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Video extraction inputs</h3>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
                 {[
-                  { name: "MP4 Video", ext: ".mp4", desc: "MPEG-4 Part 14" },
-                  { name: "MOV Video", ext: ".mov", desc: "Apple QuickTime" },
-                  { name: "MKV Video", ext: ".mkv", desc: "Matroska Container" },
-                  { name: "WEBM Video", ext: ".webm", desc: "HTML5 Web Media" },
-                  { name: "AVI Video", ext: ".avi", desc: "Audio Video Interleaved" },
-                  { name: "WMV Video", ext: ".wmv", desc: "Windows Media" },
-                  { name: "FLV Video", ext: ".flv", desc: "Flash Video" },
-                  { name: "3GP Video", ext: ".3gp", desc: "Mobile Multimedia" },
-                  { name: "TS Stream", ext: ".ts", desc: "Transport Stream" },
+                  { name: "MP4", ext: ".mp4", desc: "MPEG-4" },
+                  { name: "MOV", ext: ".mov", desc: "QuickTime" },
+                  { name: "MKV", ext: ".mkv", desc: "Matroska" },
+                  { name: "WEBM", ext: ".webm", desc: "WebM" },
+                  { name: "AVI", ext: ".avi", desc: "AVI" },
+                  { name: "WMV", ext: ".wmv", desc: "Windows Media" },
+                  { name: "FLV", ext: ".flv", desc: "Flash" },
+                  { name: "3GP", ext: ".3gp", desc: "Mobile" },
+                  { name: "TS", ext: ".ts", desc: "Transport" },
                 ].map((v) => (
-                  <div key={v.ext} className="rounded-lg bg-slate-50 p-2.5 border border-slate-200">
-                    <div className="font-bold text-slate-800">{v.name}</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">{v.desc}</div>
+                  <div key={v.ext} className="rounded-lg bg-slate-50 dark:bg-white/5 p-2.5 border border-slate-200/80 dark:border-white/10">
+                    <div className="font-mono text-xs font-medium text-slate-800 dark:text-zinc-200">{v.name}</div>
+                    <div className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">{v.desc}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-5 rounded-lg bg-brand-50/70 p-3 text-xs text-brand-900 border border-brand-200">
-                <p className="font-semibold">Pure Audio Extraction</p>
-                <p className="text-[11px] text-brand-700 mt-0.5">
-                  The video stream is bypassed entirely during processing, saving battery and producing maximum fidelity audio.
-                </p>
+              <div className="mt-4 rounded-lg bg-slate-50 dark:bg-white/5 p-3 text-xs text-slate-600 dark:text-zinc-400 border border-slate-200/80 dark:border-white/10">
+                <span className="font-medium text-slate-800 dark:text-zinc-200">Stream demuxing: </span>
+                Video tracks are bypassed entirely during processing to maximize encoding speed and battery efficiency.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: HOW IT WORKS */}
+      {/* SECTION 4: STEPS */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-            How BrowserConvert Works in 3 Simple Steps
+        <div className="max-w-xl mb-8">
+          <h2 className="text-lg sm:text-xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+            How it works
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Intuitive client-side processing without complex menus or waiting queues.
+          <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+            Three steps from source media to converted output.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="relative rounded-xl border border-slate-200 bg-white p-6 shadow-xs text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-700 font-extrabold text-base mb-4 border border-brand-100">
-              1
-            </div>
-            <h3 className="text-base font-bold text-slate-900">Upload Your Media</h3>
-            <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-              Drag and drop single or multiple audio/video files into the converter. Your files stay on your device.
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+            <div className="font-mono text-xs text-brand-600 dark:text-brand-400 mb-2">01</div>
+            <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Select media</h3>
+            <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
+              Drop single tracks or batches into the converter. Files are loaded directly into browser memory.
             </p>
           </div>
 
-          <div className="relative rounded-xl border border-slate-200 bg-white p-6 shadow-xs text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-700 font-extrabold text-base mb-4 border border-brand-100">
-              2
-            </div>
-            <h3 className="text-base font-bold text-slate-900">Select Format & Settings</h3>
-            <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-              Choose your target format (MP3, WAV, FLAC, etc.) and optionally adjust bitrate, sample rate, or trimming.
+          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+            <div className="font-mono text-xs text-brand-600 dark:text-brand-400 mb-2">02</div>
+            <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Configure parameters</h3>
+            <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
+              Select output format, set bitrates from 64 to 320 kbps, or adjust sample rates and trimming.
             </p>
           </div>
 
-          <div className="relative rounded-xl border border-slate-200 bg-white p-6 shadow-xs text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-700 font-extrabold text-base mb-4 border border-brand-100">
-              3
-            </div>
-            <h3 className="text-base font-bold text-slate-900">Download the Result</h3>
-            <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-              Click Convert to run FFmpeg locally. Download individual audio tracks or grab all converted files in one ZIP.
+          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-md">
+            <div className="font-mono text-xs text-brand-600 dark:text-brand-400 mb-2">03</div>
+            <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Export audio</h3>
+            <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
+              Click Convert to run FFmpeg locally. Save individual tracks or download the entire batch as a ZIP.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: WHY USE BROWSERCONVERT */}
+      {/* SECTION 5: FEATURES */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12 shadow-xs">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Why Choose BrowserConvert?
+        <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-6 sm:p-8">
+          <div className="max-w-xl mb-6">
+            <h2 className="text-lg sm:text-xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+              System capabilities
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-500">
-              Engineered for genuine privacy, audio fidelity, and modern browser standards.
+            <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+              Engineered around client privacy and audio standards.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feat) => (
               <div key={feat.title} className="flex flex-col items-start">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 mb-3 border border-brand-100">
-                  <feat.icon className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-900">{feat.title}</h3>
-                <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
+                <feat.icon className="h-4 w-4 text-brand-600 dark:text-brand-400 mb-2.5" />
+                <h3 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100">{feat.title}</h3>
+                <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">{feat.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* IN-CONTENT ADVERTISEMENT */}
+      {/* IN-CONTENT AD */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AdSlot position="inContent" />
       </div>
 
       {/* SECTION 6: FAQS */}
-      <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-            Frequently Asked Questions
+      <section className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <h2 className="text-lg sm:text-xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
+            Frequently asked questions
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Everything you need to know about our browser audio conversion architecture.
+          <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+            Common questions regarding local WebAssembly processing.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq) => (
-            <div key={faq.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-              <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2.5">
-                <HelpCircle className="h-4 w-4 text-brand-600 shrink-0 mt-0.5" />
+            <div key={faq.q} className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 flex items-start gap-2">
+                <HelpCircle className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400 shrink-0 mt-0.5" />
                 <span>{faq.q}</span>
               </h3>
-              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6.5">
+              <p className="mt-1.5 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed pl-5.5">
                 {faq.a}
               </p>
             </div>

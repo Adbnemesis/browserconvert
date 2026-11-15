@@ -107,7 +107,7 @@ async function runComprehensiveTests() {
     await page.goto(`${BASE_URL}/audio-volume-adjuster`, { waitUntil: "networkidle2" });
     const fileInput6 = await page.$('input[type="file"]');
     await fileInput6.uploadFile(testWav);
-    await clickButtonByText(page, "Volume & Save");
+    await clickButtonByText(page, "volume");
     await page.waitForSelector('a[download]', { timeout: 35000 });
     console.log("✓ Audio Volume Adjuster verified with valid downloadable result.");
 

@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/config/site";
 import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
-import { FileAudio, Sparkles, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
+import { FileAudio, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",
@@ -95,11 +95,11 @@ export default function AudioConverterPage() {
 
       {/* Hero Intro */}
       <div className="text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 border border-brand-200 mb-3">
-          <Sparkles className="h-3.5 w-3.5" />
-          <span>Universal Audio Converter</span>
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 px-3 py-1 text-xs text-slate-600 dark:text-zinc-300 mb-3">
+          <FileAudio className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />
+          <span className="font-mono text-[11px]">Universal audio converter</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Free Online Audio Converter
         </h1>
         <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">

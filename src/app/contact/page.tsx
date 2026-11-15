@@ -35,7 +35,7 @@ export default function ContactPage() {
       <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
 
       <div className="text-center max-w-xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Contact Support
         </h1>
         <p className="mt-3 text-sm text-slate-600 leading-relaxed">

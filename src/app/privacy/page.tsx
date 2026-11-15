@@ -44,11 +44,11 @@ export default function PrivacyPolicyPage() {
       />
 
       <div className="mt-6 mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-emerald-200/60 dark:border-emerald-800/40">
-          <ShieldCheck className="w-4 h-4" />
-          Zero Server File Uploads
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 text-slate-700 dark:text-zinc-300 text-xs mb-4">
+          <ShieldCheck className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
+          <span className="font-mono text-[11px]">Zero server file storage</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Privacy Policy
         </h1>
         <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm">

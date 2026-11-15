@@ -116,7 +116,7 @@ export default function Mp4ToMp3Page() {
           <Film className="h-3.5 w-3.5" />
           <span>Video to Audio Extraction</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Convert MP4 to MP3 Online Free
         </h1>
         <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">

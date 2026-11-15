@@ -50,25 +50,29 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-white/10 bg-white/95 dark:bg-[#09090b]/90 backdrop-blur-md transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 transition-transform hover:opacity-90 active:scale-98">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-white shadow-sm dark:shadow-[0_0_15px_rgb(var(--brand-glow)/0.4)]">
-            <FileAudio className="h-5 w-5" />
+        {/* Brand Logo with Tactile Audio Hover Animation */}
+        <Link href="/" className="group flex items-center gap-2.5 transition-all">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white shadow-sm transition-all duration-200 group-hover:scale-110 group-hover:rotate-[-4deg] group-hover:shadow-md">
+            <FileAudio className="h-4 w-4" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">{siteConfig.name}</span>
-            <span className="hidden text-[10px] font-medium text-slate-500 dark:text-zinc-400 sm:block -mt-1">Free & Private</span>
+            <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-zinc-100 group-hover:text-brand-500 transition-colors">
+              {siteConfig.name}
+            </span>
+            <span className="hidden text-[11px] text-slate-500 dark:text-zinc-400 sm:block -mt-0.5">
+              In-browser audio tools
+            </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links with Magnetic Pill Hover */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           <Link
             href="/audio-converter"
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
               pathname === "/audio-converter"
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
+                : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
             Audio Converter
@@ -76,24 +80,24 @@ export function Navbar() {
 
           <Link
             href="/mp4-to-mp3"
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
               pathname === "/mp4-to-mp3"
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
+                : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
             Video to MP3
           </Link>
 
-          {/* Tools Dropdown - Robust Click Behavior with Outside Click */}
+          {/* Tools Dropdown with Animated Item Hover */}
           <div className="relative" ref={toolsDropdownRef}>
             <button
               type="button"
               onClick={() => setToolsDropdownOpen((prev) => !prev)}
-              className={`flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
                 toolsDropdownOpen
-                  ? "bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white font-semibold"
-                  : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                  ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
+                  : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
               } focus:outline-none`}
               aria-expanded={toolsDropdownOpen}
               aria-haspopup="true"
@@ -108,7 +112,7 @@ export function Navbar() {
 
             {toolsDropdownOpen && (
               <div className="absolute left-0 top-full pt-2 z-50">
-                <div className="w-72 rounded-xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#121216] p-2 shadow-dropdown dark:shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all animate-in fade-in-50 zoom-in-95">
+                <div className="w-72 rounded-xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#121216] p-2 shadow-xl dark:shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all animate-in fade-in-0 zoom-in-95 duration-200">
                   <div className="space-y-1">
                     {audioTools.map((tool) => {
                       const Icon = tool.icon;
@@ -117,13 +121,13 @@ export function Navbar() {
                           key={tool.href}
                           href={tool.href}
                           onClick={() => setToolsDropdownOpen(false)}
-                          className="flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5 group"
+                          className="flex items-start gap-3 rounded-lg p-2.5 transition-all duration-150 hover:bg-brand-500/10 hover:translate-x-1.5 group"
                         >
-                          <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-md bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                          <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-md bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white group-hover:scale-110 transition-all duration-200">
                             <Icon className="h-4 w-4" />
                           </div>
                           <div>
-                            <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                            <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-500 transition-colors">
                               {tool.label}
                             </div>
                             <div className="text-[11px] text-slate-500 dark:text-zinc-400">{tool.desc}</div>
@@ -139,10 +143,10 @@ export function Navbar() {
 
           <Link
             href="/format-guide"
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
               pathname === "/format-guide"
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
+                : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
             Format Guide
@@ -150,10 +154,10 @@ export function Navbar() {
 
           <Link
             href="/about"
-            className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
               pathname === "/about"
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
+                : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
             About
@@ -225,7 +229,7 @@ export function Navbar() {
             </Link>
 
             <div className="pt-3 pb-1 border-t border-slate-100 dark:border-slate-800">
-              <div className="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Audio Tools</div>
+              <div className="px-3 text-xs font-medium text-slate-400 dark:text-zinc-500">Audio tools</div>
               <div className="mt-2 grid grid-cols-2 gap-1">
                 {audioTools.map((tool) => (
                   <Link

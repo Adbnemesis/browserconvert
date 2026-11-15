@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTheme } from "./ThemeProvider";
-import { Sun, Moon } from "lucide-react";
+import { useTheme, THEME_OPTIONS } from "./ThemeProvider";
+import { Sun, Moon, Palette } from "lucide-react";
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const { theme, toggleTheme, accent, setAccent } = useTheme();
@@ -15,7 +15,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div className={`flex items-center gap-1.5 ${className}`}>
-        <div className="w-14 h-8 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5" />
+        <div className="w-16 h-8 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5" />
         <div className="w-8 h-8 rounded-lg border border-slate-200 dark:border-white/10" />
       </div>
     );
@@ -23,39 +23,40 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      {/* Accent Switcher (Green Light vs Crimson Red) */}
+      {/* 2 Curated tweakcn Themes: Northern Lights & Solar Dusk */}
       <div
         className="flex items-center gap-1 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 p-1 shadow-xs"
         role="group"
-        aria-label="Theme Accent Color"
+        aria-label="Theme Presets"
       >
-        <button
-          type="button"
-          onClick={() => setAccent("green")}
-          aria-label="Switch to Green Light accent"
-          title="Green Light / Cyber Emerald"
-          className={`relative flex items-center justify-center rounded-full p-1 transition-all ${
-            accent === "green"
-              ? "bg-white dark:bg-white/15 shadow-xs ring-1 ring-emerald-500"
-              : "opacity-60 hover:opacity-100"
-          }`}
-        >
-          <span className="h-3 w-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]" />
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setAccent("red")}
-          aria-label="Switch to Crimson Red accent"
-          title="Cyberpunk Crimson Red"
-          className={`relative flex items-center justify-center rounded-full p-1 transition-all ${
-            accent === "red"
-              ? "bg-white dark:bg-white/15 shadow-xs ring-1 ring-rose-500"
-              : "opacity-60 hover:opacity-100"
-          }`}
-        >
-          <span className="h-3 w-3 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.7)]" />
-        </button>
+        {THEME_OPTIONS.map((opt) => {
+          const isActive = accent === opt.id;
+          return (
+            <button
+              key={opt.id}
+              type="button"
+              onClick={() => setAccent(opt.id)}
+              aria-label={`Switch to ${opt.name} (${opt.tagline})`}
+              title={`${opt.name} · ${opt.tagline}`}
+              className={`relative flex items-center justify-center rounded-full p-1 transition-all duration-200 ${
+                isActive
+                  ? "ring-2 ring-brand-500 scale-110 shadow-sm"
+                  : "opacity-60 hover:opacity-100 hover:scale-110"
+              }`}
+            >
+              {/* Two-tone Theme Swatch: Canvas Background + Accent Dot */}
+              <span
+                className="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-white/20 shadow-xs"
+                style={{ backgroundColor: opt.bgHex }}
+              >
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: opt.colorHex }}
+                />
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Light / Dark Mode Toggle */}

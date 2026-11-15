@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/config/site";
 import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
-import { FileAudio, Sparkles, HelpCircle, CheckCircle2 } from "lucide-react";
+import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "FLAC to MP3 Converter - Convert Hi-Res FLAC to 320kbps MP3",
@@ -110,7 +110,7 @@ export default function FlacToMp3Page() {
           <FileAudio className="h-3.5 w-3.5" />
           <span>Lossless Audiophile to MP3</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           Convert FLAC to MP3 Online Free
         </h1>
         <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">

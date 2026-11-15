@@ -1,44 +1,44 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
-import { FileAudio, Shield, Lock, Cpu, Heart } from "lucide-react";
+import { FileAudio, Shield, Lock, Cpu } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-900 text-slate-300">
+    <footer className="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0c0d0e] text-slate-600 dark:text-zinc-400">
       {/* Top Value Assurance Banner */}
-      <div className="border-b border-slate-800 bg-slate-950/60 py-6">
+      <div className="border-b border-slate-200/80 dark:border-white/5 py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-brand-400">
-                <Shield className="h-5 w-5" />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-brand-600 dark:text-brand-400">
+                <Shield className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-white">100% Client-Side Privacy</h4>
-                <p className="text-xs text-slate-400">Your files are processed locally. Zero server uploads.</p>
+                <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-200">Client-side privacy</h4>
+                <p className="text-xs text-slate-500 dark:text-zinc-400">Files are processed in memory with zero uploads.</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-emerald-400">
-                <Lock className="h-5 w-5" />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-brand-600 dark:text-brand-400">
+                <Lock className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-white">No Registration Required</h4>
-                <p className="text-xs text-slate-400">Unlimited free conversions with zero account sign-up.</p>
+                <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-200">No account required</h4>
+                <p className="text-xs text-slate-500 dark:text-zinc-400">Unlimited conversions without sign-up.</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-blue-400">
-                <Cpu className="h-5 w-5" />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-brand-600 dark:text-brand-400">
+                <Cpu className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-white">WebAssembly Engine</h4>
-                <p className="text-xs text-slate-400">Powered by browser-native FFmpeg for studio-grade fidelity.</p>
+                <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-200">WebAssembly engine</h4>
+                <p className="text-xs text-slate-500 dark:text-zinc-400">Browser-native FFmpeg compilation for audio fidelity.</p>
               </div>
             </div>
           </div>
@@ -50,52 +50,52 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           {/* Brand Info */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white shadow-sm">
-                <FileAudio className="h-4 w-4" />
+            <Link href="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-white">
+                <FileAudio className="h-3.5 w-3.5" />
               </div>
-              <span className="text-lg font-bold tracking-tight text-white">{siteConfig.name}</span>
+              <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-zinc-100">{siteConfig.name}</span>
             </Link>
-            <p className="mt-3 text-xs leading-relaxed text-slate-400 max-w-sm">
-              Free online audio converter and video-to-audio extraction platform. Convert MP3, WAV, M4A, FLAC, OGG, OPUS,
-              AAC, MP4, MOV, and more directly in your web browser. Safe, instant, and private.
+            <p className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-zinc-400 max-w-sm">
+              Online audio converter and video-to-audio extraction utility. Convert MP3, WAV, M4A, FLAC, OGG, OPUS,
+              AAC, and more directly in your browser.
             </p>
-            <div className="mt-4 text-xs text-slate-500">
-              Files are never uploaded to any remote server or database.
+            <div className="mt-4 font-mono text-[11px] text-slate-400 dark:text-zinc-500">
+              Zero remote server media storage.
             </div>
           </div>
 
           {/* Popular Conversions */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Popular Tools</h3>
+            <h3 className="text-xs font-medium text-slate-900 dark:text-zinc-200">Popular tools</h3>
             <ul className="mt-3 space-y-2 text-xs">
               <li>
-                <Link href="/mp4-to-mp3" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/mp4-to-mp3" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   MP4 to MP3
                 </Link>
               </li>
               <li>
-                <Link href="/wav-to-mp3" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/wav-to-mp3" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   WAV to MP3
                 </Link>
               </li>
               <li>
-                <Link href="/m4a-to-mp3" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/m4a-to-mp3" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   M4A to MP3
                 </Link>
               </li>
               <li>
-                <Link href="/mov-to-mp3" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/mov-to-mp3" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   MOV to MP3
                 </Link>
               </li>
               <li>
-                <Link href="/mp3-to-wav" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/mp3-to-wav" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   MP3 to WAV
                 </Link>
               </li>
               <li>
-                <Link href="/flac-to-mp3" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/flac-to-mp3" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   FLAC to MP3
                 </Link>
               </li>
@@ -104,68 +104,68 @@ export function Footer() {
 
           {/* Audio Utilities */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Audio Utilities</h3>
+            <h3 className="text-xs font-medium text-slate-900 dark:text-zinc-200">Audio utilities</h3>
             <ul className="mt-3 space-y-2 text-xs">
               <li>
-                <Link href="/audio-cutter" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-cutter" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Audio Cutter
                 </Link>
               </li>
               <li>
-                <Link href="/audio-merger" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-merger" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Audio Merger
                 </Link>
               </li>
               <li>
-                <Link href="/audio-compressor" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-compressor" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Audio Compressor
                 </Link>
               </li>
               <li>
-                <Link href="/audio-bitrate-changer" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-bitrate-changer" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Bitrate Changer
                 </Link>
               </li>
               <li>
-                <Link href="/audio-speed-changer" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-speed-changer" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Speed Changer
                 </Link>
               </li>
               <li>
-                <Link href="/audio-volume-adjuster" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/audio-volume-adjuster" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                   Volume Adjuster
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company & Legal */}
+          {/* Resources & Legal */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Resources & Legal</h3>
+            <h3 className="text-xs font-medium text-slate-900 dark:text-zinc-200">Resources & legal</h3>
             <ul className="mt-3 space-y-2 text-xs">
               <li>
-                <Link href="/format-guide" className="text-slate-400 hover:text-white transition-colors">
-                  Audio Format Guide
+                <Link href="/format-guide" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Audio format guide
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-slate-400 hover:text-white transition-colors">
-                  About Us
+                <Link href="/about" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-400 hover:text-white transition-colors">
-                  Contact Support
+                <Link href="/contact" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors">
-                  Privacy Policy
+                <Link href="/privacy" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Privacy policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-slate-400 hover:text-white transition-colors">
-                  Terms of Service
+                <Link href="/terms" className="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Terms of service
                 </Link>
               </li>
             </ul>
@@ -173,10 +173,10 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-10 border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="mt-10 border-t border-slate-200 dark:border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 dark:text-zinc-500 gap-4">
           <p>© {currentYear} {siteConfig.name}. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Built for audio creators with privacy and speed.
+          <p className="flex items-center gap-1 font-mono text-[11px]">
+            In-browser WebAssembly FFmpeg
           </p>
         </div>
       </div>

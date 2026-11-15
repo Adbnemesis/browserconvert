@@ -29,6 +29,26 @@ function fail(desc, err) {
   console.error(`  ❌ [FAIL] ${desc}: ${msg}`);
 }
 
+async function clickButtonByText(page, textSubstring, timeout = 15000) {
+  await page.waitForFunction(
+    (text) => {
+      const btns = Array.from(document.querySelectorAll("button"));
+      return btns.some((b) => b.innerText.toLowerCase().includes(text.toLowerCase()) && !b.disabled);
+    },
+    { timeout },
+    textSubstring
+  );
+  const btns = await page.$$("button");
+  for (const b of btns) {
+    const t = await page.evaluate((el) => el.innerText, b);
+    if (t.toLowerCase().includes(textSubstring.toLowerCase())) {
+      await b.click();
+      return;
+    }
+  }
+  throw new Error(`Button with text "${textSubstring}" not found!`);
+}
+
 async function runUITests() {
   console.log("======================================================================");
   console.log("       BrowserConvert Exhaustive UI, Click & Edge Case Verification      ");
@@ -92,25 +112,25 @@ async function runUITests() {
       throw new Error("Failed to restore initial theme state");
     }
 
-    // TEST ACCENT SWITCHER (Green Light & Crimson Red)
+    // TEST ACCENT / THEME SWITCHER (Northern Lights & Solar Dusk)
     await page.evaluate(() => {
-      const redBtn = document.querySelector('button[aria-label*="Red"]');
-      if (redBtn) redBtn.click();
+      const solarBtn = document.querySelector('button[aria-label*="Solar Dusk"]');
+      if (solarBtn) solarBtn.click();
     });
     await new Promise((r) => setTimeout(r, 100));
-    const accentRed = await page.evaluate(() => document.documentElement.getAttribute("data-accent"));
-    if (accentRed === "red") {
-      pass("Crimson Red accent activated and data-accent set to 'red'");
+    const themeSolar = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    if (themeSolar === "solardusk") {
+      pass("Solar Dusk theme activated and data-theme set to 'solardusk'");
     }
 
     await page.evaluate(() => {
-      const greenBtn = document.querySelector('button[aria-label*="Green"]');
-      if (greenBtn) greenBtn.click();
+      const auroraBtn = document.querySelector('button[aria-label*="Northern Lights"]');
+      if (auroraBtn) auroraBtn.click();
     });
     await new Promise((r) => setTimeout(r, 100));
-    const accentGreen = await page.evaluate(() => document.documentElement.getAttribute("data-accent"));
-    if (accentGreen === "green") {
-      pass("Green Light (Cyber Emerald) accent activated and data-accent set to 'green'");
+    const themeAurora = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    if (themeAurora === "aurora") {
+      pass("Northern Lights theme activated and data-theme set to 'aurora'");
     }
   } catch (e) {
     fail("Dark mode toggle test failed", e);
@@ -184,7 +204,7 @@ async function runUITests() {
     await page.goto(`${BASE_URL}/audio-cutter`, { waitUntil: "networkidle2" });
     const fileInput = await page.$('input[type="file"]');
     await fileInput.uploadFile(testWav);
-    await page.waitForFunction(() => document.body.innerText.includes("Cut & Save Audio") || document.body.innerText.includes("Trimmed Segment Duration"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("cut & save") || document.body.innerText.toLowerCase().includes("trimmed length"));
     pass("Audio Cutter loaded test audio file and controls");
 
     // Test Play/Pause toggle
@@ -202,11 +222,7 @@ async function runUITests() {
     pass("Audio Cutter preview player play/pause toggle functional");
 
     // Click Cut & Save Audio
-    await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll("button"));
-      const cutBtn = btns.find((b) => b.innerText.includes("Cut & Save"));
-      if (cutBtn) cutBtn.click();
-    });
+    await clickButtonByText(page, "Cut & Save");
 
     await page.waitForSelector('a[download]', { timeout: 35000 });
     pass("Audio Cutter trimmed audio segment and generated download file");
@@ -222,33 +238,29 @@ async function runUITests() {
     await page.goto(`${BASE_URL}/audio-merger`, { waitUntil: "networkidle2" });
     const fileInput = await page.$('input[type="file"]');
     await fileInput.uploadFile(testWav, testWav2);
-    await page.waitForFunction(() => document.body.innerText.includes("Merge 2 Audio Tracks"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("merge 2 audio tracks"));
     pass("Audio Merger ingested 2 tracks into sequence");
 
     // Test Move Down button on track 1
-    const moveDownBtn = await page.$('button[title="Move Down"]');
+    const moveDownBtn = await page.$('button[title="Move down"], button[title="Move Down"]');
     if (moveDownBtn) {
       await moveDownBtn.click();
       pass("Track reordering (Move Down) button functional");
     }
 
     // Test Delete Track button
-    const deleteBtn = await page.$('button[title="Remove"]');
+    const deleteBtn = await page.$('button[title="Remove track"], button[title="Remove"]');
     if (deleteBtn) {
       await deleteBtn.click();
-      await page.waitForFunction(() => !document.body.innerText.includes("Merge 2 Audio Tracks"));
+      await page.waitForFunction(() => !document.body.innerText.toLowerCase().includes("merge 2 audio tracks"));
       pass("Track removal from merger sequence functional");
     }
 
     // Re-add track to have 2 tracks and merge
     await fileInput.uploadFile(testWav2);
-    await page.waitForFunction(() => document.body.innerText.includes("Merge 2 Audio Tracks"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("merge 2 audio tracks"));
 
-    await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll("button"));
-      const mergeBtn = btns.find((b) => b.innerText.includes("Audio Tracks"));
-      if (mergeBtn) mergeBtn.click();
-    });
+    await clickButtonByText(page, "Audio Tracks");
 
     await page.waitForSelector('a[download]', { timeout: 35000 });
     pass("Audio Merger concatenated tracks and generated download file");
@@ -264,25 +276,21 @@ async function runUITests() {
     await page.goto(`${BASE_URL}/audio-compressor`, { waitUntil: "networkidle2" });
     const fileInput = await page.$('input[type="file"]');
     await fileInput.uploadFile(testWav);
-    await page.waitForFunction(() => document.body.innerText.includes("Compression Level"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("compression level"));
 
     // Click through each compression preset pill
     const presets = ["Low", "Medium", "High", "Extreme"];
     for (const p of presets) {
       await page.evaluate((text) => {
-        const btns = Array.from(document.querySelectorAll("button"));
-        const btn = btns.find((b) => b.innerText.includes(text));
-        if (btn) btn.click();
+        const els = Array.from(document.querySelectorAll("div, button"));
+        const el = els.find((b) => b.innerText && b.innerText.includes(text));
+        if (el) el.click();
       }, p);
       pass(`Audio Compressor switched to preset: ${p}`);
     }
 
     // Compress with Extreme preset
-    await page.evaluate(() => {
-      const btns = Array.from(document.querySelectorAll("button"));
-      const compressBtn = btns.find((b) => b.innerText.includes("Compress Audio File"));
-      if (compressBtn) compressBtn.click();
-    });
+    await clickButtonByText(page, "Compress Audio File");
 
     await page.waitForSelector('a[download]', { timeout: 35000 });
     pass("Audio Compressor compressed audio with delta ratio feedback");
@@ -299,7 +307,7 @@ async function runUITests() {
     await page.goto(`${BASE_URL}/audio-speed-changer`, { waitUntil: "networkidle2" });
     const speedInput = await page.$('input[type="file"]');
     await speedInput.uploadFile(testWav);
-    await page.waitForFunction(() => document.body.innerText.includes("Playback Speed"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("playback speed"));
 
     await page.evaluate(() => {
       const btns = Array.from(document.querySelectorAll("button"));
@@ -312,7 +320,7 @@ async function runUITests() {
     await page.goto(`${BASE_URL}/audio-volume-adjuster`, { waitUntil: "networkidle2" });
     const volInput = await page.$('input[type="file"]');
     await volInput.uploadFile(testWav);
-    await page.waitForFunction(() => document.body.innerText.includes("Target Volume"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("volume level"));
 
     await page.evaluate(() => {
       const btns = Array.from(document.querySelectorAll("button"));
@@ -334,24 +342,24 @@ async function runUITests() {
 
     // Upload 2 files
     await fileInput.uploadFile(testWav, testMp4);
-    await page.waitForFunction(() => document.body.innerText.includes("Conversion Queue (2 files)"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("queue (2 tracks)"));
     pass("Uploaded 2 files to conversion queue");
 
     // Remove 1 file using trash button
     const trashBtn = await page.$('button[aria-label="Remove from queue"]');
     if (!trashBtn) throw new Error("Trash button not found on queue item");
     await trashBtn.click();
-    await page.waitForFunction(() => document.body.innerText.includes("Conversion Queue (1 file)"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("queue (1 track)"));
     pass("Trash button removed individual item from queue (count: 2 -> 1)");
 
     // Clear remaining queue
     await page.evaluate(() => {
       const btns = Array.from(document.querySelectorAll("button"));
-      const clearBtn = btns.find((b) => b.innerText === "Clear");
+      const clearBtn = btns.find((b) => b.innerText.trim() === "Clear");
       if (clearBtn) clearBtn.click();
     });
 
-    await page.waitForFunction(() => !document.body.innerText.includes("Conversion Queue"));
+    await page.waitForFunction(() => !document.body.innerText.toLowerCase().includes("queue ("));
     pass("Clear queue button reset state back to empty dropzone");
   } catch (e) {
     fail("Queue management test failed", e);

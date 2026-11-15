@@ -3,8 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { conversionEngine } from "@/lib/conversion/engine";
 import { formatBytes, formatSeconds, getFileBaseName, getFileExtension } from "@/lib/utils/formatters";
-import { Scissors, Play, Pause, Download, AlertCircle, Loader2, UploadCloud } from "lucide-react";
+import { Scissors, Play, Pause, Download, AlertCircle, Loader2, UploadCloud, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
+import { AudioVisualizer } from "@/components/ui/AudioVisualizer";
 
 export function AudioCutterTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -27,7 +28,6 @@ export function AudioCutterTool() {
       setAudioUrl(url);
       setOutputResult(null);
       setError(null);
-      // Sensible initial defaults so trimming is immediately valid even in headless or slow audio environments
       setStartTime(0);
       setEndTime(1);
       return () => URL.revokeObjectURL(url);
@@ -117,14 +117,16 @@ export function AudioCutterTool() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 sm:p-6">
       {!file ? (
-        <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-slate-50">
-          <UploadCloud className="h-10 w-10 text-brand-600 mb-3" />
-          <h3 className="text-base font-semibold text-slate-800">Select an audio file to cut</h3>
-          <p className="text-xs text-slate-500 mt-1">Supports MP3, WAV, M4A, FLAC, OGG, OPUS, AAC</p>
-          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white shadow-xs cursor-pointer hover:bg-brand-700">
-            <span>Browse Audio</span>
+        <div className="flex flex-col items-center justify-center p-8 sm:p-10 text-center border border-dashed border-slate-300 dark:border-white/10 rounded-xl hover:border-slate-400 dark:hover:border-white/20 transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-white/10 mb-3">
+            <Scissors className="h-5 w-5" />
+          </div>
+          <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100">Select an audio file to trim</h3>
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-mono">Supports MP3 · WAV · M4A · FLAC · OGG · AAC</p>
+          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-brand-700 transition-colors">
+            <span>Browse audio</span>
             <input
               type="file"
               accept="audio/*"
@@ -138,13 +140,13 @@ export function AudioCutterTool() {
           </label>
         </div>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-5">
           {/* File Header */}
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-3">
             <div>
-              <h4 className="text-sm font-bold text-slate-900 truncate max-w-md">{file.name}</h4>
-              <p className="text-xs text-slate-500">
-                {formatBytes(file.size)} • Total duration: {formatSeconds(duration)}
+              <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 truncate max-w-md">{file.name}</h4>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono mt-0.5">
+                {formatBytes(file.size)} · Duration: {formatSeconds(duration)}
               </p>
             </div>
             <button
@@ -152,13 +154,13 @@ export function AudioCutterTool() {
                 setFile(null);
                 setAudioUrl(null);
               }}
-              className="text-xs text-slate-500 hover:text-red-600 underline"
+              className="text-xs text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Choose different file
             </button>
           </div>
 
-          {/* Hidden Audio Player */}
+          {/* Audio Player */}
           {audioUrl && (
             <audio
               ref={audioRef}
@@ -169,29 +171,53 @@ export function AudioCutterTool() {
             />
           )}
 
-          {/* Player Controls & Visual Time Display */}
-          <div className="rounded-xl bg-slate-50 p-4 border border-slate-200">
-            <div className="flex items-center justify-between mb-3">
-              <button
-                type="button"
-                onClick={togglePlay}
-                className="flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white hover:bg-brand-700"
-              >
-                {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 fill-white" />}
-                <span>{isPlaying ? "Pause Preview" : "Play Selection"}</span>
-              </button>
+          {/* Controls */}
+          <div className="rounded-xl bg-slate-50 dark:bg-white/5 p-4 border border-slate-200/80 dark:border-white/10 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 px-3.5 py-1.5 text-xs font-medium text-white hover:bg-brand-700 btn-tactile shadow-xs"
+                >
+                  {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-white" />}
+                  <span>{isPlaying ? "Pause" : "Play preview"}</span>
+                </button>
+                <AudioVisualizer bars={5} active={isPlaying} className="h-4 gap-0.5" barWidth="w-0.5" />
+              </div>
 
-              <div className="text-xs font-mono text-slate-600">
+              <div className="text-xs font-mono text-slate-600 dark:text-zinc-400 tabular-nums">
                 {formatSeconds(currentTime)} / {formatSeconds(duration)}
               </div>
             </div>
 
+            {/* Visual Waveform Timeline Track with Playhead & Active Trim Region */}
+            {duration > 0 && (
+              <div className="relative h-6 w-full rounded-md bg-slate-200/70 dark:bg-white/10 overflow-hidden">
+                {/* Active Trim Window */}
+                <div
+                  className="absolute top-0 bottom-0 bg-brand-500/25 border-x border-brand-500"
+                  style={{
+                    left: `${(startTime / duration) * 100}%`,
+                    width: `${((endTime - startTime) / duration) * 100}%`,
+                  }}
+                />
+                {/* Gliding Playhead Needle */}
+                <div
+                  className="absolute top-0 bottom-0 w-0.5 bg-red-500 shadow-xs transition-all duration-100 ease-linear z-10"
+                  style={{
+                    left: `${(currentTime / duration) * 100}%`,
+                  }}
+                />
+              </div>
+            )}
+
             {/* Range controls */}
-            <div className="space-y-3 pt-2">
+            <div className="space-y-3 pt-1">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[11px] font-semibold text-slate-700 block mb-1">
-                    Start Time ({formatSeconds(startTime)})
+                  <label className="text-[11px] font-medium text-slate-700 dark:text-zinc-300 block mb-1">
+                    Start time ({formatSeconds(startTime)})
                   </label>
                   <input
                     type="range"
@@ -209,13 +235,13 @@ export function AudioCutterTool() {
                     step="0.5"
                     value={startTime}
                     onChange={(e) => setStartTime(Math.max(0, Math.min(parseFloat(e.target.value) || 0, endTime - 0.5)))}
-                    className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs"
+                    className="mt-1 w-full rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 px-2 py-1 text-xs text-slate-800 dark:text-zinc-200 font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[11px] font-semibold text-slate-700 block mb-1">
-                    End Time ({formatSeconds(endTime)})
+                  <label className="text-[11px] font-medium text-slate-700 dark:text-zinc-300 block mb-1">
+                    End time ({formatSeconds(endTime)})
                   </label>
                   <input
                     type="range"
@@ -233,13 +259,13 @@ export function AudioCutterTool() {
                     step="0.5"
                     value={endTime}
                     onChange={(e) => setEndTime(Math.min(duration, Math.max(parseFloat(e.target.value) || 0, startTime + 0.5)))}
-                    className="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs"
+                    className="mt-1 w-full rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 px-2 py-1 text-xs text-slate-800 dark:text-zinc-200 font-mono"
                   />
                 </div>
               </div>
 
-              <div className="text-center text-xs text-brand-700 font-medium">
-                Trimmed Segment Duration: {formatSeconds(Math.max(0, endTime - startTime))}
+              <div className="text-center font-mono text-[11px] text-slate-500 dark:text-zinc-400 tabular-nums">
+                Trimmed length: {formatSeconds(Math.max(0, endTime - startTime))}
               </div>
             </div>
           </div>
@@ -249,17 +275,18 @@ export function AudioCutterTool() {
             <button
               onClick={handleCutAudio}
               disabled={isProcessing}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-600 py-3 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-50 active:scale-98 transition-all"
+              className="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors btn-tactile shadow-xs"
             >
               {isProcessing ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
+                  <AudioVisualizer bars={3} active={true} className="h-3 gap-0.5" barWidth="w-0.5" />
                   <span>Trimming audio ({progress}%)...</span>
                 </>
               ) : (
                 <>
                   <Scissors className="h-4 w-4" />
-                  <span>Cut & Save Audio</span>
+                  <span>Cut & save audio</span>
                 </>
               )}
             </button>
@@ -267,27 +294,30 @@ export function AudioCutterTool() {
 
           {/* Output Download Section */}
           {outputResult && (
-            <div className="flex items-center justify-between rounded-xl bg-emerald-50 p-4 border border-emerald-200">
+            <div className="flex items-center justify-between rounded-lg bg-slate-50 dark:bg-white/5 p-3.5 border border-slate-200/80 dark:border-white/10 animate-in fade-in-50">
               <div>
-                <div className="text-xs font-bold text-emerald-900">Audio Trimmed Successfully!</div>
-                <div className="text-xs text-emerald-700 mt-0.5">
-                  {outputResult.name} • {formatBytes(outputResult.blob.size)}
+                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-900 dark:text-zinc-100">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>Audio trimmed successfully</span>
+                </div>
+                <div className="font-mono text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">
+                  {outputResult.name} · {formatBytes(outputResult.blob.size)}
                 </div>
               </div>
               <a
                 href={outputResult.url}
                 download={outputResult.name}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 btn-tactile shadow-xs"
               >
-                <Download className="h-4 w-4" />
+                <Download className="h-3.5 w-3.5" />
                 <span>Download</span>
               </a>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center gap-2 text-xs text-red-700 bg-red-50 p-3 rounded-lg border border-red-200">
-              <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-200 dark:border-red-900/60">
+              <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}

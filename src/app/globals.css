@@ -3,210 +3,231 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #09090b;
-  color-scheme: light;
+  --background: #051518;
+  --foreground: #e6fcf8;
+  color-scheme: dark;
 
-  /* Default Accent: Cyber Emerald / Green Light */
-  --brand-50: 236 253 245;
-  --brand-100: 209 250 229;
-  --brand-200: 167 243 208;
-  --brand-300: 110 231 183;
-  --brand-400: 52 211 153;
-  --brand-500: 16 185 129;
-  --brand-600: 5 150 105;
-  --brand-700: 4 120 87;
-  --brand-800: 6 95 70;
-  --brand-900: 6 78 59;
-  --brand-950: 2 44 34;
-  --brand-glow: 16 185 129;
+  /* Emil Kowalski custom ease curve */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Theme 1: Northern Lights (Default) */
+  --theme-bg: #051518;
+  --theme-card: #0a2327;
+  --theme-raised: #10323a;
+  --theme-border: rgba(45, 212, 191, 0.25);
+  --theme-glow: rgba(45, 212, 191, 0.35);
+
+  --brand-50: 230 254 250;
+  --brand-100: 204 251 241;
+  --brand-200: 153 246 228;
+  --brand-300: 94 234 212;
+  --brand-400: 45 212 191;
+  --brand-500: 45 212 191;
+  --brand-600: 20 184 166;
+  --brand-700: 15 145 130;
+  --brand-800: 17 94 89;
+  --brand-900: 19 78 74;
+  --brand-950: 4 47 46;
 }
 
-[data-accent="red"] {
-  /* Cyberpunk Crimson / Neon Red */
-  --brand-50: 255 241 242;
-  --brand-100: 255 228 230;
-  --brand-200: 254 205 211;
-  --brand-300: 253 164 175;
-  --brand-400: 251 113 133;
-  --brand-500: 244 63 94;
-  --brand-600: 225 29 72;
-  --brand-700: 190 18 60;
-  --brand-800: 159 18 57;
-  --brand-900: 136 19 55;
-  --brand-950: 76 5 25;
-  --brand-glow: 244 63 94;
+/* 1. Northern Lights */
+[data-theme="aurora"],
+[data-accent="aurora"] {
+  --theme-bg: #051518;
+  --theme-card: #0a2327;
+  --theme-raised: #10323a;
+  --theme-border: rgba(45, 212, 191, 0.25);
+  --theme-glow: rgba(45, 212, 191, 0.35);
+  --brand-50: 230 254 250;
+  --brand-100: 204 251 241;
+  --brand-200: 153 246 228;
+  --brand-300: 94 234 212;
+  --brand-400: 45 212 191;
+  --brand-500: 45 212 191;
+  --brand-600: 20 184 166;
+  --brand-700: 15 145 130;
+  --brand-800: 17 94 89;
+  --brand-900: 19 78 74;
+  --brand-950: 4 47 46;
+}
+
+/* 2. Solar Dusk */
+[data-theme="solardusk"],
+[data-accent="solardusk"] {
+  --theme-bg: #100d0c;
+  --theme-card: #191513;
+  --theme-raised: #261f1c;
+  --theme-border: rgba(249, 115, 22, 0.25);
+  --theme-glow: rgba(249, 115, 22, 0.35);
+  --brand-50: 255 247 237;
+  --brand-100: 255 237 213;
+  --brand-200: 254 215 170;
+  --brand-300: 253 186 116;
+  --brand-400: 251 146 60;
+  --brand-500: 249 115 22;
+  --brand-600: 234 88 12;
+  --brand-700: 194 65 12;
+  --brand-800: 154 52 18;
+  --brand-900: 124 45 18;
+  --brand-950: 67 20 7;
 }
 
 .dark {
-  --background: #09090b;
+  --background: var(--theme-bg, #0c0c0e);
   --foreground: #f4f4f5;
   color-scheme: dark;
 }
 
 body {
   color: var(--foreground);
-  background-color: var(--background);
+  background-color: var(--theme-bg, var(--background));
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Subtle atmospheric ambient glow in dark mode */
+/* Themed surfaces in dark mode */
 .dark body {
-  background-color: #09090b !important;
-  background-image: 
-    radial-gradient(ellipse 90% 50% at 50% -10%, rgb(var(--brand-glow) / 0.14), transparent),
-    radial-gradient(ellipse 60% 30% at 85% 15%, rgb(var(--brand-glow) / 0.06), transparent) !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-}
-
-/* Strip any light gradient in dark mode */
-.dark .bg-gradient-to-b {
+  background-color: var(--theme-bg, #0c0c0e) !important;
   background-image: none !important;
-  background-color: transparent !important;
 }
 
-/* Elevate dark mode surfaces across all cards and sections */
 .dark .bg-white {
-  background-color: #121216 !important;
+  background-color: var(--theme-card, #141418) !important;
 }
 
+.dark .bg-slate-50 {
+  background-color: var(--theme-raised, #1c1c22) !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: var(--theme-raised, #1c1c22) !important;
+}
+
+/* Themed borders */
 .dark .border-slate-200,
 .dark .border-slate-200\/60,
 .dark .border-slate-200\/80,
 .dark .border-slate-200\/90 {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--theme-border, rgba(255, 255, 255, 0.08)) !important;
 }
 
 .dark .border-slate-300 {
-  border-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: var(--theme-border, rgba(255, 255, 255, 0.15)) !important;
 }
 
-.dark .bg-slate-50 {
-  background-color: #18181f !important;
-}
-
-.dark .bg-slate-100 {
-  background-color: #202028 !important;
-}
-
-/* High contrast typography in dark mode */
+/* Restrained typography hierarchy */
 .dark .text-slate-900 {
-  color: #ffffff !important;
-}
-
-.dark .text-slate-800 {
   color: #f4f4f5 !important;
 }
 
-.dark .text-slate-700 {
+.dark .text-slate-800 {
   color: #e4e4e7 !important;
 }
 
-.dark .text-slate-650 {
+.dark .text-slate-700 {
   color: #d4d4d8 !important;
 }
 
+.dark .text-slate-650,
 .dark .text-slate-600 {
-  color: #d4d4d8 !important; /* Zinc-300: crisp readability on dark */
+  color: #a1a1aa !important;
 }
 
-.dark .text-slate-500 {
-  color: #a1a1aa !important; /* Zinc-400: clear secondary text */
-}
-
+.dark .text-slate-500,
 .dark .text-slate-400 {
   color: #71717a !important;
 }
 
-/* Auto-adapt pastel badges to sleek translucent badges in dark mode */
-.dark .bg-indigo-50 {
-  background-color: rgba(99, 102, 241, 0.15) !important;
-  color: rgb(165, 180, 252) !important;
-}
-.dark .border-indigo-200 {
-  border-color: rgba(99, 102, 241, 0.3) !important;
-}
-.dark .text-indigo-700, .dark .text-indigo-600 {
-  color: rgb(165, 180, 252) !important;
+/* Tabular figures for numbers, progress and audio parameters */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
-.dark .bg-emerald-50 {
-  background-color: rgba(16, 185, 129, 0.15) !important;
-  color: rgb(110, 231, 183) !important;
+/* Emil Kowalski tactile press physics: snappy 140ms with custom ease-out */
+.btn-tactile {
+  transition: transform 140ms var(--ease-out), background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  will-change: transform;
 }
-.dark .border-emerald-200 {
-  border-color: rgba(16, 185, 129, 0.3) !important;
-}
-.dark .text-emerald-700, .dark .text-emerald-600 {
-  color: rgb(110, 231, 183) !important;
+.btn-tactile:active {
+  transform: scale(0.97);
 }
 
-.dark .bg-blue-50 {
-  background-color: rgba(59, 130, 246, 0.15) !important;
-  color: rgb(147, 197, 253) !important;
+/* Audio Equalizer Frequency Bars */
+@keyframes eq-bounce-1 {
+  0%, 100% { height: 25%; }
+  50% { height: 95%; }
 }
-.dark .border-blue-200 {
-  border-color: rgba(59, 130, 246, 0.3) !important;
+@keyframes eq-bounce-2 {
+  0%, 100% { height: 75%; }
+  50% { height: 25%; }
 }
-.dark .text-blue-700, .dark .text-blue-600 {
-  color: rgb(147, 197, 253) !important;
+@keyframes eq-bounce-3 {
+  0%, 100% { height: 35%; }
+  50% { height: 100%; }
 }
-
-.dark .bg-purple-50 {
-  background-color: rgba(168, 85, 247, 0.15) !important;
-  color: rgb(216, 180, 254) !important;
+@keyframes eq-bounce-4 {
+  0%, 100% { height: 90%; }
+  50% { height: 30%; }
 }
-.dark .border-purple-200 {
-  border-color: rgba(168, 85, 247, 0.3) !important;
-}
-.dark .text-purple-700, .dark .text-purple-600 {
-  color: rgb(216, 180, 254) !important;
-}
-
-.dark .bg-amber-50 {
-  background-color: rgba(245, 158, 11, 0.15) !important;
-  color: rgb(253, 230, 138) !important;
-}
-.dark .border-amber-200 {
-  border-color: rgba(245, 158, 11, 0.3) !important;
-}
-.dark .text-amber-700, .dark .text-amber-600 {
-  color: rgb(253, 230, 138) !important;
+@keyframes eq-bounce-5 {
+  0%, 100% { height: 40%; }
+  50% { height: 85%; }
 }
 
-.dark .bg-brand-50 {
-  background-color: rgb(var(--brand-500) / 0.15) !important;
-  color: rgb(var(--brand-300)) !important;
+.animate-eq-1 { animation: eq-bounce-1 0.75s ease-in-out infinite; }
+.animate-eq-2 { animation: eq-bounce-2 0.65s ease-in-out infinite; }
+.animate-eq-3 { animation: eq-bounce-3 0.85s ease-in-out infinite; }
+.animate-eq-4 { animation: eq-bounce-4 0.7s ease-in-out infinite; }
+.animate-eq-5 { animation: eq-bounce-5 0.8s ease-in-out infinite; }
+
+/* Laser Progress Shimmer Beam for FFmpeg transcoding */
+@keyframes laser-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
 }
-.dark .border-brand-200, .dark .border-brand-100 {
-  border-color: rgb(var(--brand-500) / 0.3) !important;
-}
-.dark .text-brand-700 {
-  color: rgb(var(--brand-300)) !important;
+.animate-laser-sweep {
+  animation: laser-sweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Smooth custom scrollbars */
+/* SVG Checkmark Draw-In animation */
+@keyframes checkmark-draw {
+  0% {
+    stroke-dashoffset: 40;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+.animate-checkmark-draw {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: checkmark-draw 0.35s var(--ease-out) forwards;
+}
+
+/* Minimalist scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-.dark ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 .dark ::-webkit-scrollbar-thumb {
   background: #27272a;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
@@ -215,13 +236,12 @@ body {
   background: #3f3f46;
 }
 
-/* Focus styles for keyboard accessibility */
+/* Crisp focus ring for accessibility */
 *:focus-visible {
   outline: 2px solid rgb(var(--brand-500));
   outline-offset: 2px;
 }
 
-/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

@@ -269,24 +269,24 @@ async function runExhaustiveQA() {
     const fileInput = await page.$('input[type="file"]');
     // Upload 2 files at once
     await fileInput.uploadFile(testWav, testMp4);
-    await page.waitForFunction(() => document.body.innerText.includes("Conversion Queue (2 files)"));
+    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("queue (2 tracks)"));
     recordPass("Suite 5", "Batch upload of 2 files populated in queue.");
 
-    // Click Convert All (2)
-    await clickButtonByText(page, "Convert All (2)");
+    // Click Convert all (2)
+    await clickButtonByText(page, "Convert all (2)");
 
     // Wait for both files to complete and ZIP button to appear
     await page.waitForFunction(
       () => {
         const btns = Array.from(document.querySelectorAll("button, a"));
-        return btns.some((b) => b.innerText.includes("Download All as ZIP (2)"));
+        return btns.some((b) => b.innerText.toLowerCase().includes("save all as zip (2)"));
       },
       { timeout: 45000 }
     );
-    recordPass("Suite 5", "Both files converted sequentially; 'Download All as ZIP (2)' button rendered.");
+    recordPass("Suite 5", "Both files converted sequentially; 'Save all as ZIP (2)' button rendered.");
 
     // Click ZIP download
-    await clickButtonByText(page, "Download All as ZIP");
+    await clickButtonByText(page, "Save all as ZIP");
     recordPass("Suite 5", "ZIP packaging executed via JSZip in-memory without errors.");
 
     results.passedSuites++;
@@ -306,11 +306,11 @@ async function runExhaustiveQA() {
     await page.waitForFunction(() => document.body.innerText.includes("sample.wav"));
 
     // Open Advanced Audio Settings
-    await clickButtonByText(page, "Advanced Audio Settings");
-    await page.waitForSelector('input[placeholder="Leave blank to use original name"]');
+    await clickButtonByText(page, "Advanced audio settings");
+    await page.waitForSelector('input[placeholder="Leave blank for original filename"]');
 
     // Enter custom filename
-    const filenameInput = await page.$('input[placeholder="Leave blank to use original name"]');
+    const filenameInput = await page.$('input[placeholder="Leave blank for original filename"]');
     await filenameInput.type("my_custom_podcast");
 
     // Close settings / Click Convert
@@ -367,7 +367,7 @@ async function runExhaustiveQA() {
     await page.goto(`${BASE_URL}/audio-volume-adjuster`, { waitUntil: "networkidle2" });
     const volInput = await page.$('input[type="file"]');
     await volInput.uploadFile(testWav);
-    await clickButtonByText(page, "Volume & Save");
+    await clickButtonByText(page, "volume");
     await page.waitForSelector('a[download]', { timeout: 35000 });
     recordPass("Suite 7", "Tool 4 [Audio Volume Adjuster]: Gain/volume adjustment verified.");
 
@@ -410,7 +410,7 @@ async function runExhaustiveQA() {
 
     // Expect friendly failure badge without app crashing
     await page.waitForFunction(
-      () => document.body.innerText.includes("Conversion could not complete"),
+      () => document.body.innerText.toLowerCase().includes("conversion failed"),
       { timeout: 20000 }
     );
     recordPass("Suite 8", "Graceful error reporting for invalid/corrupted files handled cleanly.");

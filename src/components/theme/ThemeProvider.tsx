@@ -3,7 +3,20 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type Theme = "light" | "dark";
-export type Accent = "green" | "red";
+export type Accent = "aurora" | "solardusk";
+
+export interface ThemeOption {
+  id: Accent;
+  name: string;
+  tagline: string;
+  colorHex: string;
+  bgHex: string;
+}
+
+export const THEME_OPTIONS: ThemeOption[] = [
+  { id: "aurora", name: "Northern Lights", tagline: "Arctic Pine · Aurora Mint", colorHex: "#2dd4bf", bgHex: "#051518" },
+  { id: "solardusk", name: "Solar Dusk", tagline: "Smoked Obsidian · Molten Tangerine", colorHex: "#ff6b00", bgHex: "#100d0c" },
+];
 
 interface ThemeContextType {
   theme: Theme;
@@ -17,13 +30,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("dark");
-  const [accent, setAccentState] = useState<Accent>("green");
+  const [accent, setAccentState] = useState<Accent>("aurora");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    // 1. Theme (default to dark if not set, for ultra-sleek high-tech look)
     const storedTheme = localStorage.getItem("theme") as Theme | null;
     if (storedTheme === "light") {
       setThemeState("light");
@@ -33,15 +45,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.classList.add("dark");
     }
 
-    // 2. Accent color (default to green light / emerald)
     const storedAccent = localStorage.getItem("accent") as Accent | null;
-    if (storedAccent === "red") {
-      setAccentState("red");
-      document.documentElement.setAttribute("data-accent", "red");
-    } else {
-      setAccentState("green");
-      document.documentElement.setAttribute("data-accent", "green");
-    }
+    const active: Accent = storedAccent === "solardusk" ? "solardusk" : "aurora";
+    setAccentState(active);
+    document.documentElement.setAttribute("data-theme", active);
+    document.documentElement.setAttribute("data-accent", active);
   }, []);
 
   const setTheme = (newTheme: Theme) => {
@@ -62,6 +70,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setAccent = (newAccent: Accent) => {
     setAccentState(newAccent);
     localStorage.setItem("accent", newAccent);
+    document.documentElement.setAttribute("data-theme", newAccent);
     document.documentElement.setAttribute("data-accent", newAccent);
   };
 

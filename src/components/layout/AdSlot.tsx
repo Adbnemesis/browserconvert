@@ -26,7 +26,7 @@ export function AdSlot({ position, className = "" }: AdSlotProps) {
       aria-label="Advertisement"
       className={`mx-auto my-6 flex flex-col items-center justify-center rounded-lg border border-dashed border-slate-200 bg-slate-50/50 p-2 text-center text-xs text-slate-400 ${sizeClasses[position]} ${className}`}
     >
-      <span className="text-[10px] uppercase tracking-wider text-slate-400">Advertisement</span>
+      <span className="font-mono text-[10px] text-slate-400 dark:text-zinc-500">Advertisement</span>
       <div className="mt-1 flex items-center justify-center text-[11px] text-slate-400">
         Reserved Ad Placement ({position})
       </div>

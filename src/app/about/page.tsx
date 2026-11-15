@@ -42,7 +42,7 @@ export default function AboutPage() {
       <Breadcrumbs items={[{ label: "About", href: "/about" }]} />
 
       <div className="space-y-4">
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-tight text-slate-900 dark:text-zinc-100">
           About BrowserConvert
         </h1>
         <p className="text-base text-slate-600 leading-relaxed">

@@ -121,7 +121,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-600 py-2.5 text-xs font-bold text-white hover:bg-brand-700 active:scale-98 transition-all disabled:opacity-50"
+        className="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-2.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors disabled:opacity-50"
       >
         <Send className="h-3.5 w-3.5" />
         <span>{status === "submitting" ? "Sending..." : "Send Message"}</span>

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useRef, DragEvent, ChangeEvent } from "react";
-import { UploadCloud, FileAudio, Film, AlertCircle } from "lucide-react";
+import { UploadCloud, AlertCircle } from "lucide-react";
 import { validateInputFile } from "@/lib/utils/fileValidation";
+import { AudioVisualizer } from "@/components/ui/AudioVisualizer";
 
 interface DropzoneProps {
   onFilesSelected: (files: File[]) => void;
@@ -15,8 +16,8 @@ interface DropzoneProps {
 export function Dropzone({
   onFilesSelected,
   acceptTypes = "audio/*,video/*,.mp3,.wav,.m4a,.aac,.flac,.ogg,.opus,.wma,.aiff,.mp4,.mov,.mkv,.webm,.avi,.wmv,.flv,.3gp,.ts",
-  headline = "Drop your audio or video files here",
-  subheadline = "or click to browse from your computer or phone",
+  headline = "Drop audio or video files here",
+  subheadline = "or browse from your device",
   className = "",
 }: DropzoneProps) {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -53,7 +54,7 @@ export function Dropzone({
     }
 
     if (errors.length > 0) {
-      setValidationError(errors[0]); // show first error
+      setValidationError(errors[0]);
     }
 
     if (validFiles.length > 0) {
@@ -70,7 +71,6 @@ export function Dropzone({
 
   const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     processSelectedFiles(e.target.files);
-    // Reset file input so re-selecting same file triggers change
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -82,75 +82,75 @@ export function Dropzone({
 
   return (
     <div className={`w-full ${className}`}>
-      <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        onClick={triggerPicker}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            triggerPicker();
-          }
-        }}
-        aria-label="Upload files area"
-        className={`group relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 sm:p-12 text-center transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
-          isDragOver
-            ? "border-brand-500 bg-brand-50/70 dark:bg-brand-950/40 scale-[0.99] dark:shadow-[0_0_50px_-10px_rgb(var(--brand-glow)/0.35)]"
-            : "border-slate-300 dark:border-white/10 bg-white dark:bg-[#121216] hover:border-brand-400 dark:hover:border-brand-500/80 hover:bg-slate-50/70 dark:hover:bg-[#15151b] shadow-sm dark:shadow-[0_0_40px_-15px_rgb(var(--brand-glow)/0.15)]"
-        }`}
-      >
-        <input
-          ref={fileInputRef}
-          type="file"
-          multiple
-          accept={acceptTypes}
-          onChange={handleFileInputChange}
-          className="hidden"
-          aria-hidden="true"
-        />
+      <div className="relative group">
+        {/* Animated Radiant Border Halo */}
+        <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-brand-500/20 via-brand-400/5 to-brand-500/20 opacity-50 blur-xs transition-opacity duration-300 group-hover:opacity-100" />
 
-        {/* Upload Icon with badges */}
-        <div className="relative mb-4 flex items-center justify-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 dark:bg-brand-950/80 text-brand-600 dark:text-brand-400 transition-transform group-hover:scale-105 duration-200 shadow-sm border border-brand-100 dark:border-brand-800/60 dark:shadow-[0_0_20px_rgb(var(--brand-glow)/0.25)]">
-            <UploadCloud className="h-8 w-8" />
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={triggerPicker}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              triggerPicker();
+            }
+          }}
+          aria-label="Upload files area"
+          className={`relative flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed p-8 sm:p-12 text-center transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-brand-500 ${
+            isDragOver
+              ? "border-brand-500 bg-brand-50/50 dark:bg-brand-950/20 scale-[1.008] shadow-lg ring-2 ring-brand-500/20"
+              : "border-slate-300 dark:border-white/10 bg-white dark:bg-[#121215] hover:border-slate-400 dark:hover:border-white/20 hover:shadow-xs"
+          }`}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept={acceptTypes}
+            onChange={handleFileInputChange}
+            className="hidden"
+            aria-hidden="true"
+          />
+
+          {/* Tactile Icon & Audio Visualizer Box */}
+          <div className="mb-3 flex items-center justify-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-white/10 transition-transform duration-200 group-hover:-translate-y-1 group-hover:border-brand-500/40">
+              <UploadCloud className="h-5 w-5 transition-colors group-hover:text-brand-500" />
+            </div>
+            <AudioVisualizer bars={7} active={isDragOver || true} className="h-6 gap-0.5" barWidth="w-1" />
           </div>
-          <div className="absolute -left-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/90 text-emerald-700 dark:text-emerald-300 shadow-xs border border-white dark:border-zinc-800">
-            <FileAudio className="h-3.5 w-3.5" />
+
+          {/* Headline & Subheadline */}
+          <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100 transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400">
+            {headline}
+          </h3>
+          <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400 max-w-sm">
+            {subheadline}
+          </p>
+
+          {/* Primary Action Button with Emil Kowalski Tactile Spring */}
+          <div className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 text-xs font-medium text-white hover:bg-brand-700 btn-tactile shadow-xs">
+            <UploadCloud className="h-3.5 w-3.5" />
+            <span>Choose files</span>
           </div>
-          <div className="absolute -right-3 -bottom-1 flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950/90 text-indigo-700 dark:text-indigo-300 shadow-xs border border-white dark:border-zinc-800">
-            <Film className="h-3.5 w-3.5" />
+
+          {/* Technical Formats Readout */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-1 font-mono text-[11px] text-slate-500 dark:text-zinc-400 max-w-lg">
+            <span>Audio: MP3 · WAV · M4A · FLAC · AAC · OGG · OPUS</span>
+            <span className="text-slate-300 dark:text-zinc-700 mx-1">·</span>
+            <span>Video: MP4 · MOV · MKV · WEBM · AVI</span>
           </div>
-        </div>
-
-        {/* Headline & Subheadline */}
-        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-          {headline}
-        </h3>
-        <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-zinc-400 max-w-md">
-          {subheadline}
-        </p>
-
-        {/* Button pill */}
-        <div className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm dark:shadow-[0_0_20px_rgb(var(--brand-glow)/0.3)] transition-all group-hover:bg-brand-700 active:scale-95">
-          <UploadCloud className="h-4 w-4" />
-          <span>Choose Files</span>
-        </div>
-
-        {/* Supported formats label */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-slate-500 dark:text-zinc-300 max-w-lg">
-          <span className="font-semibold text-slate-700 dark:text-white">Audio:</span> MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF
-          <span className="text-slate-300 dark:text-zinc-700 mx-1">•</span>
-          <span className="font-semibold text-slate-700 dark:text-white">Video:</span> MP4, MOV, MKV, WEBM, AVI, WMV
         </div>
       </div>
 
       {/* Validation Error banner */}
       {validationError && (
-        <div className="mt-3 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-800 animate-in fade-in-50">
-          <AlertCircle className="h-4 w-4 shrink-0 text-red-600 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 rounded-lg border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/30 p-3 text-xs text-red-700 dark:text-red-300">
+          <AlertCircle className="h-4 w-4 shrink-0 text-red-600 dark:text-red-400 mt-0.5" />
           <div>{validationError}</div>
         </div>
       )}

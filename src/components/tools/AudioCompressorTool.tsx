@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { conversionEngine } from "@/lib/conversion/engine";
 import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/formatters";
-import { Minimize2, Download, AlertCircle, Loader2, UploadCloud, CheckCircle2 } from "lucide-react";
+import { Minimize2, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 
 export function AudioCompressorTool() {
@@ -16,10 +16,10 @@ export function AudioCompressorTool() {
   const [error, setError] = useState<string | null>(null);
 
   const presets = [
-    { label: "High Compression (64 kbps)", value: "64k", desc: "Best for voice, speech, low bandwidth (~70% reduction)" },
-    { label: "Medium Compression (96 kbps)", value: "96k", desc: "Good balance of speech and basic music (~50% reduction)" },
-    { label: "Balanced Audio (128 kbps)", value: "128k", desc: "Standard web streaming quality (~35% reduction)" },
-    { label: "Mild Compression (160 kbps)", value: "160k", desc: "Near transparent music compression (~20% reduction)" },
+    { label: "High compression (64 kbps)", value: "64k", desc: "For voice and speech (~70% reduction)" },
+    { label: "Medium compression (96 kbps)", value: "96k", desc: "Speech and basic music (~50% reduction)" },
+    { label: "Balanced audio (128 kbps)", value: "128k", desc: "Standard streaming quality (~35% reduction)" },
+    { label: "Mild compression (160 kbps)", value: "160k", desc: "Transparent music compression (~20% reduction)" },
   ];
 
   const handleCompress = async () => {
@@ -73,14 +73,16 @@ export function AudioCompressorTool() {
       : null;
 
   return (
-    <div className="w-full max-w-3xl mx-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="w-full max-w-3xl mx-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-5 sm:p-6">
       {!file ? (
-        <div className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-slate-50">
-          <UploadCloud className="h-10 w-10 text-brand-600 mb-3" />
-          <h3 className="text-base font-semibold text-slate-800">Select an audio file to compress</h3>
-          <p className="text-xs text-slate-500 mt-1">Supports WAV, FLAC, AIFF, MP3, M4A, OGG</p>
-          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white shadow-xs cursor-pointer hover:bg-brand-700">
-            <span>Browse Audio</span>
+        <div className="flex flex-col items-center justify-center p-8 sm:p-10 text-center border border-dashed border-slate-300 dark:border-white/10 rounded-xl hover:border-slate-400 dark:hover:border-white/20 transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-white/10 mb-3">
+            <Minimize2 className="h-5 w-5" />
+          </div>
+          <h3 className="text-sm sm:text-base font-medium text-slate-900 dark:text-zinc-100">Select an audio file to compress</h3>
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1 font-mono">Supports WAV · FLAC · AIFF · MP3 · M4A · OGG</p>
+          <label className="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-brand-700 transition-colors">
+            <span>Browse audio</span>
             <input
               type="file"
               accept="audio/*"
@@ -96,54 +98,54 @@ export function AudioCompressorTool() {
           </label>
         </div>
       ) : (
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div className="space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/5 pb-3">
             <div>
-              <h4 className="text-sm font-bold text-slate-900 truncate max-w-md">{file.name}</h4>
-              <p className="text-xs text-slate-500">Current file size: {formatBytes(file.size)}</p>
+              <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-100 truncate max-w-md">{file.name}</h4>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono mt-0.5">Original size: {formatBytes(file.size)}</p>
             </div>
             <button
               onClick={() => {
                 setFile(null);
                 setOutputResult(null);
               }}
-              className="text-xs text-slate-500 hover:text-red-600 underline"
+              className="text-xs text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Choose different file
             </button>
           </div>
 
-          {/* Compression Level Presets */}
-          <div className="space-y-3">
-            <label className="block text-xs font-bold text-slate-800">Select Target Compression Level</label>
+          {/* Compression Presets */}
+          <div className="space-y-2.5">
+            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300">Target compression level</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {presets.map((p) => (
                 <div
                   key={p.value}
                   onClick={() => setTargetBitrate(p.value)}
-                  className={`cursor-pointer rounded-xl border p-3.5 transition-all ${
+                  className={`cursor-pointer rounded-lg border p-3 transition-colors ${
                     targetBitrate === p.value
-                      ? "border-brand-600 bg-brand-50/70 shadow-xs ring-1 ring-brand-500"
-                      : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+                      ? "border-brand-500 bg-brand-50/50 dark:bg-brand-950/20 text-brand-900 dark:text-brand-300"
+                      : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:border-slate-300 dark:hover:border-white/20"
                   }`}
                 >
-                  <div className="text-xs font-bold text-slate-900">{p.label}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">{p.desc}</div>
+                  <div className="text-xs font-medium">{p.label}</div>
+                  <div className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">{p.desc}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Output Format Picker */}
-          <div className="flex items-center gap-3">
-            <label className="text-xs font-semibold text-slate-700">Output Container:</label>
+          {/* Format Picker */}
+          <div className="flex items-center gap-2">
+            <label className="text-xs font-medium text-slate-700 dark:text-zinc-300">Output container:</label>
             <select
               value={targetFormat}
               onChange={(e) => setTargetFormat(e.target.value as "mp3" | "opus" | "m4a")}
-              className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-800"
+              className="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-2.5 py-1.5 text-xs text-slate-800 dark:text-zinc-200 focus:border-brand-500 focus:outline-none"
             >
               <option value="mp3">MP3 (Universal compatibility)</option>
-              <option value="m4a">M4A (Apple AAC - High efficiency)</option>
+              <option value="m4a">M4A (Apple AAC · High efficiency)</option>
               <option value="opus">OPUS (Modern high efficiency)</option>
             </select>
           </div>
@@ -152,7 +154,7 @@ export function AudioCompressorTool() {
           <button
             onClick={handleCompress}
             disabled={isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-600 py-3 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-50 active:scale-98 transition-all"
+            className="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-600 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
           >
             {isProcessing ? (
               <>
@@ -162,55 +164,48 @@ export function AudioCompressorTool() {
             ) : (
               <>
                 <Minimize2 className="h-4 w-4" />
-                <span>Compress Audio File</span>
+                <span>Compress audio file</span>
               </>
             )}
           </button>
 
           {/* Result */}
           {outputResult && (
-            <div className="rounded-xl bg-emerald-50 p-4 border border-emerald-200 space-y-3">
+            <div className="rounded-lg bg-slate-50 dark:bg-white/5 p-3.5 border border-slate-200/80 dark:border-white/10 space-y-2">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                  <span className="text-xs font-bold text-emerald-900">Compression Complete!</span>
+                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-900 dark:text-zinc-100">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>Compression complete</span>
                 </div>
                 <a
                   href={outputResult.url}
                   download={outputResult.name}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
                 >
-                  <Download className="h-4 w-4" />
-                  <span>Download Compressed File</span>
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download</span>
                 </a>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 rounded-lg bg-white/80 p-3 text-center text-xs">
-                <div>
-                  <div className="text-[10px] uppercase text-slate-400">Original</div>
-                  <div className="font-bold text-slate-700">{formatBytes(file.size)}</div>
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase text-slate-400">Compressed</div>
-                  <div className="font-bold text-slate-900">{formatBytes(outputResult.blob.size)}</div>
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase text-slate-400">Difference</div>
-                  <div
-                    className={`font-bold ${
-                      sizeDelta && sizeDelta < 0 ? "text-emerald-600" : "text-amber-600"
-                    }`}
-                  >
-                    {percentReduction ? `-${percentReduction}%` : formatBytes(Math.abs(sizeDelta || 0))}
-                  </div>
-                </div>
+              <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-slate-600 dark:text-zinc-400 pt-1 border-t border-slate-200/60 dark:border-white/5">
+                <span>Before: {formatBytes(file.size)}</span>
+                <span>·</span>
+                <span>After: {formatBytes(outputResult.blob.size)}</span>
+                {percentReduction !== null && (
+                  <>
+                    <span>·</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                      {percentReduction}% smaller
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center gap-2 text-xs text-red-700 bg-red-50 p-3 rounded-lg border border-red-200">
-              <AlertCircle className="h-4 w-4 text-red-600 shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/30 p-3 rounded-lg border border-red-200 dark:border-red-900/60">
+              <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}
