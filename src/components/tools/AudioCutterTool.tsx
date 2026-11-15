@@ -6,6 +6,7 @@ import { formatBytes, formatSeconds, getFileBaseName, getFileExtension } from "@
 import { Scissors, Play, Pause, Download, AlertCircle, Loader2, UploadCloud, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 import { AudioVisualizer } from "@/components/ui/AudioVisualizer";
+import { triggerSmartlink } from "@/lib/ads/smartlink";
 
 export function AudioCutterTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -307,6 +308,7 @@ export function AudioCutterTool() {
               <a
                 href={outputResult.url}
                 download={outputResult.name}
+                onClick={triggerSmartlink}
                 className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 btn-tactile shadow-xs"
               >
                 <Download className="h-3.5 w-3.5" />

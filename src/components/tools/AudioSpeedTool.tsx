@@ -5,6 +5,7 @@ import { conversionEngine } from "@/lib/conversion/engine";
 import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/formatters";
 import { FastForward, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
+import { triggerSmartlink } from "@/lib/ads/smartlink";
 
 export function AudioSpeedTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -159,6 +160,7 @@ export function AudioSpeedTool() {
                 <a
                   href={outputResult.url}
                   download={outputResult.name}
+                  onClick={triggerSmartlink}
                   className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5" />

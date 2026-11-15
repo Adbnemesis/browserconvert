@@ -10,6 +10,7 @@ import { conversionEngine } from "@/lib/conversion/engine";
 import { createZipArchive } from "@/lib/conversion/zip";
 import { getFileExtension } from "@/lib/utils/formatters";
 import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
+import { triggerSmartlink } from "@/lib/ads/smartlink";
 
 interface ConverterProps {
   defaultOutputFormat?: OutputFormat;
@@ -128,6 +129,10 @@ export function Converter({
 
   const handleDownloadItem = (item: ConversionItem) => {
     if (!item.outputBlob) return;
+    
+    // Open Adsterra Smartlink in a new tab synchronously on click
+    triggerSmartlink();
+
     const url = item.outputUrl || URL.createObjectURL(item.outputBlob);
     const a = document.createElement("a");
     a.href = url;
@@ -144,6 +149,9 @@ export function Converter({
 
   const handleDownloadZip = async () => {
     try {
+      // Open Adsterra Smartlink in a new tab synchronously on click
+      triggerSmartlink();
+
       const zipBlob = await createZipArchive(items);
       const url = URL.createObjectURL(zipBlob);
       const a = document.createElement("a");
