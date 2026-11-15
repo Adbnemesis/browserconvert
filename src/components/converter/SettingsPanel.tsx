@@ -73,12 +73,12 @@ export function SettingsPanel({
   };
 
   return (
-    <div className={`rounded-xl border border-slate-200 bg-white p-4 shadow-xs ${className}`}>
+    <div className={`rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs ${className}`}>
       {/* Primary Row: Target Format & Quick Bitrate */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         {/* Output Format Selector */}
         <div className="flex items-center gap-2">
-          <label htmlFor="output-format-select" className="text-xs font-semibold text-slate-700">
+          <label htmlFor="output-format-select" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
             Convert to:
           </label>
           {allowFormatChange ? (
@@ -86,7 +86,7 @@ export function SettingsPanel({
               id="output-format-select"
               value={settings.outputFormat}
               onChange={(e) => handleFormatChange(e.target.value as OutputFormat)}
-              className="rounded-lg border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-900 shadow-xs focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-500"
+              className="rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-bold text-slate-900 dark:text-white shadow-xs focus:border-brand-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500"
             >
               {(Object.keys(SUPPORTED_OUTPUT_FORMATS) as OutputFormat[]).map((fmt) => (
                 <option key={fmt} value={fmt}>
@@ -96,7 +96,7 @@ export function SettingsPanel({
               ))}
             </select>
           ) : (
-            <span className="inline-flex items-center rounded-md bg-brand-50 px-2.5 py-1 text-xs font-bold text-brand-700 border border-brand-200">
+            <span className="inline-flex items-center rounded-md bg-brand-50 dark:bg-brand-950/60 px-2.5 py-1 text-xs font-bold text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/60">
               {currentFormatMeta.name}
             </span>
           )}
@@ -105,14 +105,14 @@ export function SettingsPanel({
         {/* Bitrate Quick Selector (only if format supports lossy bitrate) */}
         {currentFormatMeta.supportsBitrate && (
           <div className="flex items-center gap-2">
-            <label htmlFor="bitrate-select" className="text-xs font-semibold text-slate-700">
+            <label htmlFor="bitrate-select" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Quality:
             </label>
             <select
               id="bitrate-select"
               value={settings.bitrate || currentFormatMeta.defaultBitrate || "192k"}
               onChange={handleBitrateChange}
-              className="rounded-lg border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs text-slate-800 shadow-xs focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-500"
+              className="rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs text-slate-800 dark:text-slate-200 shadow-xs focus:border-brand-500 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500"
             >
               {BITRATE_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -127,9 +127,9 @@ export function SettingsPanel({
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-50 active:scale-98"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-850 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-98"
         >
-          <Sliders className="h-3.5 w-3.5 text-slate-500" />
+          <Sliders className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
           <span>Advanced Audio Settings</span>
           {isOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
         </button>
@@ -137,17 +137,17 @@ export function SettingsPanel({
 
       {/* Expandable Advanced Options Drawer */}
       {isOpen && (
-        <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 animate-in fade-in-50 duration-150">
+        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 animate-in fade-in-50 duration-150">
           {/* Sample Rate */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center gap-1">
-              <Music className="h-3 w-3 text-slate-400" />
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
+              <Music className="h-3 w-3 text-slate-400 dark:text-slate-500" />
               <span>Sample Rate</span>
             </label>
             <select
               value={settings.sampleRate || "original"}
               onChange={handleSampleRateChange}
-              className="w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-800 focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 focus:border-brand-500 focus:outline-none"
             >
               {SAMPLE_RATE_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -159,14 +159,14 @@ export function SettingsPanel({
 
           {/* Audio Channels */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center gap-1">
-              <Sliders className="h-3 w-3 text-slate-400" />
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
+              <Sliders className="h-3 w-3 text-slate-400 dark:text-slate-500" />
               <span>Channels</span>
             </label>
             <select
               value={settings.channels || "original"}
               onChange={handleChannelsChange}
-              className="w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-800 focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 focus:border-brand-500 focus:outline-none"
             >
               {CHANNEL_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -178,14 +178,14 @@ export function SettingsPanel({
 
           {/* Audio Playback Speed */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center gap-1">
-              <FastForward className="h-3 w-3 text-slate-400" />
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
+              <FastForward className="h-3 w-3 text-slate-400 dark:text-slate-500" />
               <span>Playback Speed</span>
             </label>
             <select
               value={settings.speed?.toString() || "1.0"}
               onChange={handleSpeedChange}
-              className="w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-800 focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 focus:border-brand-500 focus:outline-none"
             >
               <option value="0.5">0.5x (Half speed)</option>
               <option value="0.75">0.75x (Slower)</option>
@@ -198,12 +198,12 @@ export function SettingsPanel({
 
           {/* Audio Volume */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center justify-between">
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-between">
               <span className="flex items-center gap-1">
-                <Volume2 className="h-3 w-3 text-slate-400" />
+                <Volume2 className="h-3 w-3 text-slate-400 dark:text-slate-500" />
                 <span>Volume Adjustment</span>
               </span>
-              <span className="text-[10px] text-brand-600 font-bold">
+              <span className="text-[10px] text-brand-600 dark:text-brand-400 font-bold">
                 {Math.round((settings.volume || 1.0) * 100)}%
               </span>
             </label>
@@ -222,8 +222,8 @@ export function SettingsPanel({
 
           {/* Trimming (Start & End seconds) */}
           <div className="sm:col-span-2 lg:col-span-2">
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center gap-1">
-              <Scissors className="h-3 w-3 text-slate-400" />
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
+              <Scissors className="h-3 w-3 text-slate-400 dark:text-slate-500" />
               <span>Trim Audio (Optional Start / End Seconds)</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -235,7 +235,7 @@ export function SettingsPanel({
                   placeholder="Start (seconds, e.g. 0)"
                   value={settings.startTime ?? ""}
                   onChange={handleTrimStartChange}
-                  className="w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:border-brand-500 focus:outline-none"
+                  className="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-brand-500 focus:outline-none"
                 />
               </div>
               <div>
@@ -246,7 +246,7 @@ export function SettingsPanel({
                   placeholder="End (seconds, e.g. 60)"
                   value={settings.endTime ?? ""}
                   onChange={handleTrimEndChange}
-                  className="w-full rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:border-brand-500 focus:outline-none"
+                  className="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-brand-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -254,8 +254,8 @@ export function SettingsPanel({
 
           {/* Custom Output Filename */}
           <div className="sm:col-span-2 lg:col-span-3">
-            <label className="block text-[11px] font-semibold text-slate-700 mb-1 flex items-center gap-1">
-              <FileText className="h-3 w-3 text-slate-400" />
+            <label className="block text-[11px] font-semibold text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
+              <FileText className="h-3 w-3 text-slate-400 dark:text-slate-500" />
               <span>Custom Output Filename (Optional)</span>
             </label>
             <div className="flex items-center">
@@ -264,9 +264,9 @@ export function SettingsPanel({
                 placeholder="Leave blank to use original name"
                 value={settings.customFilename || ""}
                 onChange={handleCustomFilenameChange}
-                className="w-full rounded-l-md border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-brand-500 focus:outline-none"
               />
-              <span className="inline-flex items-center rounded-r-md border border-l-0 border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500">
+              <span className="inline-flex items-center rounded-r-md border border-l-0 border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
                 .{settings.outputFormat}
               </span>
             </div>

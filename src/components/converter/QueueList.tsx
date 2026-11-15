@@ -35,13 +35,13 @@ export function QueueList({
   return (
     <div className="space-y-4">
       {/* Queue Header & Global Actions */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-xs">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-bold text-slate-900">
+          <span className="text-sm font-bold text-slate-900 dark:text-white">
             Conversion Queue ({items.length} {items.length === 1 ? "file" : "files"})
           </span>
           {completedCount > 0 && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
               <CheckCircle2 className="h-3 w-3" />
               {completedCount} of {items.length} completed
             </span>
@@ -54,7 +54,7 @@ export function QueueList({
           {isConverting && (
             <button
               onClick={onCancel}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700 transition-colors hover:bg-red-100"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 dark:border-red-800/60 bg-red-50 dark:bg-red-950/40 px-3 py-1.5 text-xs font-semibold text-red-700 dark:text-red-300 transition-colors hover:bg-red-100 dark:hover:bg-red-900/60"
             >
               <StopCircle className="h-4 w-4" />
               <span>Cancel</span>
@@ -87,7 +87,7 @@ export function QueueList({
           <button
             onClick={onClearAll}
             disabled={isConverting}
-            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40"
+            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-850 px-2.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white disabled:opacity-40"
           >
             <Trash2 className="h-3.5 w-3.5" />
             <span>Clear</span>

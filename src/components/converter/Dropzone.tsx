@@ -98,8 +98,8 @@ export function Dropzone({
         aria-label="Upload files area"
         className={`group relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 sm:p-12 text-center transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
           isDragOver
-            ? "border-brand-500 bg-brand-50/70 scale-[0.99]"
-            : "border-slate-300 bg-white hover:border-brand-400 hover:bg-slate-50/70 shadow-sm"
+            ? "border-brand-500 bg-brand-50/70 dark:bg-brand-950/40 scale-[0.99]"
+            : "border-slate-300 dark:border-slate-700/80 bg-white dark:bg-slate-900/90 hover:border-brand-400 dark:hover:border-brand-500 hover:bg-slate-50/70 dark:hover:bg-slate-850/80 shadow-sm"
         }`}
       >
         <input
@@ -126,10 +126,10 @@ export function Dropzone({
         </div>
 
         {/* Headline & Subheadline */}
-        <h3 className="text-base sm:text-lg font-semibold text-slate-900 group-hover:text-brand-600 transition-colors">
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
           {headline}
         </h3>
-        <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-md">
+        <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md">
           {subheadline}
         </p>
 
@@ -140,10 +140,10 @@ export function Dropzone({
         </div>
 
         {/* Supported formats label */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-slate-650 max-w-lg">
-          <span className="font-semibold text-slate-700">Audio:</span> MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF
-          <span className="text-slate-300 mx-1">•</span>
-          <span className="font-semibold text-slate-700">Video:</span> MP4, MOV, MKV, WEBM, AVI, WMV
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 max-w-lg">
+          <span className="font-semibold text-slate-700 dark:text-slate-300">Audio:</span> MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF
+          <span className="text-slate-300 dark:text-slate-700 mx-1">•</span>
+          <span className="font-semibold text-slate-700 dark:text-slate-300">Video:</span> MP4, MOV, MKV, WEBM, AVI, WMV
         </div>
       </div>
 

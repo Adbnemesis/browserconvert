@@ -27,6 +27,9 @@ export function AudioCutterTool() {
       setAudioUrl(url);
       setOutputResult(null);
       setError(null);
+      // Sensible initial defaults so trimming is immediately valid even in headless or slow audio environments
+      setStartTime(0);
+      setEndTime(1);
       return () => URL.revokeObjectURL(url);
     }
   }, [file]);
@@ -34,9 +37,11 @@ export function AudioCutterTool() {
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
       const d = audioRef.current.duration;
-      setDuration(d);
-      setStartTime(0);
-      setEndTime(Math.floor(d));
+      if (d && !isNaN(d) && d > 0) {
+        setDuration(d);
+        setStartTime(0);
+        setEndTime(Math.floor(d) > 0 ? Math.floor(d) : Math.min(1, d));
+      }
     }
   };
 
