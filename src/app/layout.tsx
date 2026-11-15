@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "8x2qKCX9HMMdvlQNdgflAxc0HOAb30SdibktwPY55S0",
   },
   icons: {
     icon: [
