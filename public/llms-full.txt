@@ -1,6 +1,6 @@
 # BrowserConvert — Complete Technical Specification & Documentation
 
-BrowserConvert (https://browserconvert.org) is a client-side web application dedicated to audio format conversion, video soundtrack extraction, and non-destructive audio editing.
+BrowserConvert (https://browserconvert.net) is a client-side web application dedicated to audio format conversion, video soundtrack extraction, and non-destructive audio editing.
 
 ## 1. Architectural Model
 Unlike legacy web converters that upload gigabytes of user video and audio to remote cloud clusters, BrowserConvert operates entirely inside the client device's browser thread and Web Worker.

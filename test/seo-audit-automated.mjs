@@ -199,7 +199,7 @@ async function runAudit() {
         'link[rel="canonical"]',
         (el) => el.getAttribute("href") || ""
       ).catch(() => "");
-      if (canonical && canonical.includes("browserconvert.org")) {
+      if (canonical && canonical.includes("browserconvert.net")) {
         pass(`${route.path} canonical URL valid: ${canonical}`);
       } else {
         fail(`${route.path} canonical URL missing or invalid: "${canonical}"`);

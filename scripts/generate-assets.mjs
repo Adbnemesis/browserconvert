@@ -176,7 +176,7 @@ async function generate() {
           <div class="pill">📦 Batch ZIP Download</div>
           <div class="pill">✨ Free Forever</div>
         </div>
-        <div class="domain">browserconvert.org</div>
+        <div class="domain">browserconvert.net</div>
       </div>
     </body>
     </html>
