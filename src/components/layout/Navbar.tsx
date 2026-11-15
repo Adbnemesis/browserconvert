@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config/site";
@@ -22,7 +22,21 @@ import {
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const toolsDropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (toolsDropdownRef.current && !toolsDropdownRef.current.contains(event.target as Node)) {
+        setToolsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const audioTools = [
     { label: "Audio Cutter", href: "/audio-cutter", desc: "Trim audio start and end times", icon: Scissors },
@@ -43,7 +57,7 @@ export function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">{siteConfig.name}</span>
-            <span className="hidden text-[10px] font-medium text-slate-500 dark:text-slate-400 sm:block -mt-1">Free & Private</span>
+            <span className="hidden text-[10px] font-medium text-slate-500 dark:text-zinc-400 sm:block -mt-1">Free & Private</span>
           </div>
         </Link>
 
@@ -54,7 +68,7 @@ export function Navbar() {
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               pathname === "/audio-converter"
                 ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             Audio Converter
@@ -65,51 +79,59 @@ export function Navbar() {
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               pathname === "/mp4-to-mp3"
                 ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             Video to MP3
           </Link>
 
-          {/* Tools Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setToolsDropdownOpen(true)}
-            onMouseLeave={() => setToolsDropdownOpen(false)}
-          >
+          {/* Tools Dropdown - Robust Click Behavior with Outside Click */}
+          <div className="relative" ref={toolsDropdownRef}>
             <button
-              onClick={() => setToolsDropdownOpen(!toolsDropdownOpen)}
-              className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white focus:outline-none"
+              type="button"
+              onClick={() => setToolsDropdownOpen((prev) => !prev)}
+              className={`flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                toolsDropdownOpen
+                  ? "bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white font-semibold"
+                  : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
+              } focus:outline-none`}
               aria-expanded={toolsDropdownOpen}
+              aria-haspopup="true"
             >
               <span>Audio Tools</span>
-              <ChevronDown className="h-4 w-4 text-slate-400 transition-transform duration-200" />
+              <ChevronDown
+                className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${
+                  toolsDropdownOpen ? "rotate-180 text-brand-500" : ""
+                }`}
+              />
             </button>
 
             {toolsDropdownOpen && (
-              <div className="absolute left-0 mt-1 w-72 rounded-xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-dropdown transition-all animate-in fade-in-50 zoom-in-95">
-                <div className="space-y-1">
-                  {audioTools.map((tool) => {
-                    const Icon = tool.icon;
-                    return (
-                      <Link
-                        key={tool.href}
-                        href={tool.href}
-                        onClick={() => setToolsDropdownOpen(false)}
-                        className="flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 group"
-                      >
-                        <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-md bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">
-                            {tool.label}
+              <div className="absolute left-0 top-full pt-2 z-50">
+                <div className="w-72 rounded-xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#121216] p-2 shadow-dropdown dark:shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all animate-in fade-in-50 zoom-in-95">
+                  <div className="space-y-1">
+                    {audioTools.map((tool) => {
+                      const Icon = tool.icon;
+                      return (
+                        <Link
+                          key={tool.href}
+                          href={tool.href}
+                          onClick={() => setToolsDropdownOpen(false)}
+                          className="flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-100/80 dark:hover:bg-white/5 group"
+                        >
+                          <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-md bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <Icon className="h-4 w-4" />
                           </div>
-                          <div className="text-[11px] text-slate-500 dark:text-slate-400">{tool.desc}</div>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                          <div>
+                            <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                              {tool.label}
+                            </div>
+                            <div className="text-[11px] text-slate-500 dark:text-zinc-400">{tool.desc}</div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}
@@ -120,7 +142,7 @@ export function Navbar() {
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               pathname === "/format-guide"
                 ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             Format Guide
@@ -131,7 +153,7 @@ export function Navbar() {
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               pathname === "/about"
                 ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 font-semibold"
-                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                : "text-slate-650 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             About

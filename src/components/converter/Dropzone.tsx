@@ -140,10 +140,10 @@ export function Dropzone({
         </div>
 
         {/* Supported formats label */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 max-w-lg">
-          <span className="font-semibold text-slate-700 dark:text-slate-300">Audio:</span> MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF
-          <span className="text-slate-300 dark:text-slate-700 mx-1">•</span>
-          <span className="font-semibold text-slate-700 dark:text-slate-300">Video:</span> MP4, MOV, MKV, WEBM, AVI, WMV
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-slate-500 dark:text-zinc-300 max-w-lg">
+          <span className="font-semibold text-slate-700 dark:text-white">Audio:</span> MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF
+          <span className="text-slate-300 dark:text-zinc-700 mx-1">•</span>
+          <span className="font-semibold text-slate-700 dark:text-white">Video:</span> MP4, MOV, MKV, WEBM, AVI, WMV
         </div>
       </div>
 

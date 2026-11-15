@@ -115,18 +115,18 @@ export default function HomePage() {
   return (
     <div className="space-y-16 pb-20">
       {/* SECTION 1: HERO & WORKING CONVERTER */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 pt-8 sm:pt-14 pb-12 border-b border-slate-200/60">
+      <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 dark:from-transparent dark:via-transparent dark:to-transparent pt-8 sm:pt-14 pb-12 border-b border-slate-200/60 dark:border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 border border-brand-200 mb-4">
-              <Sparkles className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 dark:bg-brand-950/80 px-3 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/60 mb-4 shadow-xs dark:shadow-[0_0_15px_rgb(var(--brand-glow)/0.25)]">
+              <Sparkles className="h-3.5 w-3.5 text-brand-500" />
               <span>Browser-Native FFmpeg • Free & Unlimited</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
               Convert Audio Files Online. <br className="hidden sm:inline" />
-              <span className="text-brand-600">Fast, Free & Private.</span>
+              <span className="text-brand-600 dark:text-brand-400 dark:drop-shadow-[0_0_25px_rgb(var(--brand-glow)/0.35)]">Fast, Free & Private.</span>
             </h1>
-            <p className="mt-3.5 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-3.5 text-sm sm:text-base text-slate-600 dark:text-zinc-200 leading-relaxed max-w-2xl mx-auto font-normal">
               Convert MP3, WAV, M4A, FLAC, and more. Extract crystal-clear audio from video files with a simple,
               private browser converter. Zero file uploads.
             </p>
@@ -197,7 +197,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 3: SUPPORTED FORMATS MATRIX */}
-      <section className="bg-slate-100/70 py-12 border-y border-slate-200/80">
+      <section className="bg-slate-100/70 dark:bg-white/[0.02] py-12 border-y border-slate-200/80 dark:border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">

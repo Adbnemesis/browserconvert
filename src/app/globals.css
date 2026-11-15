@@ -63,12 +63,21 @@ body {
   background-attachment: fixed !important;
 }
 
+/* Strip any light gradient in dark mode */
+.dark .bg-gradient-to-b {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
 /* Elevate dark mode surfaces across all cards and sections */
 .dark .bg-white {
   background-color: #121216 !important;
 }
 
-.dark .border-slate-200 {
+.dark .border-slate-200,
+.dark .border-slate-200\/60,
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/90 {
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -84,6 +93,7 @@ body {
   background-color: #202028 !important;
 }
 
+/* High contrast typography in dark mode */
 .dark .text-slate-900 {
   color: #ffffff !important;
 }
@@ -96,12 +106,87 @@ body {
   color: #e4e4e7 !important;
 }
 
+.dark .text-slate-650 {
+  color: #d4d4d8 !important;
+}
+
 .dark .text-slate-600 {
-  color: #a1a1aa !important;
+  color: #d4d4d8 !important; /* Zinc-300: crisp readability on dark */
 }
 
 .dark .text-slate-500 {
+  color: #a1a1aa !important; /* Zinc-400: clear secondary text */
+}
+
+.dark .text-slate-400 {
   color: #71717a !important;
+}
+
+/* Auto-adapt pastel badges to sleek translucent badges in dark mode */
+.dark .bg-indigo-50 {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  color: rgb(165, 180, 252) !important;
+}
+.dark .border-indigo-200 {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+.dark .text-indigo-700, .dark .text-indigo-600 {
+  color: rgb(165, 180, 252) !important;
+}
+
+.dark .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: rgb(110, 231, 183) !important;
+}
+.dark .border-emerald-200 {
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.dark .text-emerald-700, .dark .text-emerald-600 {
+  color: rgb(110, 231, 183) !important;
+}
+
+.dark .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: rgb(147, 197, 253) !important;
+}
+.dark .border-blue-200 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+.dark .text-blue-700, .dark .text-blue-600 {
+  color: rgb(147, 197, 253) !important;
+}
+
+.dark .bg-purple-50 {
+  background-color: rgba(168, 85, 247, 0.15) !important;
+  color: rgb(216, 180, 254) !important;
+}
+.dark .border-purple-200 {
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+.dark .text-purple-700, .dark .text-purple-600 {
+  color: rgb(216, 180, 254) !important;
+}
+
+.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: rgb(253, 230, 138) !important;
+}
+.dark .border-amber-200 {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+.dark .text-amber-700, .dark .text-amber-600 {
+  color: rgb(253, 230, 138) !important;
+}
+
+.dark .bg-brand-50 {
+  background-color: rgb(var(--brand-500) / 0.15) !important;
+  color: rgb(var(--brand-300)) !important;
+}
+.dark .border-brand-200, .dark .border-brand-100 {
+  border-color: rgb(var(--brand-500) / 0.3) !important;
+}
+.dark .text-brand-700 {
+  color: rgb(var(--brand-300)) !important;
 }
 
 /* Smooth custom scrollbars */
