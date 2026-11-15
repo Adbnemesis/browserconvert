@@ -5,7 +5,7 @@ import { ConversionItem } from "@/lib/conversion/types";
 import { QueueItem } from "./QueueItem";
 import { Play, DownloadCloud, Trash2, StopCircle, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/config/site";
-import { KofiIcon } from "@/components/common/KofiWidget";
+import { KofiIcon } from "@/components/common/KofiIcon";
 
 interface QueueListProps {
   items: ConversionItem[];

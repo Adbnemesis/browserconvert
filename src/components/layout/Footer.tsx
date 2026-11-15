@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
 import { FileAudio, Shield, Lock, Cpu } from "lucide-react";
-import { KofiIcon } from "@/components/common/KofiWidget";
+import { KofiIcon } from "@/components/common/KofiIcon";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
