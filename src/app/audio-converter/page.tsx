@@ -5,6 +5,8 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
 import { FileAudio, Sparkles, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
@@ -14,6 +16,18 @@ export const metadata: Metadata = {
     "Free online audio converter. Convert between MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS with custom bitrates and sample rates. 100% private in-browser processing.",
   alternates: {
     canonical: `${siteConfig.url}/audio-converter`,
+  },
+  openGraph: {
+    title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",
+    description: "Free online audio converter with 100% private in-browser WebAssembly processing.",
+    url: `${siteConfig.url}/audio-converter`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",
+    description: "Free in-browser audio converter supporting all major audio formats with zero server uploads.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -51,6 +65,32 @@ export default function AudioConverterPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="Universal Online Audio Converter"
+        description="Convert audio files between all major formats directly in your web browser with 100% privacy."
+        url="/audio-converter"
+        breadcrumbs={[{ label: "Audio Converter", href: "/audio-converter" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert Any Audio Format Online",
+          description: "Convert any audio format to MP3, WAV, M4A, FLAC, OGG, or OPUS in three easy steps.",
+          steps: [
+            {
+              name: "Add Audio Tracks",
+              text: "Upload one or multiple audio tracks in any format (MP3, WAV, FLAC, M4A, OGG, etc.).",
+            },
+            {
+              name: "Select Output & Settings",
+              text: "Choose your target format and configure optional bitrate or sample rate parameters.",
+            },
+            {
+              name: "Convert & Download",
+              text: "Click Convert to encode your files with in-browser FFmpeg and download the results individually or in a ZIP archive.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "Audio Converter", href: "/audio-converter" }]} />
 
       {/* Hero Intro */}
@@ -67,6 +107,11 @@ export default function AudioConverterPage() {
           and with adjustable bitrates, sample rates, and trimming.
         </p>
       </div>
+
+      <DirectAnswer
+        question="How do I convert audio files online without installing software or uploading data?"
+        answer="MediaConvert provides a client-side audio conversion engine compiled to WebAssembly. Drag and drop your audio files into the converter below, choose your desired output format (MP3, WAV, M4A, FLAC, OGG, OPUS), adjust your bitrate or sample rate in Advanced Settings, and download the converted audio instantly. Your files are processed in local memory and never uploaded to any remote server."
+      />
 
       {/* Primary Working Converter */}
       <div className="relative">
@@ -139,7 +184,7 @@ export default function AudioConverterPage() {
             </span>
             <h3 className="font-bold text-slate-900 text-sm">Instant Local Download</h3>
             <p>
-              Click &ldquo;Convert All&rdquo;. The browser compiles your audio into clean new files. Download individual songs or grab the whole package in a single ZIP file.
+              Click Convert to process files sequentially in memory. Download each track individually or save all files in a single organized ZIP package.
             </p>
           </div>
         </div>
@@ -148,7 +193,7 @@ export default function AudioConverterPage() {
       {/* FAQs */}
       <section className="space-y-4 max-w-4xl mx-auto">
         <h2 className="text-xl font-bold tracking-tight text-slate-900 text-center mb-6">
-          Frequently Asked Questions
+          Frequently Asked Questions About Audio Conversion
         </h2>
         {faqs.map((faq) => (
           <div key={faq.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">

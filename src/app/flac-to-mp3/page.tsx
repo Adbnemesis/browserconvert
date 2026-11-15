@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, Sparkles, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert FLAC to MP3 online for free. Transform lossless FLAC albums into high-fidelity 320kbps or 192kbps MP3 files for smartphones and car stereos. 100% private.",
   alternates: {
     canonical: `${siteConfig.url}/flac-to-mp3`,
+  },
+  openGraph: {
+    title: "FLAC to MP3 Converter - Convert Hi-Res FLAC to 320kbps MP3 Online",
+    description: "Transform lossless FLAC albums into high-fidelity 320kbps MP3 files directly in your browser.",
+    url: `${siteConfig.url}/flac-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC to MP3 Converter - Convert Hi-Res FLAC to 320kbps MP3 Online",
+    description: "Transform lossless FLAC albums into 320kbps MP3 files with 100% in-browser privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function FlacToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Compression Standard",
+      sourceValue: "Free Lossless Audio Codec (Bit-perfect)",
+      targetValue: "MPEG-1 Layer III (Lossy perceptual)",
+    },
+    {
+      feature: "Typical Bitrate",
+      sourceValue: "800 kbps – 1,411 kbps (VBR Lossless)",
+      targetValue: "320 kbps CBR or 192 kbps CBR",
+    },
+    {
+      feature: "Average Album Size",
+      sourceValue: "350 MB – 600 MB",
+      targetValue: "80 MB – 120 MB (~75% space reduction)",
+    },
+    {
+      feature: "Apple Ecosystem Support",
+      sourceValue: "Not supported natively by iOS Music/iTunes",
+      targetValue: "100% native on iOS, macOS, watchOS, CarPlay",
+    },
+    {
+      feature: "Acoustic Fidelity",
+      sourceValue: "Identical to master studio recording",
+      targetValue: "Transparent fidelity (indistinguishable on consumer gear)",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="FLAC to MP3 Converter - Hi-Res Lossless to 320kbps MP3"
+        description="Convert FLAC to MP3 online for free with 100% private in-browser WebAssembly processing."
+        url="/flac-to-mp3"
+        breadcrumbs={[{ label: "FLAC to MP3", href: "/flac-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert FLAC to 320kbps MP3",
+          description: "Convert high-resolution FLAC albums into 320kbps MP3 in three easy steps.",
+          steps: [
+            {
+              name: "Add FLAC Tracks",
+              text: "Drag and drop your FLAC songs or entire album into the converter.",
+            },
+            {
+              name: "Set Bitrate to 320 kbps",
+              text: "Select MP3 and choose 320 kbps to maintain maximum acoustic fidelity.",
+            },
+            {
+              name: "Convert & Download ZIP",
+              text: "Click Convert. When batch completes, click Download All (ZIP) to get your album.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "FLAC to MP3", href: "/flac-to-mp3" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function FlacToMp3Page() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="What is the best way to convert FLAC to MP3 without quality degradation?"
+        answer="To convert FLAC to MP3 with maximum audio fidelity, transcode to 320 kbps MP3 using the LAME encoder on MediaConvert. FLAC provides bit-perfect studio recordings; converting to 320 kbps MP3 retains over 95% of perceptual nuance while shrinking file sizes by 75% for universal playback on iPhone, Android, and car stereos. MediaConvert processes files 100% locally in your browser."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="mp3"
@@ -60,6 +134,14 @@ export default function FlacToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="FLAC (Lossless Studio)"
+        targetName="MP3 (320kbps High-Bitrate)"
+        rows={comparisonRows}
+        caption="Technical Comparison: Lossless FLAC vs. 320 kbps MP3"
+      />
 
       {/* Guide */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">

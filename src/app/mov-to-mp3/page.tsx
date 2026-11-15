@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { Film, Sparkles, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert QuickTime MOV to MP3 online for free. Extract audio from iPhone videos and Mac screen recordings in high quality. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/mov-to-mp3`,
+  },
+  openGraph: {
+    title: "MOV to MP3 Converter - Extract Audio from QuickTime MOV Videos",
+    description: "Extract high quality audio from iPhone MOV videos and Mac screen recordings in your browser.",
+    url: `${siteConfig.url}/mov-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MOV to MP3 Converter - Extract Audio from QuickTime MOV Videos",
+    description: "Extract audio from iPhone MOV videos and Mac screen recordings with 100% in-browser privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function MovToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Container / Type",
+      sourceValue: "Apple QuickTime Video (MOV)",
+      targetValue: "MPEG-1 Layer 3 Audio (MP3)",
+    },
+    {
+      feature: "Typical File Size",
+      sourceValue: "100 MB – 2 GB+ (Contains heavy 4K/HD video)",
+      targetValue: "3 MB – 8 MB (~98% reduction)",
+    },
+    {
+      feature: "Embedded Audio Codec",
+      sourceValue: "Linear PCM or AAC (Stereo)",
+      targetValue: "libmp3lame MP3 (192k or 320k)",
+    },
+    {
+      feature: "Non-Apple Compatibility",
+      sourceValue: "Often unsupported on legacy car stereos/USBs",
+      targetValue: "Universal (100% of all devices and platforms)",
+    },
+    {
+      feature: "Processing Speed",
+      sourceValue: "Video decoding bypassed with -vn flag",
+      targetValue: "Near-instantaneous audio track export",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="MOV to MP3 Converter - Apple QuickTime to MP3"
+        description="Extract audio from iPhone MOV videos and QuickTime screen recordings online for free with 100% client-side privacy."
+        url="/mov-to-mp3"
+        breadcrumbs={[{ label: "MOV to MP3", href: "/mov-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Extract MP3 from QuickTime MOV Videos",
+          description: "Extract clean MP3 audio from any iPhone or Mac MOV video in three simple steps.",
+          steps: [
+            {
+              name: "Upload MOV Video",
+              text: "Select or drop your iPhone camera video or Mac screen capture into the converter.",
+            },
+            {
+              name: "Select MP3 & Quality",
+              text: "Choose MP3 format and configure your desired bitrate (192 kbps or 320 kbps).",
+            },
+            {
+              name: "Extract & Save",
+              text: "Click Convert. The video stream is discarded, and your audio is saved as a lightweight MP3.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "MOV to MP3", href: "/mov-to-mp3" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function MovToMp3Page() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="How do I extract audio from an iPhone QuickTime (.mov) video?"
+        answer="To extract audio from an iPhone MOV video, upload it to MediaConvert. Our client-side WebAssembly engine isolates the audio stream and re-encodes it into an MP3 file directly in your browser. Because heavy video frames are ignored, extraction takes just seconds, shrinking multi-gigabyte video files by 98% with zero server uploads."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="mp3"
@@ -60,6 +134,14 @@ export default function MovToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="Apple MOV Video"
+        targetName="MP3 Audio Stream"
+        rows={comparisonRows}
+        caption="Technical Comparison: Apple MOV Video vs. Extracted MP3 Audio"
+      />
 
       {/* Guide */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">

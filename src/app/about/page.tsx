@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Cpu, ShieldCheck, Zap, Lock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,11 +14,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/about`,
   },
+  openGraph: {
+    title: "About MediaConvert - Client-Side Audio & Video Converter",
+    description: "Learn about MediaConvert's browser-native audio conversion architecture with zero server uploads.",
+    url: `${siteConfig.url}/about`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About MediaConvert - Client-Side Audio & Video Converter",
+    description: "Browser-native audio conversion architecture with zero server uploads.",
+    images: [`${siteConfig.url}/og-image.png`],
+  },
 };
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        pageType="website"
+        title="About MediaConvert - Mission, Tech & Privacy"
+        description="Learn how MediaConvert provides 100% private in-browser audio conversion without server storage."
+        url="/about"
+        breadcrumbs={[{ label: "About", href: "/about" }]}
+      />
+
       <Breadcrumbs items={[{ label: "About", href: "/about" }]} />
 
       <div className="space-y-4">
@@ -28,6 +50,11 @@ export default function AboutPage() {
           extraction while protecting user confidentiality.
         </p>
       </div>
+
+      <DirectAnswer
+        question="What is MediaConvert and how does it protect user privacy?"
+        answer="MediaConvert is a free online audio converter that runs WebAssembly-compiled FFmpeg locally inside your browser sandbox. Unlike traditional converters that upload private audio and video recordings to cloud servers, MediaConvert executes all decoding, trimming, and re-encoding on your device CPU. 0 bytes of media content are ever transferred to our servers."
+      />
 
       {/* The Problem & Our Solution */}
       <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">

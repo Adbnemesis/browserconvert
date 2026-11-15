@@ -3,36 +3,37 @@ import { siteConfig } from "@/lib/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
-    "",
-    "/audio-converter",
-    "/mp4-to-mp3",
-    "/wav-to-mp3",
-    "/m4a-to-mp3",
-    "/mov-to-mp3",
-    "/mp3-to-wav",
-    "/flac-to-mp3",
-    "/ogg-to-mp3",
-    "/opus-to-mp3",
-    "/aac-to-mp3",
-    "/audio-cutter",
-    "/audio-merger",
-    "/audio-compressor",
-    "/audio-bitrate-changer",
-    "/audio-speed-changer",
-    "/audio-volume-adjuster",
-    "/format-guide",
-    "/about",
-    "/contact",
-    "/privacy",
-    "/terms",
+    { path: "", changeFrequency: "daily" as const, priority: 1.0 },
+    { path: "/audio-converter", changeFrequency: "daily" as const, priority: 0.95 },
+    { path: "/mp4-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/wav-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/m4a-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/mov-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/mp3-to-wav", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/flac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/ogg-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/opus-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/aac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/audio-cutter", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/audio-merger", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/audio-compressor", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/audio-bitrate-changer", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/audio-speed-changer", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/audio-volume-adjuster", changeFrequency: "weekly" as const, priority: 0.85 },
+    { path: "/format-guide", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/about", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/contact", changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/privacy", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },
   ];
 
-  const currentDate = new Date();
+  // Deterministic last modified date to preserve caching and crawl reliability
+  const releaseDate = new Date("2026-11-15T00:00:00.000Z");
 
-  return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
-    lastModified: currentDate,
-    changeFrequency: route === "" ? "daily" : "weekly",
-    priority: route === "" ? 1.0 : route.includes("-to-") ? 0.9 : 0.8,
+  return routes.map((r) => ({
+    url: `${siteConfig.url}${r.path}`,
+    lastModified: releaseDate,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
   }));
 }

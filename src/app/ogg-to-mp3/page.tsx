@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, Sparkles, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert OGG to MP3 online for free. Transform OGG Vorbis game sound effects, music tracks, and voice notes into universal MP3. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/ogg-to-mp3`,
+  },
+  openGraph: {
+    title: "OGG to MP3 Converter - Convert Vorbis OGG Audio to MP3 Online Free",
+    description: "Transform OGG Vorbis game audio and voice recordings into universal MP3 files in your browser.",
+    url: `${siteConfig.url}/ogg-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OGG to MP3 Converter - Convert Vorbis OGG Audio to MP3 Online Free",
+    description: "Convert OGG Vorbis audio to MP3 with 100% in-browser privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function OggToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Codec Standard",
+      sourceValue: "Xiph.Org Ogg Vorbis (Open-Source)",
+      targetValue: "MPEG-1 Audio Layer III (MP3)",
+    },
+    {
+      feature: "Primary Use Environment",
+      sourceValue: "Game engines, Spotify desktop, Linux systems",
+      targetValue: "Universal consumer hardware, mobile, car audio",
+    },
+    {
+      feature: "Apple iOS Compatibility",
+      sourceValue: "Unsupported by iOS Safari & Apple Music",
+      targetValue: "100% native across all Apple hardware",
+    },
+    {
+      feature: "Car Audio & USB Decks",
+      sourceValue: "Fails to recognize .ogg extension",
+      targetValue: "Universal instant playback",
+    },
+    {
+      feature: "Audio Fidelity at 192 kbps",
+      sourceValue: "Very High (Efficient Vorbis algorithm)",
+      targetValue: "Near-identical perceptual transparency (LAME)",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="OGG to MP3 Converter - Ogg Vorbis to MP3"
+        description="Convert OGG Vorbis audio tracks and game assets to MP3 online for free with 100% client-side browser privacy."
+        url="/ogg-to-mp3"
+        breadcrumbs={[{ label: "OGG to MP3", href: "/ogg-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert OGG to MP3 in Browser",
+          description: "Convert OGG Vorbis audio files to MP3 in three easy steps.",
+          steps: [
+            {
+              name: "Add OGG Files",
+              text: "Drag and drop your .ogg game sounds, music, or voice notes into the converter.",
+            },
+            {
+              name: "Choose MP3 Bitrate",
+              text: "Select MP3 and choose your target bitrate (192 kbps or 256 kbps).",
+            },
+            {
+              name: "Convert & Download",
+              text: "Click Convert to encode your files locally and download your playable MP3 audio.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "OGG to MP3", href: "/ogg-to-mp3" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function OggToMp3Page() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="How do I convert an OGG file to MP3 so it plays on iPhone and car stereos?"
+        answer="To convert an OGG Vorbis audio file to MP3, upload it to MediaConvert, select MP3 at 192 kbps or 256 kbps, and click Convert. Because iOS and car head units reject OGG files, converting to MP3 ensures 100% hardware compatibility without downloading extra players. MediaConvert runs locally in your browser with zero data uploads."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="mp3"
@@ -60,6 +134,14 @@ export default function OggToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="OGG Vorbis Audio"
+        targetName="MP3 Universal Audio"
+        rows={comparisonRows}
+        caption="Technical Comparison: OGG Vorbis vs. MP3 Audio"
+      />
 
       {/* Guide */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">

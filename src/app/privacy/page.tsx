@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/config/site";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { SeoSchema } from "@/components/seo/SeoSchema";
 import { ShieldCheck, Lock, EyeOff, ServerOff, Cookie, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -9,6 +10,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/privacy`,
   },
+  openGraph: {
+    title: `Privacy Policy - 100% Client-Side Private Audio Converter | ${siteConfig.name}`,
+    description: "MediaConvert is engineered with private-by-default architecture. Files never leave your browser.",
+    url: `${siteConfig.url}/privacy`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Privacy Policy | ${siteConfig.name}`,
+    description: "100% client-side privacy. Zero server file uploads.",
+    images: [`${siteConfig.url}/og-image.png`],
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -16,9 +29,16 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <SeoSchema
+        pageType="website"
+        title="Privacy Policy - MediaConvert"
+        description="Review MediaConvert's zero-server-upload privacy policy."
+        url="/privacy"
+        breadcrumbs={[{ label: "Privacy Policy", href: "/privacy" }]}
+      />
+
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
           { label: "Privacy Policy" },
         ]}
       />

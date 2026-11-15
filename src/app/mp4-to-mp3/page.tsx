@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { Film, FileAudio, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,19 @@ export const metadata: Metadata = {
     "Convert MP4 to MP3 online for free. Extract audio from MP4 video files directly in your browser with 320kbps high quality. 100% private, no server uploads.",
   alternates: {
     canonical: `${siteConfig.url}/mp4-to-mp3`,
+  },
+  openGraph: {
+    title: "MP4 to MP3 Converter - Extract Audio from MP4 Online Free",
+    description:
+      "Convert MP4 to MP3 online for free. Extract high quality audio from MP4 video files directly in your browser.",
+    url: `${siteConfig.url}/mp4-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 to MP3 Converter - Extract Audio from MP4 Online Free",
+    description: "Extract high quality audio from MP4 video files directly in your browser with 100% client-side privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -36,8 +52,62 @@ export default function Mp4ToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Media Type",
+      sourceValue: "Video + Audio Container (Multiplexed)",
+      targetValue: "Pure Standalone Audio Track",
+    },
+    {
+      feature: "Typical Audio Codec",
+      sourceValue: "AAC-LC, HE-AAC, or ALAC",
+      targetValue: "MPEG-1 Audio Layer III (libmp3lame)",
+    },
+    {
+      feature: "Typical File Size",
+      sourceValue: "50 MB – 500 MB+ (Includes video frames)",
+      targetValue: "3 MB – 10 MB (~90% to 95% reduction)",
+    },
+    {
+      feature: "Hardware Compatibility",
+      sourceValue: "Requires video display & H.264/HEVC decoder",
+      targetValue: "Universal (100% of car stereos, DAWs & players)",
+    },
+    {
+      feature: "Battery & CPU Usage",
+      sourceValue: "High (demuxing and decoding video frames)",
+      targetValue: "Very Low (lightweight audio playback)",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="MP4 to MP3 Converter - Extract Audio from MP4"
+        description="Convert MP4 to MP3 online for free with 100% in-browser client-side privacy."
+        url="/mp4-to-mp3"
+        breadcrumbs={[{ label: "MP4 to MP3", href: "/mp4-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert MP4 to MP3 in Browser",
+          description: "Extract high fidelity MP3 audio from any MP4 video file in three easy steps.",
+          steps: [
+            {
+              name: "Upload MP4 Video",
+              text: "Drag and drop your MP4 video file into the converter box. Files are processed locally on your device.",
+            },
+            {
+              name: "Choose Quality Bitrate",
+              text: "Select MP3 as target format and pick 192 kbps or 320 kbps for optimal audio fidelity.",
+            },
+            {
+              name: "Extract & Download",
+              text: "Click Convert to run WebAssembly FFmpeg. Download your standalone MP3 audio track instantly.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "MP4 to MP3", href: "/mp4-to-mp3" }]} />
 
       {/* Hero Header */}
@@ -55,6 +125,12 @@ export default function Mp4ToMp3Page() {
         </p>
       </div>
 
+      {/* Answer-First / Direct Answer Block for AI Search & Featured Snippets */}
+      <DirectAnswer
+        question="How to convert MP4 to MP3 without uploading files to a server?"
+        answer="To convert MP4 to MP3 privately, upload your video to MediaConvert. Our browser engine demuxes the MP4 container and encodes the audio track into MP3 locally using WebAssembly FFmpeg. Select 192 kbps or 320 kbps for high fidelity. Your video never leaves your computer, ensuring complete confidentiality."
+      />
+
       {/* Converter preconfigured with MP3 output */}
       <div className="relative">
         <Converter
@@ -66,6 +142,14 @@ export default function Mp4ToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table Section */}
+      <ComparisonTable
+        sourceName="MP4 Video Container"
+        targetName="MP3 Audio Stream"
+        rows={comparisonRows}
+        caption="Technical Comparison: MP4 Source vs. Extracted MP3 Audio"
+      />
 
       {/* Educational Guide Section */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-8">

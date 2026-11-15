@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, Sparkles, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert M4A to MP3 online for free. Transform Apple Voice Memos and iTunes M4A audio files into universal MP3 format. Fast, free, and 100% private in your browser.",
   alternates: {
     canonical: `${siteConfig.url}/m4a-to-mp3`,
+  },
+  openGraph: {
+    title: "M4A to MP3 Converter - Convert Apple Voice Memos & Audio Online Free",
+    description: "Convert Apple Voice Memos and iTunes M4A files to universal MP3 format directly in your browser.",
+    url: `${siteConfig.url}/m4a-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A to MP3 Converter - Convert Apple Voice Memos & Audio Online Free",
+    description: "Convert Apple Voice Memos and iTunes M4A files to MP3 with 100% in-browser privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function M4aToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Audio Stream Codec",
+      sourceValue: "Advanced Audio Coding (AAC / MPEG-4)",
+      targetValue: "MPEG-1 Layer III (MP3)",
+    },
+    {
+      feature: "Native iOS / macOS Support",
+      sourceValue: "Native (Default Voice Memos format)",
+      targetValue: "100% Supported across all Apple apps",
+    },
+    {
+      feature: "Windows & Android Playback",
+      sourceValue: "Requires dedicated player or codec pack",
+      targetValue: "Universal (Plug-and-play everywhere)",
+    },
+    {
+      feature: "Car Stereos & Hardware USBs",
+      sourceValue: "Frequently rejected or skipped",
+      targetValue: "100% compatible across all head units",
+    },
+    {
+      feature: "Recommended Transcode Bitrate",
+      sourceValue: "Original (typically 128 kbps to 256 kbps)",
+      targetValue: "192 kbps or 320 kbps for zero audible loss",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="M4A to MP3 Converter - Apple Voice Memos to MP3"
+        description="Convert Apple Voice Memos and M4A audio files into MP3 format online for free with 100% in-browser privacy."
+        url="/m4a-to-mp3"
+        breadcrumbs={[{ label: "M4A to MP3", href: "/m4a-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert M4A Voice Memos to MP3",
+          description: "Convert Apple Voice Memos and iTunes M4A tracks to MP3 in three easy steps.",
+          steps: [
+            {
+              name: "Add M4A or Voice Memo",
+              text: "Select or drag your .m4a recording into the converter box.",
+            },
+            {
+              name: "Select MP3 & Bitrate",
+              text: "Choose MP3 format and pick 192 kbps for clear speech and music.",
+            },
+            {
+              name: "Convert & Download",
+              text: "Click Convert to run WebAssembly FFmpeg locally and download your universal MP3.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "M4A to MP3", href: "/m4a-to-mp3" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function M4aToMp3Page() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="How do I convert an Apple iPhone Voice Memo (.m4a) to MP3?"
+        answer="To convert an iPhone Voice Memo to MP3, export the recording as an .m4a file and drop it into MediaConvert. Select MP3 at 192 kbps or 320 kbps and click Convert. Our browser engine re-encodes the AAC audio into MP3 locally using WebAssembly, ensuring your personal voice recordings are never sent to any external server."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="mp3"
@@ -60,6 +134,14 @@ export default function M4aToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="M4A (Apple AAC Audio)"
+        targetName="MP3 (Universal Audio)"
+        rows={comparisonRows}
+        caption="Technical Comparison: Apple M4A vs. Universal MP3"
+      />
 
       {/* Guide */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">

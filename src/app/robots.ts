@@ -9,6 +9,19 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/"],
       },
+      {
+        // Explicitly allow AI search discovery bots for citation and answer retrieval
+        userAgent: [
+          "OAI-SearchBot",
+          "PerplexityBot",
+          "Claude-SearchBot",
+          "Google-Extended",
+          "Applebot",
+          "Bingbot",
+        ],
+        allow: "/",
+        disallow: ["/api/"],
+      },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };

@@ -1,0 +1,22 @@
+{
+  "name": "MediaConvert - Free Online Audio Converter",
+  "short_name": "MediaConvert",
+  "description": "Convert audio and extract audio from video files directly in your browser. 100% private, free, and fast.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#059669",
+  "icons": [
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

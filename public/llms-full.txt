@@ -1,0 +1,56 @@
+# MediaConvert — Complete Technical Specification & Documentation
+
+MediaConvert (https://mediaconvert.org) is a client-side web application dedicated to audio format conversion, video soundtrack extraction, and non-destructive audio editing.
+
+## 1. Architectural Model
+Unlike legacy web converters that upload gigabytes of user video and audio to remote cloud clusters, MediaConvert operates entirely inside the client device's browser thread and Web Worker.
+- Binary Runtime: WebAssembly (Wasm) compiled FFmpeg 0.12+ core.
+- Execution Boundary: Browser sandbox; files are read into Uint8Array buffers via File API and FileReader.
+- Network Data Transfer: 0 bytes of multimedia payload are transmitted across the internet. Only static application bundle assets (JS, CSS, Wasm binary) are fetched.
+- Memory Lifecycle: Converted outputs are generated as Blob objects and assigned URL.createObjectURL references. Blob URLs are automatically revoked upon queue clearance or download to release browser heap memory.
+
+## 2. Supported Formats Matrix
+### Audio Input Formats
+- MP3 (MPEG-1/2 Audio Layer III)
+- WAV (Waveform Audio File Format, 16-bit, 24-bit, 32-bit float PCM)
+- M4A (MPEG-4 Audio, AAC/ALAC streams)
+- AAC (Advanced Audio Coding, ADTS stream)
+- FLAC (Free Lossless Audio Codec)
+- OGG (Ogg container with Vorbis streams)
+- OPUS (Ogg Opus speech and music stream)
+- WMA (Windows Media Audio)
+- AIFF (Audio Interchange File Format)
+
+### Audio Output Formats & Encoding Codecs
+- MP3: Encoded via libmp3lame (bitrates: 64k, 96k, 128k, 160k, 192k, 256k, 320k)
+- WAV: Encoded via pcm_s16le (uncompressed 16-bit linear PCM)
+- M4A: Encoded via native FFmpeg aac encoder (bitrates: 64k to 320k)
+- AAC: Encoded via native FFmpeg aac encoder into raw ADTS container
+- FLAC: Encoded via native flac encoder (lossless compression level 5)
+- OGG: Encoded via libvorbis (fixed sample rate 44.1 kHz for codec stability)
+- OPUS: Encoded via libopus (fixed sample rate 48.0 kHz for codec stability)
+
+### Video Container Inputs for Direct Audio Extraction
+- MP4 (MPEG-4 Part 14)
+- MOV (Apple QuickTime)
+- MKV (Matroska)
+- WEBM (HTML5 Web Media)
+- AVI (Audio Video Interleaved)
+- WMV (Windows Media Video)
+- FLV (Flash Video)
+- 3GP (3GPP Mobile)
+- TS (MPEG Transport Stream)
+
+During video conversion, the `-vn` argument discards video stream demuxing overhead, achieving near-instantaneous audio track isolation without loading video frames into memory.
+
+## 3. Dedicated Audio Utilities
+1. **Audio Cutter (/audio-cutter)**: Trims start and end positions with `-ss [start]` and `-to [end]`. Includes HTML5 Web Audio playback preview and second-accurate time inputs.
+2. **Audio Merger (/audio-merger)**: Concatenates two or more audio files into a unified output using the FFmpeg concat demuxer filter.
+3. **Audio Compressor (/audio-compressor)**: Re-encodes audio tracks into optimized lossy representations (64k to 128k) yielding 50% to 85% file size reductions.
+4. **Audio Bitrate Changer (/audio-bitrate-changer)**: Allows explicit manual assignment of output bitrate targets.
+5. **Audio Speed Changer (/audio-speed-changer)**: Adjusts tempo from 0.5x to 2.0x via `atempo` audio filter while maintaining acoustic pitch.
+6. **Audio Volume Adjuster (/audio-volume-adjuster)**: Attenuates or amplifies audio levels from -20 dB to +20 dB via `volume` audio filter with clipping protection.
+
+## 4. Privacy & Compliance
+- GDPR & CCPA: Compliant by design. No personal data or user media is collected, stored, or processed on our servers.
+- Offline Capability: Once initial static assets and WebAssembly binaries are cached via Cache-Control headers, conversions operate offline without active internet connectivity.

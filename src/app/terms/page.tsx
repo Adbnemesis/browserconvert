@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/config/site";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { SeoSchema } from "@/components/seo/SeoSchema";
 import { FileText, CheckCircle2, AlertTriangle, ShieldAlert, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -9,6 +10,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/terms`,
   },
+  openGraph: {
+    title: `Terms of Service - Acceptable Use & Service Agreement | ${siteConfig.name}`,
+    description: "Terms and conditions for using MediaConvert free in-browser audio platform.",
+    url: `${siteConfig.url}/terms`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Terms of Service | ${siteConfig.name}`,
+    description: "Terms of service and acceptable use agreement.",
+    images: [`${siteConfig.url}/og-image.png`],
+  },
 };
 
 export default function TermsOfServicePage() {
@@ -16,9 +29,16 @@ export default function TermsOfServicePage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <SeoSchema
+        pageType="website"
+        title="Terms of Service - MediaConvert"
+        description="Review MediaConvert's acceptable use and terms of service."
+        url="/terms"
+        breadcrumbs={[{ label: "Terms of Service", href: "/terms" }]}
+      />
+
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
           { label: "Terms of Service" },
         ]}
       />

@@ -1,7 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Converter } from "@/components/converter/Converter";
 import { AdSlot } from "@/components/layout/AdSlot";
+import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import {
   FileAudio,
   Film,
@@ -15,6 +19,22 @@ import {
   Sparkles,
 } from "lucide-react";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
+
+export const metadata: Metadata = {
+  title: "Free Online Audio Converter & Video to Audio Extractor",
+  description:
+    "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing. No uploads, no limits.",
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  openGraph: {
+    title: "Free Online Audio Converter & Video to Audio Extractor",
+    description:
+      "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing.",
+    url: siteConfig.url,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+};
 
 export default function HomePage() {
   const popularConversions = [
@@ -114,6 +134,31 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16 pb-20">
+      <SeoSchema
+        pageType="website"
+        title="Free Online Audio Converter & Video to Audio Extractor"
+        description="Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing. No uploads, no limits."
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert Audio Files Online",
+          description: "Convert audio and video files locally in your browser in three simple steps with complete privacy.",
+          steps: [
+            {
+              name: "Upload Media Files",
+              text: "Drag and drop single or multiple audio or video files into the converter. Files remain stored safely on your device.",
+            },
+            {
+              name: "Select Format & Bitrate",
+              text: "Choose your target output format (MP3, WAV, M4A, FLAC, OGG, or OPUS) and configure bitrate settings up to 320 kbps.",
+            },
+            {
+              name: "Convert & Download",
+              text: "Click Convert to run WebAssembly FFmpeg locally. Download individual audio files or get all tracks in a single ZIP archive.",
+            },
+          ],
+        }}
+      />
+
       {/* SECTION 1: HERO & WORKING CONVERTER */}
       <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 dark:from-transparent dark:via-transparent dark:to-transparent pt-8 sm:pt-14 pb-12 border-b border-slate-200/60 dark:border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -150,6 +195,11 @@ export default function HomePage() {
 
       {/* SECTION 2: POPULAR CONVERSIONS */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <DirectAnswer
+          question="How do I convert audio or extract sound from video files online without uploading them?"
+          answer="MediaConvert executes WebAssembly-compiled FFmpeg directly inside your web browser sandbox. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your local device memory with 100% privacy and zero server uploads."
+        />
+
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">

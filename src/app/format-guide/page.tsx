@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
-import { FileAudio, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { FileAudio, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Audio Format Guide - Compare MP3, WAV, M4A, FLAC, OGG, OPUS",
@@ -13,6 +15,18 @@ export const metadata: Metadata = {
     "Comprehensive audio format comparison guide. Learn the differences between MP3, WAV, FLAC, M4A, AAC, OGG, and OPUS for music, podcasts, and sound production.",
   alternates: {
     canonical: `${siteConfig.url}/format-guide`,
+  },
+  openGraph: {
+    title: "Audio Format Guide - Compare MP3, WAV, M4A, FLAC, OGG, OPUS",
+    description: "Learn the differences between MP3, WAV, FLAC, M4A, AAC, OGG, and OPUS for audio quality, file size, and compatibility.",
+    url: `${siteConfig.url}/format-guide`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Audio Format Guide - Compare MP3, WAV, M4A, FLAC, OGG, OPUS",
+    description: "Technical codec and container comparison guide for audio producers, podcasters, and listeners.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -111,8 +125,32 @@ export default function FormatGuidePage() {
     },
   ];
 
+  const guideFaqs = [
+    {
+      q: "Which audio format offers the highest sound quality?",
+      a: "WAV and FLAC provide bit-perfect, lossless sound reproduction identical to original studio masters. WAV is uncompressed PCM, while FLAC uses lossless compression to cut file sizes in half without discarding any acoustic frequencies.",
+    },
+    {
+      q: "What is the difference between lossy and lossless audio?",
+      a: "Lossless formats (WAV, FLAC, ALAC) retain 100% of recorded audio samples. Lossy formats (MP3, AAC, OGG, OPUS) apply psychoacoustic algorithms to eliminate inaudible frequencies, reducing file size by 70% to 90% while sounding virtually identical on standard headphones and speakers.",
+    },
+    {
+      q: "Which format is best for podcasts and voice notes?",
+      a: "MP3 at 128 kbps stereo (or 96 kbps mono) is the global standard for podcasts because every podcast app, RSS aggregator, and mobile device plays it reliably without buffering.",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        pageType="article"
+        title="Audio Format Comparison & Codec Guide"
+        description="Comprehensive technical guide comparing MP3, WAV, FLAC, M4A, AAC, OGG, and OPUS for audio quality, compression, and hardware compatibility."
+        url="/format-guide"
+        breadcrumbs={[{ label: "Format Guide", href: "/format-guide" }]}
+        faqs={guideFaqs}
+      />
+
       <Breadcrumbs items={[{ label: "Format Guide", href: "/format-guide" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -124,6 +162,11 @@ export default function FormatGuidePage() {
           video project, or hardware player.
         </p>
       </div>
+
+      <DirectAnswer
+        question="How do I choose between MP3, WAV, FLAC, and M4A?"
+        answer="Choose MP3 (192-320 kbps) for universal playback on all devices and car stereos. Choose WAV for zero-latency studio DAW editing and mastering where uncompressed quality is mandatory. Choose FLAC to archive high-resolution music with bit-perfect fidelity at half the file size of WAV. Choose M4A for Apple devices and podcasts with superior compression efficiency."
+      />
 
       <AdSlot position="headerBanner" />
 
@@ -214,6 +257,24 @@ export default function FormatGuidePage() {
           ))}
         </div>
       </div>
+
+      {/* Guide FAQs */}
+      <section className="space-y-4 max-w-4xl mx-auto">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 text-center mb-6">
+          Audio Format FAQs
+        </h2>
+        {guideFaqs.map((faq) => (
+          <div key={faq.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
+            <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2.5">
+              <HelpCircle className="h-4 w-4 text-brand-600 shrink-0 mt-0.5" />
+              <span>{faq.q}</span>
+            </h3>
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6.5">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

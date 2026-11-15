@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, Sparkles, HelpCircle, CheckCircle2, Sliders, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert WAV to MP3 online for free. Compress large uncompressed WAV recordings into high-quality 320kbps or 192kbps MP3s. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/wav-to-mp3`,
+  },
+  openGraph: {
+    title: "WAV to MP3 Converter - Convert Lossless WAV to MP3 Online Free",
+    description: "Compress large uncompressed WAV recordings into high-quality 320kbps MP3s directly in your browser.",
+    url: `${siteConfig.url}/wav-to-mp3`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV to MP3 Converter - Convert Lossless WAV to MP3 Online Free",
+    description: "Compress large uncompressed WAV recordings into high-quality 320kbps MP3s. 100% client-side privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function WavToMp3Page() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Compression Category",
+      sourceValue: "Uncompressed Linear PCM (Raw samples)",
+      targetValue: "Lossy Psychoacoustic Perceptual Encoding",
+    },
+    {
+      feature: "Bitrate",
+      sourceValue: "1,411 kbps (16-bit / 44.1 kHz stereo)",
+      targetValue: "128 kbps to 320 kbps (Configurable)",
+    },
+    {
+      feature: "File Size (per 4 min track)",
+      sourceValue: "Approx. 40 MB – 50 MB",
+      targetValue: "Approx. 4 MB – 9 MB (~85% to 90% savings)",
+    },
+    {
+      feature: "Primary Use Case",
+      sourceValue: "Mastering, Studio DAWs, Archival recording",
+      targetValue: "Streaming, Car Stereos, Mobile playback",
+    },
+    {
+      feature: "Device Compatibility",
+      sourceValue: "High on PCs/Macs; problematic on older phones",
+      targetValue: "Universal (100% of all consumer digital devices)",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="WAV to MP3 Converter - Lossless to Universal MP3"
+        description="Convert WAV to MP3 online for free with 100% private in-browser WebAssembly processing."
+        url="/wav-to-mp3"
+        breadcrumbs={[{ label: "WAV to MP3", href: "/wav-to-mp3" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Convert WAV to MP3 in Browser",
+          description: "Compress large WAV audio files into high quality MP3s in three quick steps.",
+          steps: [
+            {
+              name: "Upload WAV File",
+              text: "Drag and drop your 16-bit or 24-bit WAV file into the converter box.",
+            },
+            {
+              name: "Choose Target Bitrate",
+              text: "Select MP3 and choose your target bitrate (192 kbps recommended, or 320 kbps for audiophile quality).",
+            },
+            {
+              name: "Convert & Download",
+              text: "Click Convert to run FFmpeg Wasm locally and download your lightweight MP3 audio file.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "WAV to MP3", href: "/wav-to-mp3" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function WavToMp3Page() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="How to convert large WAV files to MP3 without losing audio quality?"
+        answer="To convert WAV to MP3 while preserving acoustic clarity, choose 320 kbps or 192 kbps with the LAME encoder on MediaConvert. Uncompressed WAV files take 10 MB per minute; converting to MP3 cuts file size by up to 90% with virtually indistinguishable sound quality on consumer headphones and car stereos. MediaConvert processes everything locally in your browser."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="mp3"
@@ -60,6 +134,14 @@ export default function WavToMp3Page() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="WAV (Uncompressed PCM)"
+        targetName="MP3 (MPEG-1 Layer 3)"
+        rows={comparisonRows}
+        caption="Technical Comparison: Uncompressed WAV vs. Compressed MP3"
+      />
 
       {/* Technical Comparison Section */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-8">

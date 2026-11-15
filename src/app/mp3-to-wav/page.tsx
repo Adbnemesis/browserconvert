@@ -5,6 +5,9 @@ import { Converter } from "@/components/converter/Converter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AdSlot } from "@/components/layout/AdSlot";
 import { siteConfig } from "@/lib/config/site";
+import { SeoSchema } from "@/components/seo/SeoSchema";
+import { DirectAnswer } from "@/components/seo/DirectAnswer";
+import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, Sparkles, HelpCircle, CheckCircle2, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -13,6 +16,18 @@ export const metadata: Metadata = {
     "Convert MP3 to WAV online for free. Decompress MP3 audio into standard 16-bit PCM WAV for DAWs, music editing, and DJ hardware. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/mp3-to-wav`,
+  },
+  openGraph: {
+    title: "MP3 to WAV Converter - Convert MP3 to Uncompressed 16-Bit WAV Free",
+    description: "Decompress MP3 audio into uncompressed 16-bit PCM WAV for DAWs and audio editing directly in your browser.",
+    url: `${siteConfig.url}/mp3-to-wav`,
+    images: [`${siteConfig.url}/og-image.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 to WAV Converter - Convert MP3 to Uncompressed 16-Bit WAV Free",
+    description: "Decompress MP3 audio into uncompressed 16-bit PCM WAV for DAWs with 100% in-browser privacy.",
+    images: [`${siteConfig.url}/og-image.png`],
   },
 };
 
@@ -32,8 +47,62 @@ export default function Mp3ToWavPage() {
     },
   ];
 
+  const comparisonRows = [
+    {
+      feature: "Audio Encoding Format",
+      sourceValue: "MPEG-1 Layer 3 (Lossy Psychoacoustic)",
+      targetValue: "16-bit Linear PCM (Uncompressed Waveform)",
+    },
+    {
+      feature: "Bitrate Rate",
+      sourceValue: "128 kbps to 320 kbps (Compressed)",
+      targetValue: "1,411.2 kbps (Standard CD quality PCM)",
+    },
+    {
+      feature: "File Size Ratio",
+      sourceValue: "Compact (Approx. 1 MB per minute)",
+      targetValue: "Expanded (Approx. 10.5 MB per minute)",
+    },
+    {
+      feature: "DAW & Timeline Performance",
+      sourceValue: "Requires realtime CPU decompression",
+      targetValue: "Instant random access & zero CPU decoding penalty",
+    },
+    {
+      feature: "Repeated Re-editing Safety",
+      sourceValue: "Suffers generation loss if re-compressed",
+      targetValue: "Lossless editing without cumulative degradation",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <SeoSchema
+        title="MP3 to WAV Converter - Decompress MP3 to 16-bit PCM WAV"
+        description="Convert MP3 to WAV online for free with 100% private in-browser WebAssembly processing."
+        url="/mp3-to-wav"
+        breadcrumbs={[{ label: "MP3 to WAV", href: "/mp3-to-wav" }]}
+        faqs={faqs}
+        howTo={{
+          name: "How to Decompress MP3 into 16-bit WAV",
+          description: "Decompress MP3 audio into uncompressed PCM WAV in three easy steps.",
+          steps: [
+            {
+              name: "Upload MP3 Track",
+              text: "Drag and drop your MP3 files into the converter area.",
+            },
+            {
+              name: "Verify WAV Output",
+              text: "Select WAV format (encoded via pcm_s16le 44.1 kHz for maximum compatibility).",
+            },
+            {
+              name: "Decompress & Download",
+              text: "Click Convert to generate your uncompressed studio-ready WAV file in seconds.",
+            },
+          ],
+        }}
+      />
+
       <Breadcrumbs items={[{ label: "MP3 to WAV", href: "/mp3-to-wav" }]} />
 
       <div className="text-center max-w-3xl mx-auto">
@@ -50,6 +119,11 @@ export default function Mp3ToWavPage() {
         </p>
       </div>
 
+      <DirectAnswer
+        question="Why convert MP3 to WAV and does it restore lost sound quality?"
+        answer="Converting MP3 to WAV decompresses lossy audio into uncompressed 16-bit PCM. While it cannot restore frequencies discarded during initial MP3 compression, it expands the audio into a format required by DAWs, hardware DJ CDJs, and game engines to prevent CPU decoding lag and avoid compounding generation loss during editing. MediaConvert performs this conversion 100% locally in your browser."
+      />
+
       <div className="relative">
         <Converter
           defaultOutputFormat="wav"
@@ -60,6 +134,14 @@ export default function Mp3ToWavPage() {
       </div>
 
       <AdSlot position="headerBanner" />
+
+      {/* Comparison Table */}
+      <ComparisonTable
+        sourceName="MP3 (Compressed Audio)"
+        targetName="WAV (Uncompressed PCM)"
+        rows={comparisonRows}
+        caption="Technical Comparison: Compressed MP3 vs. Decompressed WAV"
+      />
 
       {/* Honest Technical Explanation */}
       <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">
