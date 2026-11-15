@@ -1,0 +1,129 @@
+import React from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Converter } from "@/components/converter/Converter";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { AdSlot } from "@/components/layout/AdSlot";
+import { siteConfig } from "@/lib/config/site";
+import { FileAudio, Sparkles, HelpCircle, CheckCircle2, AlertTriangle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "MP3 to WAV Converter - Convert MP3 to Uncompressed 16-Bit WAV",
+  description:
+    "Convert MP3 to WAV online for free. Decompress MP3 audio into standard 16-bit PCM WAV for DAWs, music editing, and DJ hardware. 100% private in-browser conversion.",
+  alternates: {
+    canonical: `${siteConfig.url}/mp3-to-wav`,
+  },
+};
+
+export default function Mp3ToWavPage() {
+  const faqs = [
+    {
+      q: "Does converting MP3 to WAV improve the audio quality?",
+      a: "No. MP3 is a lossy compression format, meaning audio frequencies (usually above 16 kHz or masked sounds) were permanently removed when the MP3 was originally created. Converting to WAV decompresses that audio into uncompressed PCM, but cannot restore data that no longer exists.",
+    },
+    {
+      q: "Why should I convert MP3 to WAV if the quality does not improve?",
+      a: "Many professional applications require WAV: Digital Audio Workstations (DAWs) like Pro Tools or FL Studio run with less CPU overhead on uncompressed WAV; DJ CDJs and samplers often reject MP3s with variable bitrates (VBR); and audio editors prevent generation loss by editing in uncompressed PCM.",
+    },
+    {
+      q: "Why is the converted WAV file so much larger than my MP3?",
+      a: "A standard 16-bit 44.1 kHz stereo WAV file requires roughly 10 MB per minute of playback. Because WAV stores raw audio samples without compression, a 5 MB MP3 typically expands to around 40-50 MB as a WAV file. This is normal and expected.",
+    },
+  ];
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+      <Breadcrumbs items={[{ label: "MP3 to WAV", href: "/mp3-to-wav" }]} />
+
+      <div className="text-center max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 border border-amber-200 mb-3">
+          <FileAudio className="h-3.5 w-3.5" />
+          <span>PCM Audio Decompression</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+          Convert MP3 to WAV Online Free
+        </h1>
+        <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          Decompress MP3 audio files into standard 16-bit uncompressed PCM WAV format for studio DAWs,
+          audio editing, and DJ equipment. 100% private in-browser processing.
+        </p>
+      </div>
+
+      <div className="relative">
+        <Converter
+          defaultOutputFormat="wav"
+          acceptTypes="audio/mpeg,audio/mp3,.mp3"
+          dropzoneHeadline="Drop your MP3 audio files here to convert to WAV"
+          dropzoneSubheadline="Produces 16-bit uncompressed PCM WAV master files • 100% Local"
+        />
+      </div>
+
+      <AdSlot position="headerBanner" />
+
+      {/* Honest Technical Explanation */}
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs space-y-6">
+        <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-4 text-xs text-amber-900 flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+          <div>
+            <h3 className="font-bold text-amber-950">Important Note on Quality & File Size</h3>
+            <p className="mt-1 leading-relaxed text-amber-800">
+              Converting a compressed MP3 file to WAV does <strong>not</strong> restore the original acoustic fidelity of an analog or studio master recording. However, converting to WAV is indispensable when importing clips into video editors, DAWs, game engines, and audio sequencers that demand uncompressed waveforms.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div className="rounded-lg bg-slate-50 p-4 border border-slate-200">
+            <h3 className="text-xs font-bold text-slate-900">Zero Generation Loss</h3>
+            <p className="mt-1 text-[11px] text-slate-500">
+              Editing in WAV prevents compounding lossy compression artifacts during repeated cuts and re-exports.
+            </p>
+          </div>
+          <div className="rounded-lg bg-slate-50 p-4 border border-slate-200">
+            <h3 className="text-xs font-bold text-slate-900">DAW & DJ Compatibility</h3>
+            <p className="mt-1 text-[11px] text-slate-500">
+              Ensures smooth waveform rendering and prevents playback errors on hardware samplers and DJ gear.
+            </p>
+          </div>
+          <div className="rounded-lg bg-slate-50 p-4 border border-slate-200">
+            <h3 className="text-xs font-bold text-slate-900">Low CPU Decoding</h3>
+            <p className="mt-1 text-[11px] text-slate-500">
+              Uncompressed PCM audio requires minimal CPU overhead to stream, ideal for game sound effects.
+            </p>
+          </div>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs">
+          <Link href="/wav-to-mp3" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
+            WAV to MP3 Converter
+          </Link>
+          <Link href="/flac-to-mp3" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
+            FLAC to MP3 Converter
+          </Link>
+          <Link href="/audio-merger" className="rounded-lg bg-slate-50 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-600 border border-slate-200">
+            Audio Merger
+          </Link>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="space-y-4 max-w-4xl mx-auto">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 text-center mb-6">
+          Frequently Asked Questions About MP3 to WAV
+        </h2>
+        {faqs.map((faq) => (
+          <div key={faq.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
+            <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2.5">
+              <HelpCircle className="h-4 w-4 text-brand-600 shrink-0 mt-0.5" />
+              <span>{faq.q}</span>
+            </h3>
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6.5">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}
