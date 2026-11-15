@@ -32,9 +32,7 @@ class ConversionEngine {
 
         // Attach logger
         instance.on("log", ({ message }) => {
-          if (process.env.NODE_ENV === "development") {
-            // console.debug("[FFmpeg Log]", message);
-          }
+          console.log("[FFmpeg Log]", message);
         });
 
         // Use self-hosted local core assets from /ffmpeg/

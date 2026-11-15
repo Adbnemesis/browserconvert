@@ -105,6 +105,10 @@ export function buildFFmpegArgs(config: PipelineConfig): string[] {
       } else {
         args.push("-b:a", SUPPORTED_OUTPUT_FORMATS.ogg.defaultBitrate || "160k");
       }
+      // Vorbis encoder requires standard rate (e.g. 44100 Hz) for standard bitrates
+      if (!settings.sampleRate || settings.sampleRate === "original") {
+        args.push("-ar", "44100");
+      }
       break;
 
     case "opus":
@@ -113,6 +117,10 @@ export function buildFFmpegArgs(config: PipelineConfig): string[] {
         args.push("-b:a", settings.bitrate);
       } else {
         args.push("-b:a", SUPPORTED_OUTPUT_FORMATS.opus.defaultBitrate || "128k");
+      }
+      // Opus standard internal rate is 48000 Hz
+      if (!settings.sampleRate || settings.sampleRate === "original") {
+        args.push("-ar", "48000");
       }
       break;
 

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 // Generate a valid 1-second 440Hz sine wave WAV file
-export function generateTestWav(filePath, durationSec = 1, sampleRate = 8000) {
+export function generateTestWav(filePath, durationSec = 1, sampleRate = 44100) {
   const numChannels = 1;
   const bitsPerSample = 16;
   const bytesPerSample = bitsPerSample / 8;
