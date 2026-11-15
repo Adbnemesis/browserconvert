@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { KofiIcon } from "@/components/common/KofiWidget";
 import {
   FileAudio,
   Menu,
@@ -165,24 +164,12 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Right Actions: Privacy Badge, Ko-fi Support & Theme Toggle */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        {/* Right Actions: Privacy Badge & Theme Toggle */}
+        <div className="hidden sm:flex items-center gap-3">
           <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
             <ShieldCheck className="h-3.5 w-3.5" />
             <span>100% Client-Side Privacy</span>
           </div>
-          {siteConfig.links.kofi && (
-            <a
-              href={siteConfig.links.kofi}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Support BrowserConvert on Ko-fi"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200/80 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-[#00b4a4] dark:hover:text-[#13c3ec] hover:border-[#00b4a4]/40 transition-all group"
-            >
-              <KofiIcon className="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
-              <span>Support</span>
-            </a>
-          )}
           <ThemeToggle />
         </div>
 
@@ -258,22 +245,11 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="pt-4 space-y-2">
+            <div className="pt-4">
               <div className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 py-2.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Files never leave your device. 100% Local.</span>
               </div>
-              {siteConfig.links.kofi && (
-                <a
-                  href={siteConfig.links.kofi}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-lg bg-[#00b4a4] hover:bg-[#009e8f] text-white py-2.5 text-xs font-semibold shadow-xs transition-colors"
-                >
-                  <KofiIcon className="h-4 w-4" />
-                  <span>Support on Ko-fi</span>
-                </a>
-              )}
             </div>
           </div>
         </div>
