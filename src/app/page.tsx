@@ -22,14 +22,14 @@ import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
 export const metadata: Metadata = {
   title: "Free Online Audio Converter & Video to Audio Extractor",
   description:
-    "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing. No uploads, no limits.",
+    "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser processing. No uploads, no limits.",
   alternates: {
     canonical: siteConfig.url,
   },
   openGraph: {
     title: "Free Online Audio Converter & Video to Audio Extractor",
     description:
-      "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing.",
+      "Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser processing.",
     url: siteConfig.url,
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -79,7 +79,7 @@ export default function HomePage() {
     {
       icon: ShieldCheck,
       title: "Client-side privacy",
-      desc: "Files never leave your computer. WebAssembly executes FFmpeg locally inside your browser memory sandbox.",
+      desc: "Files never leave your computer. All processing runs directly inside your browser memory without uploading to any server.",
     },
     {
       icon: Zap,
@@ -101,7 +101,7 @@ export default function HomePage() {
   const faqs = [
     {
       q: "How does BrowserConvert process files without uploading them?",
-      a: "BrowserConvert runs WebAssembly-compiled FFmpeg inside your web browser. When you select a file, your CPU processes and re-encodes the stream locally. No media data travels across the internet.",
+      a: "BrowserConvert processes audio directly inside your web browser. When you select a file, your device converts the stream locally in memory. No media data ever travels across the internet.",
     },
     {
       q: "Which video formats can I extract audio from?",
@@ -121,7 +121,7 @@ export default function HomePage() {
     },
     {
       q: "Does this work on mobile devices?",
-      a: "Yes. BrowserConvert functions on mobile browsers supporting WebAssembly, including Safari on iOS and Chrome on Android.",
+      a: "Yes. BrowserConvert works on modern mobile browsers, including Safari on iPhone/iPad and Chrome on Android.",
     },
   ];
 
@@ -130,7 +130,7 @@ export default function HomePage() {
       <SeoSchema
         pageType="website"
         title="Free Online Audio Converter & Video to Audio Extractor"
-        description="Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser WebAssembly processing. No uploads, no limits."
+        description="Convert audio files and extract audio from MP4, MOV, and MKV videos online for free. 100% private in-browser processing. No uploads, no limits."
         faqs={faqs}
         howTo={{
           name: "How to Convert Audio Files Online",
@@ -146,7 +146,7 @@ export default function HomePage() {
             },
             {
               name: "Convert & Download",
-              text: "Click Convert to run WebAssembly FFmpeg locally. Download individual audio files or get all tracks in a single ZIP archive.",
+              text: "Click Convert to process your audio locally. Download individual audio files or get all tracks in a single ZIP archive.",
             },
           ],
         }}
@@ -159,7 +159,7 @@ export default function HomePage() {
             {/* Studio Status Indicator with Live Audio Equalizer */}
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 px-3 py-1 text-xs text-slate-600 dark:text-zinc-300 mb-4 shadow-xs">
               <AudioVisualizer bars={3} className="h-3 gap-0.5" barWidth="w-0.5" />
-              <span className="font-mono text-[11px]">WebAssembly FFmpeg · Zero Uploads</span>
+              <span className="font-mono text-[11px]">100% Private · Processed on Device</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-medium tracking-tight text-slate-900 dark:text-zinc-100 leading-tight">
@@ -192,7 +192,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <DirectAnswer
           question="How do I convert audio or extract sound from video files online without uploading them?"
-          answer="BrowserConvert executes WebAssembly-compiled FFmpeg directly inside your web browser sandbox. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your local device memory with 100% privacy and zero server uploads."
+          answer="BrowserConvert converts files directly inside your web browser without uploading them. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your device memory with complete privacy and zero server uploads."
         />
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
@@ -247,7 +247,7 @@ export default function HomePage() {
               Supported codecs and containers
             </h2>
             <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
-              Processed through native WebAssembly compilation without server interaction.
+              Converted directly on your device with complete privacy.
             </p>
           </div>
 
@@ -342,7 +342,7 @@ export default function HomePage() {
             <div className="font-mono text-xs text-brand-600 dark:text-brand-400 mb-2">03</div>
             <h3 className="text-sm font-medium text-slate-900 dark:text-zinc-100">Export audio</h3>
             <p className="mt-1 text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">
-              Click Convert to run FFmpeg locally. Save individual tracks or download the entire batch as a ZIP.
+              Click Convert to process locally. Save individual tracks or download the entire batch as a ZIP.
             </p>
           </div>
         </div>
@@ -384,7 +384,7 @@ export default function HomePage() {
             Frequently asked questions
           </h2>
           <p className="mt-0.5 text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
-            Common questions regarding local WebAssembly processing.
+            Common questions about in-browser private audio conversion.
           </p>
         </div>
 

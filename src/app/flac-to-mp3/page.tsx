@@ -79,7 +79,7 @@ export default function FlacToMp3Page() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
         title="FLAC to MP3 Converter - Hi-Res Lossless to 320kbps MP3"
-        description="Convert FLAC to MP3 online for free with 100% private in-browser WebAssembly processing."
+        description="Convert FLAC to MP3 online for free with 100% private in-browser processing."
         url="/flac-to-mp3"
         breadcrumbs={[{ label: "FLAC to MP3", href: "/flac-to-mp3" }]}
         faqs={faqs}

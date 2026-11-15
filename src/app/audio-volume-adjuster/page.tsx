@@ -92,7 +92,7 @@ export default function AudioVolumeAdjusterPage() {
 
       <DirectAnswer
         question="How do I increase or decrease the volume of an audio file online for free?"
-        answer="To adjust the volume of an audio file, upload your track to BrowserConvert's Volume Adjuster below. Select your target volume level—from 50% (attenuate) up to 200% (amplify quiet speech)—and click Adjust Volume. BrowserConvert uses client-side FFmpeg audio filters to adjust digital gain locally, guaranteeing 100% privacy with zero server uploads."
+        answer="To adjust the volume of an audio file, upload your track to BrowserConvert's Volume Adjuster below. Select your target volume level—from 50% (attenuate) up to 200% (amplify quiet speech)—and click Adjust Volume. BrowserConvert adjusts digital audio volume locally on your device, guaranteeing 100% privacy with zero server uploads."
       />
 
       <AudioVolumeTool />

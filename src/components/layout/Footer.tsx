@@ -37,8 +37,8 @@ export function Footer() {
                 <Cpu className="h-4 w-4" />
               </div>
               <div>
-                <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-200">WebAssembly engine</h4>
-                <p className="text-xs text-slate-500 dark:text-zinc-400">Browser-native FFmpeg compilation for audio fidelity.</p>
+                <h4 className="text-xs sm:text-sm font-medium text-slate-900 dark:text-zinc-200">On-device processing</h4>
+                <p className="text-xs text-slate-500 dark:text-zinc-400">Audio conversion happens on your device with zero server uploads.</p>
               </div>
             </div>
           </div>
@@ -176,7 +176,7 @@ export function Footer() {
         <div className="mt-10 border-t border-slate-200 dark:border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 dark:text-zinc-500 gap-4">
           <p>© {currentYear} {siteConfig.name}. All rights reserved.</p>
           <p className="flex items-center gap-1 font-mono text-[11px]">
-            In-browser WebAssembly FFmpeg
+            100% In-Browser & Private
           </p>
         </div>
       </div>

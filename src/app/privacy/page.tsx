@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
               The Absolute Privacy Guarantee
             </h2>
             <p className="mt-1 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Unlike traditional cloud converter websites that require you to upload your sensitive voice recordings, musical tracks, or personal videos to an unknown remote server, <strong>{siteConfig.name} performs 100% of conversion and editing computations directly on your device inside your web browser</strong> using WebAssembly. Your files never touch our servers.
+              Unlike traditional cloud converter websites that require you to upload your sensitive voice recordings, musical tracks, or personal videos to an unknown remote server, <strong>{siteConfig.name} performs 100% of conversion and editing computations directly on your device inside your web browser</strong>. Your files never touch our servers.
             </p>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
               <strong>Local Memory Only:</strong> Your browser reads the file from your local disk into browser memory (RAM) via standard HTML5 File APIs.
             </li>
             <li>
-              <strong>Client-Side WebAssembly:</strong> Our conversion engine (compiled from FFmpeg into WebAssembly) runs locally inside your browser tab or Web Worker thread.
+              <strong>On-Device In-Browser Engine:</strong> Our conversion engine runs locally inside your browser tab or background worker thread on your device.
             </li>
             <li>
               <strong>No Outbound Network Upload:</strong> No byte of your media payload is ever transmitted over the internet to {siteConfig.name} or any cloud storage service.
@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              <strong>Engine Diagnostics:</strong> Aggregated statistics such as total conversions initiated, output format selections (e.g., &quot;MP4 to MP3&quot;), or WebAssembly initialization errors. These logs never contain file contents, filenames, or user identifiers.
+              <strong>Engine Diagnostics:</strong> Aggregated statistics such as total conversions initiated, output format selections (e.g., &quot;MP4 to MP3&quot;), or engine initialization status. These logs never contain file contents, filenames, or user identifiers.
             </li>
             <li>
               <strong>Standard Server Access Logs:</strong> Like virtually all websites, our hosting CDN (such as Cloudflare or Vercel) logs standard HTTP request headers, IP addresses (anonymized/hashed for DDoS mitigation), browser user agents, and page load durations for security and caching.
@@ -179,7 +179,7 @@ export default function PrivacyPolicyPage() {
             6. Changes to This Privacy Policy
           </h3>
           <p>
-            We may periodically update this policy to reflect enhancements in WebAssembly browser capabilities or regulatory compliance. Any changes will be posted on this page with an updated &quot;Last updated&quot; timestamp.
+            We may periodically update this policy to reflect enhancements in browser capabilities or regulatory compliance. Any changes will be posted on this page with an updated &quot;Last updated&quot; timestamp.
           </p>
         </section>
 

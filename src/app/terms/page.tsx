@@ -76,7 +76,7 @@ export default function TermsOfServicePage() {
             {siteConfig.name} provides users with in-browser media processing utilities, including audio format conversion, video audio extraction, trimming, bitrate modulation, speed modification, and volume adjustments.
           </p>
           <p>
-            The Service operates via WebAssembly directly on your client device. We do not provide remote cloud file storage, media hosting, or content distribution services.
+            The Service operates directly on your client device. We do not provide remote cloud file storage, media hosting, or content distribution services.
           </p>
         </section>
 
@@ -111,7 +111,7 @@ export default function TermsOfServicePage() {
               Attempt to use the Service as an unauthorized media ripper or downloader for platforms including YouTube, TikTok, Instagram, Facebook, SoundCloud, Spotify, or any other streaming service. We do not support URL downloading.
             </li>
             <li>
-              Attempt to reverse-engineer, exploit, or inject malicious payloads into our client-side WebAssembly routines.
+              Attempt to reverse-engineer, exploit, or inject malicious payloads into our client-side software routines.
             </li>
             <li>
               Use automated bots, spiders, or headless crawlers to systematically abuse or overwhelm website delivery infrastructure.
@@ -127,7 +127,7 @@ export default function TermsOfServicePage() {
             5. Hardware & Device Performance Disclaimer
           </h2>
           <p>
-            Because audio and video transcoding is executed locally on your device using WebAssembly, the speed, success, and memory consumption of any conversion depend directly on your device&apos;s available RAM, CPU capability, and browser WebAssembly memory limits (typically 2GB to 4GB per browser tab).
+            Because audio and video transcoding is executed locally on your device, the speed, success, and memory consumption of any conversion depend directly on your device&apos;s available RAM, CPU capability, and browser memory limits (typically 2GB to 4GB per browser tab).
           </p>
           <p>
             We are not responsible for browser crashes, device slowdowns, thermal throttling, or battery drain resulting from processing massive video files (such as 4K/8K multi-gigabyte files) on low-memory devices.

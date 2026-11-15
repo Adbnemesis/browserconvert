@@ -97,7 +97,7 @@ export default function M4aToMp3Page() {
             },
             {
               name: "Convert & Download",
-              text: "Click Convert to run WebAssembly FFmpeg locally and download your universal MP3.",
+              text: "Click Convert to process locally and download your universal MP3.",
             },
           ],
         }}
@@ -121,7 +121,7 @@ export default function M4aToMp3Page() {
 
       <DirectAnswer
         question="How do I convert an Apple iPhone Voice Memo (.m4a) to MP3?"
-        answer="To convert an iPhone Voice Memo to MP3, export the recording as an .m4a file and drop it into BrowserConvert. Select MP3 at 192 kbps or 320 kbps and click Convert. Our browser engine re-encodes the AAC audio into MP3 locally using WebAssembly, ensuring your personal voice recordings are never sent to any external server."
+        answer="To convert an iPhone Voice Memo to MP3, export the recording as an .m4a file and drop it into BrowserConvert. Select MP3 at 192 kbps or 320 kbps and click Convert. Our browser engine converts the AAC audio into MP3 locally, ensuring your personal voice recordings are never sent to any external server."
       />
 
       <div className="relative">

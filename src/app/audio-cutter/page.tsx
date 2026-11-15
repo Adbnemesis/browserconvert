@@ -34,7 +34,7 @@ export default function AudioCutterPage() {
   const faqs = [
     {
       q: "How does the Audio Cutter work without uploading my files?",
-      a: "BrowserConvert uses WebAssembly-compiled FFmpeg directly in your browser. When you select an audio track, the HTML5 Web Audio API parses the file for playback preview while FFmpeg slices the exact start and end timestamps in memory.",
+      a: "BrowserConvert trims audio directly in your browser. When you select an audio track, your browser previews the file while the converter cuts the exact start and end timestamps in local memory without uploading anything.",
     },
     {
       q: "Can I cut audio on mobile devices?",

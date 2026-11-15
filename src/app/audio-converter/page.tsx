@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",
-    description: "Free online audio converter with 100% private in-browser WebAssembly processing.",
+    description: "Free online audio converter with 100% private in-browser processing.",
     url: `${siteConfig.url}/audio-converter`,
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -85,7 +85,7 @@ export default function AudioConverterPage() {
             },
             {
               name: "Convert & Download",
-              text: "Click Convert to encode your files with in-browser FFmpeg and download the results individually or in a ZIP archive.",
+              text: "Click Convert to encode your files in your browser and download the results individually or in a ZIP archive.",
             },
           ],
         }}
@@ -110,7 +110,7 @@ export default function AudioConverterPage() {
 
       <DirectAnswer
         question="How do I convert audio files online without installing software or uploading data?"
-        answer="BrowserConvert provides a client-side audio conversion engine compiled to WebAssembly. Drag and drop your audio files into the converter below, choose your desired output format (MP3, WAV, M4A, FLAC, OGG, OPUS), adjust your bitrate or sample rate in Advanced Settings, and download the converted audio instantly. Your files are processed in local memory and never uploaded to any remote server."
+        answer="BrowserConvert provides a fast, client-side audio conversion engine. Drag and drop your audio files into the converter below, choose your desired output format (MP3, WAV, M4A, FLAC, OGG, OPUS), adjust your bitrate or sample rate in Advanced Settings, and download the converted audio instantly. Your files are processed in local device memory and never uploaded to any remote server."
       />
 
       {/* Primary Working Converter */}

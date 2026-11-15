@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       <DirectAnswer
         question="What is BrowserConvert and how does it protect user privacy?"
-        answer="BrowserConvert is a free online audio converter that runs WebAssembly-compiled FFmpeg locally inside your browser sandbox. Unlike traditional converters that upload private audio and video recordings to cloud servers, BrowserConvert executes all decoding, trimming, and re-encoding on your device CPU. 0 bytes of media content are ever transferred to our servers."
+        answer="BrowserConvert is a free online audio converter that processes files locally inside your browser. Unlike traditional converters that upload private audio and video recordings to cloud servers, BrowserConvert executes all conversion, trimming, and editing directly on your device. Zero bytes of your personal media are ever uploaded to any server."
       />
 
       {/* The Problem & Our Solution */}
@@ -70,19 +70,19 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* How it Works: WebAssembly Architecture */}
+      {/* How it Works */}
       <section className="space-y-6">
-        <h2 className="text-xl font-bold text-slate-900">The Technology Behind Local Processing</h2>
+        <h2 className="text-xl font-bold text-slate-900">How On-Device Processing Works</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
               <Cpu className="h-5 w-5" />
             </div>
-            <h3 className="text-sm font-bold text-slate-900">WebAssembly (Wasm) Engine</h3>
+            <h3 className="text-sm font-bold text-slate-900">In-Browser Processing Engine</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              We compile the industry-standard FFmpeg multimedia framework into WebAssembly binaries that execute
-              natively in your browser with near-native CPU speeds.
+              Our conversion engine runs directly inside your web browser tab to deliver high-fidelity audio conversions
+              at instant speeds without sending any files over the internet.
             </p>
           </div>
 
@@ -90,10 +90,10 @@ export default function AboutPage() {
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <h3 className="text-sm font-bold text-slate-900">Zero Server Uploads</h3>
+            <h3 className="text-sm font-bold text-slate-900">100% Private & Local</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              When you select a 500 MB video or audio file, zero bytes of media content are sent over the network.
-              All demuxing, decoding, and re-encoding occurs inside your browser&apos;s isolated sandbox.
+              When you select a video or audio file, zero bytes of media content are sent over the network.
+              All audio processing and conversion occurs entirely inside your device&apos;s protected browser memory.
             </p>
           </div>
         </div>

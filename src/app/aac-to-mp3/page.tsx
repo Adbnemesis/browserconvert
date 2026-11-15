@@ -75,7 +75,7 @@ export default function AacToMp3Page() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
         title="AAC to MP3 Converter - Raw AAC Streams to MP3"
-        description="Convert raw AAC audio streams to MP3 online for free with 100% in-browser WebAssembly privacy."
+        description="Convert raw AAC audio streams to MP3 online for free with 100% in-browser privacy."
         url="/aac-to-mp3"
         breadcrumbs={[{ label: "AAC to MP3", href: "/aac-to-mp3" }]}
         faqs={faqs}
@@ -93,7 +93,7 @@ export default function AacToMp3Page() {
             },
             {
               name: "Convert & Download",
-              text: "Click Convert to run client-side FFmpeg and download your universally playable MP3.",
+              text: "Click Convert to process in-browser and download your universally playable MP3.",
             },
           ],
         }}

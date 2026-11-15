@@ -40,7 +40,7 @@ export default function Mp4ToMp3Page() {
     },
     {
       q: "Is my MP4 video uploaded to any server?",
-      a: "No. The entire conversion process occurs locally in your web browser via WebAssembly FFmpeg. Your video file stays on your computer or phone and is never sent to our servers.",
+      a: "No. The entire conversion process occurs locally in your web browser. Your video file stays on your computer or phone and is never sent to our servers.",
     },
     {
       q: "Can I extract audio from 4K or large MP4 files?",
@@ -102,7 +102,7 @@ export default function Mp4ToMp3Page() {
             },
             {
               name: "Extract & Download",
-              text: "Click Convert to run WebAssembly FFmpeg. Download your standalone MP3 audio track instantly.",
+              text: "Click Convert to extract the audio locally. Download your standalone MP3 audio track instantly.",
             },
           ],
         }}
@@ -128,7 +128,7 @@ export default function Mp4ToMp3Page() {
       {/* Answer-First / Direct Answer Block for AI Search & Featured Snippets */}
       <DirectAnswer
         question="How to convert MP4 to MP3 without uploading files to a server?"
-        answer="To convert MP4 to MP3 privately, upload your video to BrowserConvert. Our browser engine demuxes the MP4 container and encodes the audio track into MP3 locally using WebAssembly FFmpeg. Select 192 kbps or 320 kbps for high fidelity. Your video never leaves your computer, ensuring complete confidentiality."
+        answer="To convert MP4 to MP3 privately, upload your video to BrowserConvert. Our browser engine extracts the audio track and encodes it into MP3 locally on your device. Select 192 kbps or 320 kbps for high fidelity. Your video never leaves your computer, ensuring complete confidentiality."
       />
 
       {/* Converter preconfigured with MP3 output */}

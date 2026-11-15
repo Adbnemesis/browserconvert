@@ -98,7 +98,7 @@ export function SeoSchema({
         availability: "https://schema.org/InStock",
       },
       featureList: [
-        "100% client-side in-browser WebAssembly processing",
+        "100% private in-browser audio processing",
         "Zero server file uploads — maximum privacy",
         "Audio format conversion between MP3, WAV, M4A, FLAC, AAC, OGG, OPUS",
         "Direct audio extraction from MP4, MOV, MKV, and other video containers",

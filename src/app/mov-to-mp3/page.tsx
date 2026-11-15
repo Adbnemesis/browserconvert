@@ -43,7 +43,7 @@ export default function MovToMp3Page() {
     },
     {
       q: "Are my private videos uploaded anywhere?",
-      a: "Never. Your MOV video file stays completely inside your web browser. BrowserConvert utilizes WebAssembly to parse the file locally on your CPU.",
+      a: "Never. Your MOV video file stays completely inside your web browser. BrowserConvert processes the file locally on your device.",
     },
   ];
 
@@ -121,7 +121,7 @@ export default function MovToMp3Page() {
 
       <DirectAnswer
         question="How do I extract audio from an iPhone QuickTime (.mov) video?"
-        answer="To extract audio from an iPhone MOV video, upload it to BrowserConvert. Our client-side WebAssembly engine isolates the audio stream and re-encodes it into an MP3 file directly in your browser. Because heavy video frames are ignored, extraction takes just seconds, shrinking multi-gigabyte video files by 98% with zero server uploads."
+        answer="To extract audio from an iPhone MOV video, upload it to BrowserConvert. Our browser engine isolates the audio stream and converts it into an MP3 file directly on your device. Because heavy video frames are ignored, extraction takes just seconds, shrinking multi-gigabyte video files by 98% with zero server uploads."
       />
 
       <div className="relative">

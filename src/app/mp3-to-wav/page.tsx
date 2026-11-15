@@ -79,7 +79,7 @@ export default function Mp3ToWavPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
         title="MP3 to WAV Converter - Decompress MP3 to 16-bit PCM WAV"
-        description="Convert MP3 to WAV online for free with 100% private in-browser WebAssembly processing."
+        description="Convert MP3 to WAV online for free with 100% private in-browser processing."
         url="/mp3-to-wav"
         breadcrumbs={[{ label: "MP3 to WAV", href: "/mp3-to-wav" }]}
         faqs={faqs}

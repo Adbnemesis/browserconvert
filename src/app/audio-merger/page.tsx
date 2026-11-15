@@ -38,7 +38,7 @@ export default function AudioMergerPage() {
     },
     {
       q: "Is there any gap or silence introduced between merged tracks?",
-      a: "No. The FFmpeg concat demuxer joins the raw audio samples sample-for-sample, creating a smooth, gapless transition between consecutive files.",
+      a: "No. The merger tool joins the raw audio samples sample-for-sample, creating a smooth, gapless transition between consecutive files.",
     },
     {
       q: "Can I change the sequence order of the songs before joining them?",
@@ -92,7 +92,7 @@ export default function AudioMergerPage() {
 
       <DirectAnswer
         question="How do I join multiple audio files into a single track online?"
-        answer="To merge multiple audio tracks into one continuous file, upload your files to BrowserConvert's Audio Merger below. Arrange the files in your preferred sequence using the reorder buttons, choose your target format (such as MP3 or WAV), and click Merge Files. Our client-side WebAssembly engine concatenates the audio streams sample-by-sample with 100% local privacy."
+        answer="To merge multiple audio tracks into one continuous file, upload your files to BrowserConvert's Audio Merger below. Arrange the files in your preferred sequence using the reorder buttons, choose your target format (such as MP3 or WAV), and click Merge Files. Our engine joins the audio streams with 100% local privacy."
       />
 
       <AudioMergerTool />

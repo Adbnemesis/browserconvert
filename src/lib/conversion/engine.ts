@@ -49,7 +49,7 @@ class ConversionEngine {
       } catch (err) {
         console.error("Failed to load FFmpeg engine:", err);
         throw new Error(
-          "Failed to initialize conversion engine in this browser. Please check your browser WebAssembly settings."
+          "Failed to initialize conversion engine in this browser. Please make sure your browser is up to date."
         );
       } finally {
         this.isLoading = false;

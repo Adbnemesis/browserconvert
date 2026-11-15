@@ -79,7 +79,7 @@ export default function WavToMp3Page() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
         title="WAV to MP3 Converter - Lossless to Universal MP3"
-        description="Convert WAV to MP3 online for free with 100% private in-browser WebAssembly processing."
+        description="Convert WAV to MP3 online for free with 100% private in-browser processing."
         url="/wav-to-mp3"
         breadcrumbs={[{ label: "WAV to MP3", href: "/wav-to-mp3" }]}
         faqs={faqs}
@@ -97,7 +97,7 @@ export default function WavToMp3Page() {
             },
             {
               name: "Convert & Download",
-              text: "Click Convert to run FFmpeg Wasm locally and download your lightweight MP3 audio file.",
+              text: "Click Convert to process locally and download your lightweight MP3 audio file.",
             },
           ],
         }}
