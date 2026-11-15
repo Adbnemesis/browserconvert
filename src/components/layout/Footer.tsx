@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config/site";
 import { FileAudio, Shield, Lock, Cpu } from "lucide-react";
+import { KofiIcon } from "@/components/common/KofiWidget";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -63,6 +64,19 @@ export function Footer() {
             <div className="mt-4 font-mono text-[11px] text-slate-400 dark:text-zinc-500">
               Zero remote server media storage.
             </div>
+            {siteConfig.links.kofi && (
+              <div className="mt-4">
+                <a
+                  href={siteConfig.links.kofi}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-[#00b4a4] dark:hover:text-[#13c3ec] hover:border-[#00b4a4]/40 transition-all shadow-xs group"
+                >
+                  <KofiIcon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                  <span>Support on Ko-fi</span>
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Popular Conversions */}

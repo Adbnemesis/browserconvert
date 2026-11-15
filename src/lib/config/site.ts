@@ -8,6 +8,7 @@ export interface SiteConfig {
   links: {
     github?: string;
     twitter?: string;
+    kofi?: string;
   };
   contactEmail: string;
   ads: {
@@ -33,6 +34,7 @@ export const siteConfig: SiteConfig = {
   author: "BrowserConvert Team",
   links: {
     github: "https://github.com/browserconvert/browserconvert",
+    kofi: "https://ko-fi.com/nemistory",
   },
   contactEmail: "support@browserconvert.net",
   ads: {

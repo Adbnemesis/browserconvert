@@ -4,6 +4,8 @@ import React from "react";
 import { ConversionItem } from "@/lib/conversion/types";
 import { QueueItem } from "./QueueItem";
 import { Play, DownloadCloud, Trash2, StopCircle, CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/lib/config/site";
+import { KofiIcon } from "@/components/common/KofiWidget";
 
 interface QueueListProps {
   items: ConversionItem[];
@@ -102,6 +104,30 @@ export function QueueList({
           />
         ))}
       </div>
+
+      {/* Ko-fi appreciation banner on completed conversions */}
+      {hasCompleted && siteConfig.links.kofi && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-xl border border-teal-200/80 dark:border-teal-900/40 bg-teal-50/70 dark:bg-teal-950/20 p-3.5 text-xs animate-in fade-in duration-200">
+          <div className="flex items-center gap-2.5 text-slate-700 dark:text-zinc-300">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#00b4a4] text-white shrink-0">
+              <KofiIcon className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="font-medium text-slate-900 dark:text-zinc-100">Files ready! Enjoying BrowserConvert?</p>
+              <p className="text-slate-500 dark:text-zinc-400">Support us on Ko-fi to help keep this tool 100% private and ad-free.</p>
+            </div>
+          </div>
+          <a
+            href={siteConfig.links.kofi}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#00b4a4] hover:bg-[#009e8f] text-white font-medium px-3 py-1.5 shrink-0 transition-colors shadow-xs"
+          >
+            <span>Support on Ko-fi</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      )}
     </div>
   );
 }
