@@ -38,7 +38,7 @@ export default function AudioVolumeAdjusterPage() {
     },
     {
       q: "Does boosting the volume cause distortion or clipping?",
-      a: "MediaConvert applies internal gain staging with clipping safeguards. For maximum clarity, boost moderately (125% to 150%) so dynamic transients remain clean and unclipped.",
+      a: "BrowserConvert applies internal gain staging with clipping safeguards. For maximum clarity, boost moderately (125% to 150%) so dynamic transients remain clean and unclipped.",
     },
     {
       q: "Can I soften or attenuate overly loud or piercing audio?",
@@ -92,7 +92,7 @@ export default function AudioVolumeAdjusterPage() {
 
       <DirectAnswer
         question="How do I increase or decrease the volume of an audio file online for free?"
-        answer="To adjust the volume of an audio file, upload your track to MediaConvert's Volume Adjuster below. Select your target volume level—from 50% (attenuate) up to 200% (amplify quiet speech)—and click Adjust Volume. MediaConvert uses client-side FFmpeg audio filters to adjust digital gain locally, guaranteeing 100% privacy with zero server uploads."
+        answer="To adjust the volume of an audio file, upload your track to BrowserConvert's Volume Adjuster below. Select your target volume level—from 50% (attenuate) up to 200% (amplify quiet speech)—and click Adjust Volume. BrowserConvert uses client-side FFmpeg audio filters to adjust digital gain locally, guaranteeing 100% privacy with zero server uploads."
       />
 
       <AudioVolumeTool />

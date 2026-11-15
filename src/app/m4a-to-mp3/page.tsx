@@ -38,12 +38,12 @@ export default function M4aToMp3Page() {
       a: "M4A is an Apple-preferred container usually holding AAC audio. While macOS and iOS devices support M4A natively, some Windows media players, legacy Android applications, car infotainment systems, and audio editing tools require standard MP3 format.",
     },
     {
-      q: "Can I convert iPhone Voice Memos with MediaConvert?",
-      a: "Yes. Simply share or export your Voice Memo from your iPhone (via AirDrop, Files app, or cloud drive) as an .m4a file, drop it into MediaConvert, and convert it into a universally playable MP3 in seconds.",
+      q: "Can I convert iPhone Voice Memos with BrowserConvert?",
+      a: "Yes. Simply share or export your Voice Memo from your iPhone (via AirDrop, Files app, or cloud drive) as an .m4a file, drop it into BrowserConvert, and convert it into a universally playable MP3 in seconds.",
     },
     {
       q: "Will converting M4A to MP3 degrade sound quality?",
-      a: "Both M4A (AAC) and MP3 are lossy formats. Converting between them is called transcoding. By selecting 192 kbps or 320 kbps output in MediaConvert, audio degradation is imperceptible to human hearing.",
+      a: "Both M4A (AAC) and MP3 are lossy formats. Converting between them is called transcoding. By selecting 192 kbps or 320 kbps output in BrowserConvert, audio degradation is imperceptible to human hearing.",
     },
   ];
 
@@ -121,7 +121,7 @@ export default function M4aToMp3Page() {
 
       <DirectAnswer
         question="How do I convert an Apple iPhone Voice Memo (.m4a) to MP3?"
-        answer="To convert an iPhone Voice Memo to MP3, export the recording as an .m4a file and drop it into MediaConvert. Select MP3 at 192 kbps or 320 kbps and click Convert. Our browser engine re-encodes the AAC audio into MP3 locally using WebAssembly, ensuring your personal voice recordings are never sent to any external server."
+        answer="To convert an iPhone Voice Memo to MP3, export the recording as an .m4a file and drop it into BrowserConvert. Select MP3 at 192 kbps or 320 kbps and click Convert. Our browser engine re-encodes the AAC audio into MP3 locally using WebAssembly, ensuring your personal voice recordings are never sent to any external server."
       />
 
       <div className="relative">

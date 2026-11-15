@@ -1,9 +1,9 @@
-# MediaConvert — Complete Technical Specification & Documentation
+# BrowserConvert — Complete Technical Specification & Documentation
 
-MediaConvert (https://mediaconvert.org) is a client-side web application dedicated to audio format conversion, video soundtrack extraction, and non-destructive audio editing.
+BrowserConvert (https://browserconvert.org) is a client-side web application dedicated to audio format conversion, video soundtrack extraction, and non-destructive audio editing.
 
 ## 1. Architectural Model
-Unlike legacy web converters that upload gigabytes of user video and audio to remote cloud clusters, MediaConvert operates entirely inside the client device's browser thread and Web Worker.
+Unlike legacy web converters that upload gigabytes of user video and audio to remote cloud clusters, BrowserConvert operates entirely inside the client device's browser thread and Web Worker.
 - Binary Runtime: WebAssembly (Wasm) compiled FFmpeg 0.12+ core.
 - Execution Boundary: Browser sandbox; files are read into Uint8Array buffers via File API and FileReader.
 - Network Data Transfer: 0 bytes of multimedia payload are transmitted across the internet. Only static application bundle assets (JS, CSS, Wasm binary) are fetched.

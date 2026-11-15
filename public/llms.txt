@@ -1,6 +1,6 @@
-# MediaConvert
+# BrowserConvert
 
-> MediaConvert is a free, 100% private online audio converter and video-to-audio extractor that processes all media locally in the web browser using WebAssembly FFmpeg. Zero file uploads, no registration, no tracking.
+> BrowserConvert is a free, 100% private online audio converter and video-to-audio extractor that processes all media locally in the web browser using WebAssembly FFmpeg. Zero file uploads, no registration, no tracking.
 
 ## Core Capabilities
 - **Audio Conversion**: Convert between MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF, and WMA.
@@ -15,26 +15,26 @@
 - **Subscription**: None
 - **Registration**: Not required (no login, no email, no credit card)
 - **Limits**: Unlimited conversions, unlimited file queue
-- **Full Pricing Details**: https://mediaconvert.org/pricing.md
+- **Full Pricing Details**: https://browserconvert.org/pricing.md
 
 ## Main Web Tools
-- [Audio Converter](https://mediaconvert.org/audio-converter): Universal audio format conversion interface.
-- [MP4 to MP3](https://mediaconvert.org/mp4-to-mp3): Extract high-quality MP3 audio from MP4 video clips.
-- [WAV to MP3](https://mediaconvert.org/wav-to-mp3): Compress studio 16/24-bit PCM WAV recordings into portable MP3s.
-- [M4A to MP3](https://mediaconvert.org/m4a-to-mp3): Convert Apple Voice Memos and iTunes audio files to universal MP3.
-- [FLAC to MP3](https://mediaconvert.org/flac-to-mp3): Convert audiophile lossless FLAC albums to 320 kbps MP3.
-- [MOV to MP3](https://mediaconvert.org/mov-to-mp3): Extract audio from Apple QuickTime MOV recordings.
-- [MP3 to WAV](https://mediaconvert.org/mp3-to-wav): Decompress MP3 into uncompressed 16-bit PCM WAV for audio editing and DAWs.
-- [OGG to MP3](https://mediaconvert.org/ogg-to-mp3): Convert OGG Vorbis game sound effects and voice clips to MP3.
-- [OPUS to MP3](https://mediaconvert.org/opus-to-mp3): Convert WhatsApp voice notes, Discord voice recordings, and Telegram audio to MP3.
-- [AAC to MP3](https://mediaconvert.org/aac-to-mp3): Convert raw AAC and ADTS streams to MP3.
-- [Audio Cutter](https://mediaconvert.org/audio-cutter): Trim and extract audio segments with waveform sliders and playback preview.
-- [Audio Merger](https://mediaconvert.org/audio-merger): Combine multiple audio tracks into a single concatenated file.
-- [Audio Compressor](https://mediaconvert.org/audio-compressor): Reduce audio file sizes by 40% to 80% while retaining clarity.
-- [Audio Bitrate Changer](https://mediaconvert.org/audio-bitrate-changer): Re-encode audio to 64k, 128k, 192k, 256k, or 320k.
-- [Audio Speed Changer](https://mediaconvert.org/audio-speed-changer): Speed up or slow down audio with automatic pitch correction.
-- [Audio Volume Adjuster](https://mediaconvert.org/audio-volume-adjuster): Boost quiet audio recordings or attenuate loud tracks.
-- [Format Guide](https://mediaconvert.org/format-guide): Technical comparison and guide for all audio codecs and containers.
+- [Audio Converter](https://browserconvert.org/audio-converter): Universal audio format conversion interface.
+- [MP4 to MP3](https://browserconvert.org/mp4-to-mp3): Extract high-quality MP3 audio from MP4 video clips.
+- [WAV to MP3](https://browserconvert.org/wav-to-mp3): Compress studio 16/24-bit PCM WAV recordings into portable MP3s.
+- [M4A to MP3](https://browserconvert.org/m4a-to-mp3): Convert Apple Voice Memos and iTunes audio files to universal MP3.
+- [FLAC to MP3](https://browserconvert.org/flac-to-mp3): Convert audiophile lossless FLAC albums to 320 kbps MP3.
+- [MOV to MP3](https://browserconvert.org/mov-to-mp3): Extract audio from Apple QuickTime MOV recordings.
+- [MP3 to WAV](https://browserconvert.org/mp3-to-wav): Decompress MP3 into uncompressed 16-bit PCM WAV for audio editing and DAWs.
+- [OGG to MP3](https://browserconvert.org/ogg-to-mp3): Convert OGG Vorbis game sound effects and voice clips to MP3.
+- [OPUS to MP3](https://browserconvert.org/opus-to-mp3): Convert WhatsApp voice notes, Discord voice recordings, and Telegram audio to MP3.
+- [AAC to MP3](https://browserconvert.org/aac-to-mp3): Convert raw AAC and ADTS streams to MP3.
+- [Audio Cutter](https://browserconvert.org/audio-cutter): Trim and extract audio segments with waveform sliders and playback preview.
+- [Audio Merger](https://browserconvert.org/audio-merger): Combine multiple audio tracks into a single concatenated file.
+- [Audio Compressor](https://browserconvert.org/audio-compressor): Reduce audio file sizes by 40% to 80% while retaining clarity.
+- [Audio Bitrate Changer](https://browserconvert.org/audio-bitrate-changer): Re-encode audio to 64k, 128k, 192k, 256k, or 320k.
+- [Audio Speed Changer](https://browserconvert.org/audio-speed-changer): Speed up or slow down audio with automatic pitch correction.
+- [Audio Volume Adjuster](https://browserconvert.org/audio-volume-adjuster): Boost quiet audio recordings or attenuate loud tracks.
+- [Format Guide](https://browserconvert.org/format-guide): Technical comparison and guide for all audio codecs and containers.
 
 ## Technology & Compatibility
 - **Core Engine**: WebAssembly-compiled FFmpeg 0.12+ (Single-threaded UMD core for maximum cross-browser worker stability).

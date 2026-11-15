@@ -35,7 +35,7 @@ export default function AudioConverterPage() {
   const faqs = [
     {
       q: "What audio formats can I convert between?",
-      a: "MediaConvert supports converting between MP3, WAV, M4A, AAC, FLAC, OGG, and OPUS. You can also import legacy formats like AIFF and WMA.",
+      a: "BrowserConvert supports converting between MP3, WAV, M4A, AAC, FLAC, OGG, and OPUS. You can also import legacy formats like AIFF and WMA.",
     },
     {
       q: "How do I choose the best audio format?",
@@ -47,7 +47,7 @@ export default function AudioConverterPage() {
     },
     {
       q: "Can I convert multiple files at once?",
-      a: "Yes. You can upload multiple audio files in a single batch. MediaConvert converts them sequentially and allows you to download all results individually or as a single ZIP file.",
+      a: "Yes. You can upload multiple audio files in a single batch. BrowserConvert converts them sequentially and allows you to download all results individually or as a single ZIP file.",
     },
   ];
 
@@ -110,7 +110,7 @@ export default function AudioConverterPage() {
 
       <DirectAnswer
         question="How do I convert audio files online without installing software or uploading data?"
-        answer="MediaConvert provides a client-side audio conversion engine compiled to WebAssembly. Drag and drop your audio files into the converter below, choose your desired output format (MP3, WAV, M4A, FLAC, OGG, OPUS), adjust your bitrate or sample rate in Advanced Settings, and download the converted audio instantly. Your files are processed in local memory and never uploaded to any remote server."
+        answer="BrowserConvert provides a client-side audio conversion engine compiled to WebAssembly. Drag and drop your audio files into the converter below, choose your desired output format (MP3, WAV, M4A, FLAC, OGG, OPUS), adjust your bitrate or sample rate in Advanced Settings, and download the converted audio instantly. Your files are processed in local memory and never uploaded to any remote server."
       />
 
       {/* Primary Working Converter */}
@@ -157,7 +157,7 @@ export default function AudioConverterPage() {
       {/* Step by Step Guide */}
       <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xs space-y-6">
         <h2 className="text-lg sm:text-xl font-bold text-slate-900">
-          How to Convert Audio Files with MediaConvert
+          How to Convert Audio Files with BrowserConvert
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
           <div className="flex flex-col gap-2">

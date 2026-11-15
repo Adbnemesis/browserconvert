@@ -117,7 +117,7 @@ export default function AacToMp3Page() {
 
       <DirectAnswer
         question="How do I convert an AAC file to MP3 for universal device playback?"
-        answer="To convert an AAC file to MP3, upload your file to MediaConvert, choose MP3 at 192 kbps or 256 kbps, and click Convert. While AAC provides excellent sound efficiency, older car stereos and media players often fail to read raw .aac streams. Converting to MP3 ensures 100% playback compatibility across all devices, with files processed 100% locally in your browser."
+        answer="To convert an AAC file to MP3, upload your file to BrowserConvert, choose MP3 at 192 kbps or 256 kbps, and click Convert. While AAC provides excellent sound efficiency, older car stereos and media players often fail to read raw .aac streams. Converting to MP3 ensures 100% playback compatibility across all devices, with files processed 100% locally in your browser."
       />
 
       <div className="relative">

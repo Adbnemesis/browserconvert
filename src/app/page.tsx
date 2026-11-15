@@ -107,8 +107,8 @@ export default function HomePage() {
 
   const faqs = [
     {
-      q: "How does MediaConvert process files without uploading them?",
-      a: "MediaConvert runs WebAssembly (Wasm) compiled FFmpeg directly inside your web browser. When you select a file, your browser's CPU processes and re-encodes the audio data in memory. No file data is ever transmitted across the internet to our servers.",
+      q: "How does BrowserConvert process files without uploading them?",
+      a: "BrowserConvert runs WebAssembly (Wasm) compiled FFmpeg directly inside your web browser. When you select a file, your browser's CPU processes and re-encodes the audio data in memory. No file data is ever transmitted across the internet to our servers.",
     },
     {
       q: "Which video formats can I extract audio from?",
@@ -127,8 +127,8 @@ export default function HomePage() {
       a: "Because processing happens in your browser's memory, we recommend files under 1 GB for smooth performance. Very large video files may be constrained by your device's available RAM.",
     },
     {
-      q: "Can I use MediaConvert on my smartphone?",
-      a: "Yes. MediaConvert is fully responsive and functions on modern mobile browsers including Safari on iOS and Chrome on Android with WebAssembly support.",
+      q: "Can I use BrowserConvert on my smartphone?",
+      a: "Yes. BrowserConvert is fully responsive and functions on modern mobile browsers including Safari on iOS and Chrome on Android with WebAssembly support.",
     },
   ];
 
@@ -197,7 +197,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <DirectAnswer
           question="How do I convert audio or extract sound from video files online without uploading them?"
-          answer="MediaConvert executes WebAssembly-compiled FFmpeg directly inside your web browser sandbox. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your local device memory with 100% privacy and zero server uploads."
+          answer="BrowserConvert executes WebAssembly-compiled FFmpeg directly inside your web browser sandbox. Drag and drop your audio or video files into the converter, select your output format (MP3, WAV, M4A, FLAC, OGG, OPUS), and click Convert. All processing takes place in your local device memory with 100% privacy and zero server uploads."
         />
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
@@ -333,7 +333,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-            How MediaConvert Works in 3 Simple Steps
+            How BrowserConvert Works in 3 Simple Steps
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Intuitive client-side processing without complex menus or waiting queues.
@@ -373,12 +373,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 5: WHY USE MEDIACONVERT */}
+      {/* SECTION 5: WHY USE BROWSERCONVERT */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12 shadow-xs">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Why Choose MediaConvert?
+              Why Choose BrowserConvert?
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-slate-500">
               Engineered for genuine privacy, audio fidelity, and modern browser standards.

@@ -92,7 +92,7 @@ export default function AudioBitrateChangerPage() {
 
       <DirectAnswer
         question="How do I change the bitrate of an MP3 audio file online?"
-        answer="To change the bitrate of an audio file, upload your track to MediaConvert's Bitrate Changer below. Select your target bitrate—from 64 kbps for compact speech notes to 320 kbps for audiophile listening—and click Re-encode Bitrate. The file is transcoded locally using WebAssembly FFmpeg with 100% privacy and zero server uploads."
+        answer="To change the bitrate of an audio file, upload your track to BrowserConvert's Bitrate Changer below. Select your target bitrate—from 64 kbps for compact speech notes to 320 kbps for audiophile listening—and click Re-encode Bitrate. The file is transcoded locally using WebAssembly FFmpeg with 100% privacy and zero server uploads."
       />
 
       <AudioBitrateChangerTool />

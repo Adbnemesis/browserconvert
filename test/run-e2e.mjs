@@ -27,7 +27,7 @@ async function clickButtonByText(page, textSubstring, timeout = 15000) {
 
 async function runComprehensiveTests() {
   console.log("==================================================");
-  console.log("   MediaConvert Full Suite E2E Integration Test   ");
+  console.log("   BrowserConvert Full Suite E2E Integration Test   ");
   console.log("==================================================");
 
   const browser = await puppeteer.launch({

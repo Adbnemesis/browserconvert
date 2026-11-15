@@ -34,7 +34,7 @@ export default function AudioMergerPage() {
   const faqs = [
     {
       q: "Can I combine audio files of different formats?",
-      a: "Yes. You can upload an MP3, a WAV file, and an M4A file in the same batch. MediaConvert decodes them into uniform internal PCM audio streams before concatenating and exporting into your selected target format.",
+      a: "Yes. You can upload an MP3, a WAV file, and an M4A file in the same batch. BrowserConvert decodes them into uniform internal PCM audio streams before concatenating and exporting into your selected target format.",
     },
     {
       q: "Is there any gap or silence introduced between merged tracks?",
@@ -92,7 +92,7 @@ export default function AudioMergerPage() {
 
       <DirectAnswer
         question="How do I join multiple audio files into a single track online?"
-        answer="To merge multiple audio tracks into one continuous file, upload your files to MediaConvert's Audio Merger below. Arrange the files in your preferred sequence using the reorder buttons, choose your target format (such as MP3 or WAV), and click Merge Files. Our client-side WebAssembly engine concatenates the audio streams sample-by-sample with 100% local privacy."
+        answer="To merge multiple audio tracks into one continuous file, upload your files to BrowserConvert's Audio Merger below. Arrange the files in your preferred sequence using the reorder buttons, choose your target format (such as MP3 or WAV), and click Merge Files. Our client-side WebAssembly engine concatenates the audio streams sample-by-sample with 100% local privacy."
       />
 
       <AudioMergerTool />

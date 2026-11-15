@@ -43,7 +43,7 @@ export default function FlacToMp3Page() {
     },
     {
       q: "Will batch converting a whole album work?",
-      a: "Yes. You can drag an entire folder of FLAC tracks into MediaConvert. The engine converts each track sequentially to protect your browser's memory, and lets you download the completed album as a single ZIP archive.",
+      a: "Yes. You can drag an entire folder of FLAC tracks into BrowserConvert. The engine converts each track sequentially to protect your browser's memory, and lets you download the completed album as a single ZIP archive.",
     },
   ];
 
@@ -121,7 +121,7 @@ export default function FlacToMp3Page() {
 
       <DirectAnswer
         question="What is the best way to convert FLAC to MP3 without quality degradation?"
-        answer="To convert FLAC to MP3 with maximum audio fidelity, transcode to 320 kbps MP3 using the LAME encoder on MediaConvert. FLAC provides bit-perfect studio recordings; converting to 320 kbps MP3 retains over 95% of perceptual nuance while shrinking file sizes by 75% for universal playback on iPhone, Android, and car stereos. MediaConvert processes files 100% locally in your browser."
+        answer="To convert FLAC to MP3 with maximum audio fidelity, transcode to 320 kbps MP3 using the LAME encoder on BrowserConvert. FLAC provides bit-perfect studio recordings; converting to 320 kbps MP3 retains over 95% of perceptual nuance while shrinking file sizes by 75% for universal playback on iPhone, Android, and car stereos. BrowserConvert processes files 100% locally in your browser."
       />
 
       <div className="relative">

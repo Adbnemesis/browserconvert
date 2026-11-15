@@ -34,7 +34,7 @@ export default function AudioSpeedChangerPage() {
   const faqs = [
     {
       q: "Does changing the speed alter the musical pitch (chipmunk effect)?",
-      a: "No. MediaConvert uses FFmpeg's advanced atempo audio filter, which stretches or compresses the time domain while preserving the original natural pitch, avoiding high-pitched chipmunk or deep demonic distortions.",
+      a: "No. BrowserConvert uses FFmpeg's advanced atempo audio filter, which stretches or compresses the time domain while preserving the original natural pitch, avoiding high-pitched chipmunk or deep demonic distortions.",
     },
     {
       q: "What speed ranges are supported?",
@@ -92,7 +92,7 @@ export default function AudioSpeedChangerPage() {
 
       <DirectAnswer
         question="How do I speed up or slow down an audio file without changing its pitch?"
-        answer="To adjust the tempo of an audio file without altering vocal pitch, upload your track to MediaConvert's Audio Speed Changer below. Choose a playback speed between 0.5x and 2.0x and click Adjust Speed. Our browser engine utilizes the FFmpeg atempo filter to time-stretch the audio in local device memory, guaranteeing natural vocal tones with zero server uploads."
+        answer="To adjust the tempo of an audio file without altering vocal pitch, upload your track to BrowserConvert's Audio Speed Changer below. Choose a playback speed between 0.5x and 2.0x and click Adjust Speed. Our browser engine utilizes the FFmpeg atempo filter to time-stretch the audio in local device memory, guaranteeing natural vocal tones with zero server uploads."
       />
 
       <AudioSpeedTool />

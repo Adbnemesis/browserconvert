@@ -121,7 +121,7 @@ export default function WavToMp3Page() {
 
       <DirectAnswer
         question="How to convert large WAV files to MP3 without losing audio quality?"
-        answer="To convert WAV to MP3 while preserving acoustic clarity, choose 320 kbps or 192 kbps with the LAME encoder on MediaConvert. Uncompressed WAV files take 10 MB per minute; converting to MP3 cuts file size by up to 90% with virtually indistinguishable sound quality on consumer headphones and car stereos. MediaConvert processes everything locally in your browser."
+        answer="To convert WAV to MP3 while preserving acoustic clarity, choose 320 kbps or 192 kbps with the LAME encoder on BrowserConvert. Uncompressed WAV files take 10 MB per minute; converting to MP3 cuts file size by up to 90% with virtually indistinguishable sound quality on consumer headphones and car stereos. BrowserConvert processes everything locally in your browser."
       />
 
       <div className="relative">

@@ -35,7 +35,7 @@ export default function MovToMp3Page() {
   const faqs = [
     {
       q: "Can I convert iPhone 4K HDR MOV videos?",
-      a: "Yes. Even if your iPhone records in 4K ProRes or HDR, MediaConvert only processes the underlying audio stream, disregarding the massive video bitrate. This allows lightning-fast conversion on your device.",
+      a: "Yes. Even if your iPhone records in 4K ProRes or HDR, BrowserConvert only processes the underlying audio stream, disregarding the massive video bitrate. This allows lightning-fast conversion on your device.",
     },
     {
       q: "Why convert QuickTime MOV to MP3?",
@@ -43,7 +43,7 @@ export default function MovToMp3Page() {
     },
     {
       q: "Are my private videos uploaded anywhere?",
-      a: "Never. Your MOV video file stays completely inside your web browser. MediaConvert utilizes WebAssembly to parse the file locally on your CPU.",
+      a: "Never. Your MOV video file stays completely inside your web browser. BrowserConvert utilizes WebAssembly to parse the file locally on your CPU.",
     },
   ];
 
@@ -121,7 +121,7 @@ export default function MovToMp3Page() {
 
       <DirectAnswer
         question="How do I extract audio from an iPhone QuickTime (.mov) video?"
-        answer="To extract audio from an iPhone MOV video, upload it to MediaConvert. Our client-side WebAssembly engine isolates the audio stream and re-encodes it into an MP3 file directly in your browser. Because heavy video frames are ignored, extraction takes just seconds, shrinking multi-gigabyte video files by 98% with zero server uploads."
+        answer="To extract audio from an iPhone MOV video, upload it to BrowserConvert. Our client-side WebAssembly engine isolates the audio stream and re-encodes it into an MP3 file directly in your browser. Because heavy video frames are ignored, extraction takes just seconds, shrinking multi-gigabyte video files by 98% with zero server uploads."
       />
 
       <div className="relative">

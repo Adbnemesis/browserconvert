@@ -36,7 +36,7 @@ export default function Mp4ToMp3Page() {
   const faqs = [
     {
       q: "Does converting MP4 to MP3 reduce the audio quality?",
-      a: "MediaConvert extracts the audio stream directly and re-encodes it using the high-performance libmp3lame codec. When choosing 192 kbps or 320 kbps, the sound is virtually identical to the audio contained in the original MP4 video.",
+      a: "BrowserConvert extracts the audio stream directly and re-encodes it using the high-performance libmp3lame codec. When choosing 192 kbps or 320 kbps, the sound is virtually identical to the audio contained in the original MP4 video.",
     },
     {
       q: "Is my MP4 video uploaded to any server?",
@@ -48,7 +48,7 @@ export default function Mp4ToMp3Page() {
     },
     {
       q: "What if my MP4 video has multiple audio channels?",
-      a: "By default, MediaConvert retains stereo channels. You can also force Mono in Advanced Settings if you are extracting a podcast interview or speech recording to reduce file size.",
+      a: "By default, BrowserConvert retains stereo channels. You can also force Mono in Advanced Settings if you are extracting a podcast interview or speech recording to reduce file size.",
     },
   ];
 
@@ -128,7 +128,7 @@ export default function Mp4ToMp3Page() {
       {/* Answer-First / Direct Answer Block for AI Search & Featured Snippets */}
       <DirectAnswer
         question="How to convert MP4 to MP3 without uploading files to a server?"
-        answer="To convert MP4 to MP3 privately, upload your video to MediaConvert. Our browser engine demuxes the MP4 container and encodes the audio track into MP3 locally using WebAssembly FFmpeg. Select 192 kbps or 320 kbps for high fidelity. Your video never leaves your computer, ensuring complete confidentiality."
+        answer="To convert MP4 to MP3 privately, upload your video to BrowserConvert. Our browser engine demuxes the MP4 container and encodes the audio track into MP3 locally using WebAssembly FFmpeg. Select 192 kbps or 320 kbps for high fidelity. Your video never leaves your computer, ensuring complete confidentiality."
       />
 
       {/* Converter preconfigured with MP3 output */}
@@ -159,7 +159,7 @@ export default function Mp4ToMp3Page() {
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
             An MP4 file is a multimedia container that wraps video (commonly H.264 or HEVC), audio (commonly AAC),
-            and subtitle streams into a single file. When you extract MP3 from an MP4 file with MediaConvert, our
+            and subtitle streams into a single file. When you extract MP3 from an MP4 file with BrowserConvert, our
             browser engine demuxes the container, isolates the audio track, and re-encodes it into universal MP3.
           </p>
         </div>
@@ -175,7 +175,7 @@ export default function Mp4ToMp3Page() {
           <div className="space-y-2">
             <h3 className="text-sm font-bold text-slate-900">2. Save Battery & Memory</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Because MediaConvert runs locally with the <code>-vn</code> flag (video disabled), heavy video frames are ignored entirely, allowing your computer or phone to process the file in seconds.
+              Because BrowserConvert runs locally with the <code>-vn</code> flag (video disabled), heavy video frames are ignored entirely, allowing your computer or phone to process the file in seconds.
             </p>
           </div>
 

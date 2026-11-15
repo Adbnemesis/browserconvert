@@ -1,6 +1,6 @@
 {
-  "name": "MediaConvert - Free Online Audio Converter",
-  "short_name": "MediaConvert",
+  "name": "BrowserConvert - Free Online Audio Converter",
+  "short_name": "BrowserConvert",
   "description": "Convert audio and extract audio from video files directly in your browser. 100% private, free, and fast.",
   "start_url": "/",
   "display": "standalone",

@@ -121,7 +121,7 @@ export default function OggToMp3Page() {
 
       <DirectAnswer
         question="How do I convert an OGG file to MP3 so it plays on iPhone and car stereos?"
-        answer="To convert an OGG Vorbis audio file to MP3, upload it to MediaConvert, select MP3 at 192 kbps or 256 kbps, and click Convert. Because iOS and car head units reject OGG files, converting to MP3 ensures 100% hardware compatibility without downloading extra players. MediaConvert runs locally in your browser with zero data uploads."
+        answer="To convert an OGG Vorbis audio file to MP3, upload it to BrowserConvert, select MP3 at 192 kbps or 256 kbps, and click Convert. Because iOS and car head units reject OGG files, converting to MP3 ensures 100% hardware compatibility without downloading extra players. BrowserConvert runs locally in your browser with zero data uploads."
       />
 
       <div className="relative">

@@ -7,15 +7,15 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { Mail, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact MediaConvert - Support & Inquiries",
+  title: "Contact BrowserConvert - Support & Inquiries",
   description:
-    "Get in touch with the MediaConvert team. Contact us for format support, technical inquiries, bug reports, or feature suggestions.",
+    "Get in touch with the BrowserConvert team. Contact us for format support, technical inquiries, bug reports, or feature suggestions.",
   alternates: {
     canonical: `${siteConfig.url}/contact`,
   },
   openGraph: {
-    title: "Contact MediaConvert - Support & Inquiries",
-    description: "Get in touch with the MediaConvert team for support and feature inquiries.",
+    title: "Contact BrowserConvert - Support & Inquiries",
+    description: "Get in touch with the BrowserConvert team for support and feature inquiries.",
     url: `${siteConfig.url}/contact`,
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -26,8 +26,8 @@ export default function ContactPage() {
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
         pageType="website"
-        title="Contact MediaConvert Support"
-        description="Get in touch with the MediaConvert engineering and product team."
+        title="Contact BrowserConvert Support"
+        description="Get in touch with the BrowserConvert engineering and product team."
         url="/contact"
         breadcrumbs={[{ label: "Contact", href: "/contact" }]}
       />

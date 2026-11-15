@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Terms of Service - Acceptable Use & Service Agreement | ${siteConfig.name}`,
-    description: "Terms and conditions for using MediaConvert free in-browser audio platform.",
+    description: "Terms and conditions for using BrowserConvert free in-browser audio platform.",
     url: `${siteConfig.url}/terms`,
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -31,8 +31,8 @@ export default function TermsOfServicePage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <SeoSchema
         pageType="website"
-        title="Terms of Service - MediaConvert"
-        description="Review MediaConvert's acceptable use and terms of service."
+        title="Terms of Service - BrowserConvert"
+        description="Review BrowserConvert's acceptable use and terms of service."
         url="/terms"
         breadcrumbs={[{ label: "Terms of Service", href: "/terms" }]}
       />

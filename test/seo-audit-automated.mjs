@@ -22,7 +22,7 @@ const routesToTest = [
   { path: "/audio-speed-changer", type: "tool", expectedTitle: "Audio Speed Changer" },
   { path: "/audio-volume-adjuster", type: "tool", expectedTitle: "Audio Volume Adjuster" },
   { path: "/format-guide", type: "guide", expectedTitle: "Audio Format Guide" },
-  { path: "/about", type: "info", expectedTitle: "About MediaConvert" },
+  { path: "/about", type: "info", expectedTitle: "About BrowserConvert" },
   { path: "/contact", type: "info", expectedTitle: "Contact" },
   { path: "/privacy", type: "legal", expectedTitle: "Privacy Policy" },
   { path: "/terms", type: "legal", expectedTitle: "Terms of Service" },
@@ -95,7 +95,7 @@ async function runAudit() {
     const llmsRes = await fetch(`${BASE_URL}/llms.txt`);
     if (llmsRes.status === 200) {
       const text = await llmsRes.text();
-      if (text.includes("# MediaConvert") && text.includes("WebAssembly")) {
+      if (text.includes("# BrowserConvert") && text.includes("WebAssembly")) {
         pass("/llms.txt exists with structured AI context");
       } else {
         fail("/llms.txt missing key brand/tech content");
@@ -199,7 +199,7 @@ async function runAudit() {
         'link[rel="canonical"]',
         (el) => el.getAttribute("href") || ""
       ).catch(() => "");
-      if (canonical && canonical.includes("mediaconvert.org")) {
+      if (canonical && canonical.includes("browserconvert.org")) {
         pass(`${route.path} canonical URL valid: ${canonical}`);
       } else {
         fail(`${route.path} canonical URL missing or invalid: "${canonical}"`);

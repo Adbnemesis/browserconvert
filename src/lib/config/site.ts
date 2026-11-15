@@ -24,17 +24,17 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "MediaConvert",
-  shortName: "MediaConvert",
-  tagline: "Free Online Audio Converter & Video to Audio Extractor",
+  name: "BrowserConvert",
+  shortName: "BrowserConvert",
+  tagline: "Free Online In-Browser Media & Audio Converter",
   description:
     "Convert audio files and extract audio from videos directly in your browser. 100% private, free, and fast. Support for MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, MP4, MOV, and more.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://mediaconvert.org",
-  author: "MediaConvert Team",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://browserconvert.org",
+  author: "BrowserConvert Team",
   links: {
-    github: "https://github.com/mediaconvert/mediaconvert",
+    github: "https://github.com/browserconvert/browserconvert",
   },
-  contactEmail: "support@mediaconvert.org",
+  contactEmail: "support@browserconvert.org",
   ads: {
     enabled: process.env.NEXT_PUBLIC_ADS_ENABLED === "true",
     client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "",

@@ -34,7 +34,7 @@ export default function AudioCutterPage() {
   const faqs = [
     {
       q: "How does the Audio Cutter work without uploading my files?",
-      a: "MediaConvert uses WebAssembly-compiled FFmpeg directly in your browser. When you select an audio track, the HTML5 Web Audio API parses the file for playback preview while FFmpeg slices the exact start and end timestamps in memory.",
+      a: "BrowserConvert uses WebAssembly-compiled FFmpeg directly in your browser. When you select an audio track, the HTML5 Web Audio API parses the file for playback preview while FFmpeg slices the exact start and end timestamps in memory.",
     },
     {
       q: "Can I cut audio on iPhone, Android, or mobile devices?",
@@ -92,7 +92,7 @@ export default function AudioCutterPage() {
 
       <DirectAnswer
         question="How do I cut an audio file online for free without uploading it to a server?"
-        answer="To trim an audio file privately, upload it to MediaConvert's Audio Cutter tool below. Set your desired start and end points using the interactive range sliders or type exact timestamps, preview the selection using the built-in player, and click Cut & Save. The file is trimmed locally using browser-native WebAssembly FFmpeg with 100% confidentiality."
+        answer="To trim an audio file privately, upload it to BrowserConvert's Audio Cutter tool below. Set your desired start and end points using the interactive range sliders or type exact timestamps, preview the selection using the built-in player, and click Cut & Save. The file is trimmed locally using browser-native WebAssembly FFmpeg with 100% confidentiality."
       />
 
       <AudioCutterTool />

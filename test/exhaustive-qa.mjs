@@ -78,7 +78,7 @@ async function clickButtonByText(page, textSubstring, timeout = 25000) {
 async function runExhaustiveQA() {
   const startTime = Date.now();
   console.log("======================================================================");
-  console.log("       MediaConvert Exhaustive End-to-End QA Testing Suite            ");
+  console.log("       BrowserConvert Exhaustive End-to-End QA Testing Suite            ");
   console.log("======================================================================");
   console.log(`Target: ${BASE_URL}`);
   console.log(`Time: ${new Date().toISOString()}`);

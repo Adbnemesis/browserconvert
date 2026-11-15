@@ -29,7 +29,7 @@ export function ContactForm() {
     setStatus("submitting");
 
     setTimeout(() => {
-      const subject = encodeURIComponent(`MediaConvert Inquiry from ${name}`);
+      const subject = encodeURIComponent(`BrowserConvert Inquiry from ${name}`);
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
       window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
       setStatus("success");

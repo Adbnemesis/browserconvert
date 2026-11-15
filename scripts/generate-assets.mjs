@@ -155,7 +155,7 @@ async function generate() {
             <circle cx="18" cy="16" r="3"></circle>
           </svg>
         </div>
-        <div class="brand-title">MediaConvert</div>
+        <div class="brand-title">BrowserConvert</div>
         <div class="badge">100% In-Browser • Zero Uploads</div>
       </div>
 
@@ -176,7 +176,7 @@ async function generate() {
           <div class="pill">📦 Batch ZIP Download</div>
           <div class="pill">✨ Free Forever</div>
         </div>
-        <div class="domain">mediaconvert.org</div>
+        <div class="domain">browserconvert.org</div>
       </div>
     </body>
     </html>

@@ -121,7 +121,7 @@ export default function Mp3ToWavPage() {
 
       <DirectAnswer
         question="Why convert MP3 to WAV and does it restore lost sound quality?"
-        answer="Converting MP3 to WAV decompresses lossy audio into uncompressed 16-bit PCM. While it cannot restore frequencies discarded during initial MP3 compression, it expands the audio into a format required by DAWs, hardware DJ CDJs, and game engines to prevent CPU decoding lag and avoid compounding generation loss during editing. MediaConvert performs this conversion 100% locally in your browser."
+        answer="Converting MP3 to WAV decompresses lossy audio into uncompressed 16-bit PCM. While it cannot restore frequencies discarded during initial MP3 compression, it expands the audio into a format required by DAWs, hardware DJ CDJs, and game engines to prevent CPU decoding lag and avoid compounding generation loss during editing. BrowserConvert performs this conversion 100% locally in your browser."
       />
 
       <div className="relative">

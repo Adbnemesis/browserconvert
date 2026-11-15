@@ -33,8 +33,8 @@ export const metadata: Metadata = {
 export default function AudioCompressorPage() {
   const faqs = [
     {
-      q: "How does audio compression work on MediaConvert?",
-      a: "MediaConvert compresses audio by re-encoding uncompressed or bloated audio files into high-efficiency MP3 or AAC codecs with optimized bitrates (such as 128 kbps or 96 kbps) and mono channel downmixing where appropriate, cutting file sizes by 50% to 85%.",
+      q: "How does audio compression work on BrowserConvert?",
+      a: "BrowserConvert compresses audio by re-encoding uncompressed or bloated audio files into high-efficiency MP3 or AAC codecs with optimized bitrates (such as 128 kbps or 96 kbps) and mono channel downmixing where appropriate, cutting file sizes by 50% to 85%.",
     },
     {
       q: "Will compression make my audio sound muffled or robotic?",
@@ -92,7 +92,7 @@ export default function AudioCompressorPage() {
 
       <DirectAnswer
         question="How can I reduce the file size of an audio file without losing quality?"
-        answer="To compress an audio file without noticeable quality degradation, upload it to MediaConvert's Audio Compressor. Choose a balanced compression preset (such as 128 kbps or 192 kbps) which discards inaudible frequencies while keeping voices and instruments crisp. An uncompressed WAV file shrinks by up to 85% into a lightweight MP3, all processed locally in your browser."
+        answer="To compress an audio file without noticeable quality degradation, upload it to BrowserConvert's Audio Compressor. Choose a balanced compression preset (such as 128 kbps or 192 kbps) which discards inaudible frequencies while keeping voices and instruments crisp. An uncompressed WAV file shrinks by up to 85% into a lightweight MP3, all processed locally in your browser."
       />
 
       <AudioCompressorTool />

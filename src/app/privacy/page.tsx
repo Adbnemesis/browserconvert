@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Privacy Policy - 100% Client-Side Private Audio Converter | ${siteConfig.name}`,
-    description: "MediaConvert is engineered with private-by-default architecture. Files never leave your browser.",
+    description: "BrowserConvert is engineered with private-by-default architecture. Files never leave your browser.",
     url: `${siteConfig.url}/privacy`,
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -31,8 +31,8 @@ export default function PrivacyPolicyPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <SeoSchema
         pageType="website"
-        title="Privacy Policy - MediaConvert"
-        description="Review MediaConvert's zero-server-upload privacy policy."
+        title="Privacy Policy - BrowserConvert"
+        description="Review BrowserConvert's zero-server-upload privacy policy."
         url="/privacy"
         breadcrumbs={[{ label: "Privacy Policy", href: "/privacy" }]}
       />

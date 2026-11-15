@@ -1,4 +1,4 @@
-# Pricing — MediaConvert
+# Pricing — BrowserConvert
 
 ## 100% Free Forever
 - **Price**: $0/month | $0/year
@@ -17,5 +17,5 @@
   - Volume Adjuster (-20 dB to +20 dB boost)
   - Batch ZIP download
   - Custom bitrate, sample rate, channels, and time trimming
-- **Support**: Free community support via support@mediaconvert.org
+- **Support**: Free community support via support@browserconvert.org
 - **Commercial Use**: Fully permitted for personal, creative, and commercial use.

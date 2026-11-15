@@ -31,7 +31,7 @@ function fail(desc, err) {
 
 async function runUITests() {
   console.log("======================================================================");
-  console.log("       MediaConvert Exhaustive UI, Click & Edge Case Verification      ");
+  console.log("       BrowserConvert Exhaustive UI, Click & Edge Case Verification      ");
   console.log("======================================================================");
 
   const browser = await puppeteer.launch({

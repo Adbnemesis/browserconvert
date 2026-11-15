@@ -8,21 +8,21 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Cpu, ShieldCheck, Zap, Lock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About MediaConvert - Client-Side Audio & Video Converter",
+  title: "About BrowserConvert - Client-Side Audio & Video Converter",
   description:
-    "Learn about MediaConvert's browser-native audio conversion architecture. Fast, free, and 100% private file-to-file conversion without server uploads.",
+    "Learn about BrowserConvert's browser-native audio conversion architecture. Fast, free, and 100% private file-to-file conversion without server uploads.",
   alternates: {
     canonical: `${siteConfig.url}/about`,
   },
   openGraph: {
-    title: "About MediaConvert - Client-Side Audio & Video Converter",
-    description: "Learn about MediaConvert's browser-native audio conversion architecture with zero server uploads.",
+    title: "About BrowserConvert - Client-Side Audio & Video Converter",
+    description: "Learn about BrowserConvert's browser-native audio conversion architecture with zero server uploads.",
     url: `${siteConfig.url}/about`,
     images: [`${siteConfig.url}/og-image.png`],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About MediaConvert - Client-Side Audio & Video Converter",
+    title: "About BrowserConvert - Client-Side Audio & Video Converter",
     description: "Browser-native audio conversion architecture with zero server uploads.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -33,8 +33,8 @@ export default function AboutPage() {
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
         pageType="website"
-        title="About MediaConvert - Mission, Tech & Privacy"
-        description="Learn how MediaConvert provides 100% private in-browser audio conversion without server storage."
+        title="About BrowserConvert - Mission, Tech & Privacy"
+        description="Learn how BrowserConvert provides 100% private in-browser audio conversion without server storage."
         url="/about"
         breadcrumbs={[{ label: "About", href: "/about" }]}
       />
@@ -43,22 +43,22 @@ export default function AboutPage() {
 
       <div className="space-y-4">
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-          About MediaConvert
+          About BrowserConvert
         </h1>
         <p className="text-base text-slate-600 leading-relaxed">
-          MediaConvert is a free, modern web utility built to simplify audio format conversion and video-to-audio
+          BrowserConvert is a free, modern web utility built to simplify audio format conversion and video-to-audio
           extraction while protecting user confidentiality.
         </p>
       </div>
 
       <DirectAnswer
-        question="What is MediaConvert and how does it protect user privacy?"
-        answer="MediaConvert is a free online audio converter that runs WebAssembly-compiled FFmpeg locally inside your browser sandbox. Unlike traditional converters that upload private audio and video recordings to cloud servers, MediaConvert executes all decoding, trimming, and re-encoding on your device CPU. 0 bytes of media content are ever transferred to our servers."
+        question="What is BrowserConvert and how does it protect user privacy?"
+        answer="BrowserConvert is a free online audio converter that runs WebAssembly-compiled FFmpeg locally inside your browser sandbox. Unlike traditional converters that upload private audio and video recordings to cloud servers, BrowserConvert executes all decoding, trimming, and re-encoding on your device CPU. 0 bytes of media content are ever transferred to our servers."
       />
 
       {/* The Problem & Our Solution */}
       <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-        <h2 className="text-xl font-bold text-slate-900">Why We Built MediaConvert</h2>
+        <h2 className="text-xl font-bold text-slate-900">Why We Built BrowserConvert</h2>
         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
           For years, converting an audio file or extracting sound from a video required either installing bloated,
           adware-laden desktop software or uploading sensitive recordings to obscure cloud servers. Cloud-based converters
@@ -66,7 +66,7 @@ export default function AboutPage() {
           family videos are uploaded over the internet, stored on third-party disks, and processed in unpredictable server environments.
         </p>
         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-          We built MediaConvert with a simple conviction: <strong>your media files should never leave your computer or phone.</strong>
+          We built BrowserConvert with a simple conviction: <strong>your media files should never leave your computer or phone.</strong>
         </p>
       </section>
 

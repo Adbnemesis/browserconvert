@@ -42,7 +42,7 @@ export default function OpusToMp3Page() {
       a: "Most desktop video editors (Premiere Pro, DaVinci Resolve) and legacy audio editors do not import raw .opus files. Converting them to MP3 or WAV makes them instantly editable on any timeline.",
     },
     {
-      q: "Is converting OPUS to MP3 private on MediaConvert?",
+      q: "Is converting OPUS to MP3 private on BrowserConvert?",
       a: "Yes. Sensitive voice notes, meeting recordings, and personal calls are processed locally in your browser and are never uploaded to any remote server or third party.",
     },
   ];
@@ -121,7 +121,7 @@ export default function OpusToMp3Page() {
 
       <DirectAnswer
         question="How do I convert a WhatsApp or Discord voice message (.opus) to MP3?"
-        answer="To convert a WhatsApp voice memo or Discord OPUS file to MP3, upload the .opus file to MediaConvert. Select MP3 at 128 kbps or 192 kbps and click Convert. Because video editors and car players reject raw OPUS streams, converting to MP3 makes your voice recording universally editable and playable with 100% in-browser confidentiality."
+        answer="To convert a WhatsApp voice memo or Discord OPUS file to MP3, upload the .opus file to BrowserConvert. Select MP3 at 128 kbps or 192 kbps and click Convert. Because video editors and car players reject raw OPUS streams, converting to MP3 makes your voice recording universally editable and playable with 100% in-browser confidentiality."
       />
 
       <div className="relative">
