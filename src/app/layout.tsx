@@ -106,7 +106,8 @@ export default function RootLayout({
                 } else {
                   document.documentElement.classList.add('dark');
                 }
-                var accent = localStorage.getItem('accent') || 'green';
+                var accent = localStorage.getItem('accent') || 'aurora';
+                document.documentElement.setAttribute('data-theme', accent);
                 document.documentElement.setAttribute('data-accent', accent);
               } catch (e) {}
             `,
