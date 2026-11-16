@@ -7,6 +7,7 @@ import { BITRATE_OPTIONS } from "@/lib/config/formats";
 import { Gauge, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 import { triggerSmartlink } from "@/lib/ads/smartlink";
+import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
 
 export function AudioBitrateChangerTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -50,6 +51,13 @@ export function AudioBitrateChangerTool() {
       const url = URL.createObjectURL(result.blob);
       const outName = `${getFileBaseName(file.name)}_${targetBitrate}.${targetFormat}`;
       setOutputResult({ blob: result.blob, url, name: outName });
+
+      trackEvent("tool_used", {
+        tool: "audio_bitrate",
+        inputFormat: ext,
+        outputFormat: targetFormat,
+        fileSizeBucket: getFileSizeBucket(result.blob.size),
+      });
     } catch (err: any) {
       setError(err?.message || "Bitrate conversion failed.");
     } finally {
@@ -165,7 +173,14 @@ export function AudioBitrateChangerTool() {
                 <a
                   href={outputResult.url}
                   download={outputResult.name}
-                  onClick={triggerSmartlink}
+                  onClick={() => {
+                    triggerSmartlink();
+                    trackEvent("file_downloaded", {
+                      tool: "audio_bitrate",
+                      outputFormat: getFileExtension(outputResult.name) || "mp3",
+                      fileSizeBucket: getFileSizeBucket(outputResult.blob.size),
+                    });
+                  }}
                   className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5" />

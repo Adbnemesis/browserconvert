@@ -6,6 +6,7 @@ import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/form
 import { Volume2, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 import { triggerSmartlink } from "@/lib/ads/smartlink";
+import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
 
 export function AudioVolumeTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -59,6 +60,13 @@ export function AudioVolumeTool() {
       const url = URL.createObjectURL(result.blob);
       const outName = `${getFileBaseName(file.name)}_vol_${Math.round(volume * 100)}pct.${outFormat}`;
       setOutputResult({ blob: result.blob, url, name: outName });
+
+      trackEvent("tool_used", {
+        tool: "audio_volume",
+        inputFormat: ext,
+        outputFormat: outFormat,
+        fileSizeBucket: getFileSizeBucket(result.blob.size),
+      });
     } catch (err: any) {
       setError(err?.message || "Volume adjustment failed.");
     } finally {
@@ -177,7 +185,14 @@ export function AudioVolumeTool() {
                 <a
                   href={outputResult.url}
                   download={outputResult.name}
-                  onClick={triggerSmartlink}
+                  onClick={() => {
+                    triggerSmartlink();
+                    trackEvent("file_downloaded", {
+                      tool: "audio_volume",
+                      outputFormat: getFileExtension(outputResult.name) || "mp3",
+                      fileSizeBucket: getFileSizeBucket(outputResult.blob.size),
+                    });
+                  }}
                   className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5" />

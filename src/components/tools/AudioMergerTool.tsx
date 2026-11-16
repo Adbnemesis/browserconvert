@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { conversionEngine } from "@/lib/conversion/engine";
-import { formatBytes } from "@/lib/utils/formatters";
+import { formatBytes, getFileExtension } from "@/lib/utils/formatters";
 import { ArrowUp, ArrowDown, Trash2, Download, AlertCircle, Loader2, Plus, Music, CheckCircle2 } from "lucide-react";
 import { triggerSmartlink } from "@/lib/ads/smartlink";
+import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
 
 export function AudioMergerTool() {
   const [files, setFiles] = useState<File[]>([]);
@@ -72,6 +73,12 @@ export function AudioMergerTool() {
 
       const url = URL.createObjectURL(result.blob);
       setOutputResult({ blob: result.blob, url, name: result.filename });
+
+      trackEvent("tool_used", {
+        tool: "audio_merger",
+        outputFormat: outputFormat,
+        fileSizeBucket: getFileSizeBucket(result.blob.size),
+      });
     } catch (err: any) {
       setError(err?.message || "Failed to merge audio files.");
     } finally {
@@ -207,7 +214,14 @@ export function AudioMergerTool() {
             <a
               href={outputResult.url}
               download={outputResult.name}
-              onClick={triggerSmartlink}
+              onClick={() => {
+                triggerSmartlink();
+                trackEvent("file_downloaded", {
+                  tool: "audio_merger",
+                  outputFormat: getFileExtension(outputResult.name) || "mp3",
+                  fileSizeBucket: getFileSizeBucket(outputResult.blob.size),
+                });
+              }}
               className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
             >
               <Download className="h-3.5 w-3.5" />

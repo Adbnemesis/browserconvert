@@ -6,6 +6,7 @@ import { formatBytes, getFileBaseName, getFileExtension } from "@/lib/utils/form
 import { Minimize2, Download, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { ConversionItem } from "@/lib/conversion/types";
 import { triggerSmartlink } from "@/lib/ads/smartlink";
+import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
 
 export function AudioCompressorTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -56,6 +57,13 @@ export function AudioCompressorTool() {
       const url = URL.createObjectURL(result.blob);
       const outName = `${getFileBaseName(file.name)}_compressed.${targetFormat}`;
       setOutputResult({ blob: result.blob, url, name: outName });
+
+      trackEvent("tool_used", {
+        tool: "audio_compressor",
+        inputFormat: ext,
+        outputFormat: targetFormat,
+        fileSizeBucket: getFileSizeBucket(result.blob.size),
+      });
     } catch (err: any) {
       setError(err?.message || "Audio compression failed.");
     } finally {
@@ -181,7 +189,14 @@ export function AudioCompressorTool() {
                 <a
                   href={outputResult.url}
                   download={outputResult.name}
-                  onClick={triggerSmartlink}
+                  onClick={() => {
+                    triggerSmartlink();
+                    trackEvent("file_downloaded", {
+                      tool: "audio_compressor",
+                      outputFormat: getFileExtension(outputResult.name) || "mp3",
+                      fileSizeBucket: getFileSizeBucket(outputResult.blob.size),
+                    });
+                  }}
                   className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5" />

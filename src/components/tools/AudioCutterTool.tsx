@@ -7,6 +7,7 @@ import { Scissors, Play, Pause, Download, AlertCircle, Loader2, UploadCloud, Che
 import { ConversionItem } from "@/lib/conversion/types";
 import { AudioVisualizer } from "@/components/ui/AudioVisualizer";
 import { triggerSmartlink } from "@/lib/ads/smartlink";
+import { trackEvent, getFileSizeBucket } from "@/lib/utils/analytics";
 
 export function AudioCutterTool() {
   const [file, setFile] = useState<File | null>(null);
@@ -110,6 +111,13 @@ export function AudioCutterTool() {
       const url = URL.createObjectURL(result.blob);
       const cutName = `${getFileBaseName(file.name)}_cut.${outFormat}`;
       setOutputResult({ blob: result.blob, url, name: cutName });
+
+      trackEvent("tool_used", {
+        tool: "audio_cutter",
+        inputFormat: ext,
+        outputFormat: outFormat,
+        durationSeconds: Math.round(endTime - startTime),
+      });
     } catch (err: any) {
       setError(err?.message || "Failed to cut audio file.");
     } finally {
@@ -308,7 +316,14 @@ export function AudioCutterTool() {
               <a
                 href={outputResult.url}
                 download={outputResult.name}
-                onClick={triggerSmartlink}
+                onClick={() => {
+                  triggerSmartlink();
+                  trackEvent("file_downloaded", {
+                    tool: "audio_cutter",
+                    outputFormat: getFileExtension(outputResult.name) || "mp3",
+                    fileSizeBucket: getFileSizeBucket(outputResult.blob.size),
+                  });
+                }}
                 className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 btn-tactile shadow-xs"
               >
                 <Download className="h-3.5 w-3.5" />
