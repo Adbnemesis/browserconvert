@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convertisseur Audio en Ligne - BrowserConvert",
+    title: "Convertisseur Audio en Ligne ",
     description: "Convertissez vos fichiers audio directement dans votre navigateur sans téléversement vers des serveurs.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -55,6 +55,7 @@ export default function FrenchAudioConverterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="fr"
         title="Convertisseur Audio Gratuit en Ligne"
         description="Convertissez entre MP3, WAV, M4A, FLAC, AAC et OGG en toute confidentialité grâce au traitement local."
         url="/fr/audio-converter"

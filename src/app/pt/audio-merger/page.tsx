@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Juntar Áudio Online - BrowserConvert",
+    title: "Juntar Áudio Online ",
     description: "Combine faixas de áudio sem enviar arquivos para a internet.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function PortugueseAudioMergerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="pt"
         title="Juntar Áudio Online Grátis"
         description="Combine múltiplas faixas de áudio MP3, WAV e M4A em uma única música com total privacidade."
         url="/pt/audio-merger"

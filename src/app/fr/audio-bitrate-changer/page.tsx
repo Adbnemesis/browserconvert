@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Modifier le Débit Audio - BrowserConvert",
+    title: "Modifier le Débit Audio ",
     description: "Réglez le débit binaire (kbps) de vos fichiers audio dans votre navigateur.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function FrenchAudioBitrateChangerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="fr"
         title="Modifier le Débit Audio en Ligne"
         description="Ajustez le débit binaire de fichiers audio en 128k, 192k ou 320 kbps directement dans votre navigateur."
         url="/fr/audio-bitrate-changer"

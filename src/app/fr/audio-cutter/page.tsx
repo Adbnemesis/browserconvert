@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Couper Audio en Ligne - BrowserConvert",
+    title: "Couper Audio en Ligne ",
     description: "Découpez vos fichiers audio directement dans votre navigateur.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function FrenchAudioCutterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="fr"
         title="Couper Audio en Ligne Gratuit"
         description="Découpez des fichiers audio MP3, WAV et M4A avec une précision absolue directement dans votre navigateur."
         url="/fr/audio-cutter"

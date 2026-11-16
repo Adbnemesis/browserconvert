@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convertisseur MP4 en MP3 - BrowserConvert",
+    title: "Convertisseur MP4 en MP3 ",
     description: "Extrayez le son MP3 de vidéos MP4 directement dans votre navigateur sans serveur distant.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -63,6 +63,7 @@ export default function FrenchMp4ToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="fr"
         title="Convertir MP4 en MP3 Gratuit en Ligne"
         description="Extrayez le son de vidéos MP4 directement dans votre navigateur à 320 kbps avec traitement 100% local."
         url="/fr/mp4-to-mp3"

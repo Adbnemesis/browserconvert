@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cambiador de Bitrate de Audio - BrowserConvert",
+    title: "Cambiador de Bitrate de Audio ",
     description: "Recodifica tus pistas de audio al bitrate deseado sin subir archivos a la nube.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function SpanishAudioBitratePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="es"
         title="Cambiar Bitrate de Audio Online Gratis"
         description="Recodifica archivos de audio a 128k, 192k, 256k o 320k kbps con procesamiento local en el navegador."
         url="/es/audio-bitrate-changer"

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cambiador de Velocidad de Audio - BrowserConvert",
+    title: "Cambiador de Velocidad de Audio ",
     description: "Acelera o ralentiza audios sin distorsión de tono con 100% de privacidad.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function SpanishAudioSpeedPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="es"
         title="Cambiar Velocidad de Audio Online Gratis"
         description="Acelera o ralentiza pistas de audio de 0.5x a 2.0x sin distorsión de tono con procesamiento local."
         url="/es/audio-speed-changer"

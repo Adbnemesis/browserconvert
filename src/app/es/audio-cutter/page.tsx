@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cortador de Audio Online - BrowserConvert",
+    title: "Cortador de Audio Online ",
     description: "Recorta pistas de audio con precisión de milisegundos directamente en tu navegador.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function SpanishAudioCutterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="es"
         title="Cortador de Audio Online y Recortador de Canciones"
         description="Corta archivos MP3, WAV, M4A y FLAC con vista previa y procesamiento 100% privado en el navegador."
         url="/es/audio-cutter"

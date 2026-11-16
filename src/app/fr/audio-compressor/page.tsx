@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compresseur Audio en Ligne - BrowserConvert",
+    title: "Compresseur Audio en Ligne ",
     description: "Réduisez la taille de vos fichiers audio directement dans votre navigateur.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function FrenchAudioCompressorPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="fr"
         title="Compresser Audio en Ligne Gratuit"
         description="Réduisez la taille de fichiers MP3, WAV et FLAC tout en conservant une excellente fidélité sonore."
         url="/fr/audio-compressor"

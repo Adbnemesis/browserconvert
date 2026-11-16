@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "M4A in MP3 Konverter - BrowserConvert",
+    title: "M4A in MP3 Konverter ",
     description: "iPhone Sprachmemos in MP3 umwandeln mit 100% lokaler Privatsphäre.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -63,6 +63,7 @@ export default function GermanM4aToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="de"
         title="M4A in MP3 umwandeln kostenlos"
         description="Wandeln Sie iPhone Sprachmemos und Apple M4A-Audiodateien direkt im Browser in universelles MP3 um."
         url="/de/m4a-to-mp3"

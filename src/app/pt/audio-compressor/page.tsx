@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Comprimir Áudio Online - BrowserConvert",
+    title: "Comprimir Áudio Online ",
     description: "Reduza o tamanho de arquivos de áudio sem enviar dados para servidores.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function PortugueseAudioCompressorPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="pt"
         title="Comprimir Áudio Online Grátis"
         description="Reduza o tamanho de arquivos MP3, WAV e FLAC em até 85% com processamento local no navegador."
         url="/pt/audio-compressor"

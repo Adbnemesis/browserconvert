@@ -20,6 +20,7 @@ export function TermsView({ locale = "en" }: TermsViewProps) {
         title={content.seoTitle}
         description={content.seoDesc}
         url={canonicalUrl}
+        locale={locale}
         breadcrumbs={[{ label: content.breadcrumbLabel, href: canonicalUrl }]}
       />
 

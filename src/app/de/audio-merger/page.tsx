@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Audio Merger Online - BrowserConvert",
+    title: "Audio Merger Online ",
     description: "Audiodateien kostenlos zusammenfügen direkt im Browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function GermanAudioMergerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="de"
         title="Audio zusammenfügen online kostenlos"
         description="Verbinden Sie mehrere MP3- und WAV-Titel nahtlos direkt in Ihrem Browser."
         url="/de/audio-merger"

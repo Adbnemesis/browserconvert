@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cambiare Velocità Audio - BrowserConvert",
+    title: "Cambiare Velocità Audio ",
     description: "Accelera o rallenta i tuoi file audio senza server remoti.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function ItalianAudioSpeedChangerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="it"
         title="Cambiare Velocità Audio Online Gratis"
         description="Accelera o rallenta file audio MP3 direttamente nel tuo browser con elaborazione locale."
         url="/it/audio-speed-changer"

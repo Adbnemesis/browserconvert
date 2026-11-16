@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Conversor M4A para MP3 - BrowserConvert",
+    title: "Conversor M4A para MP3 ",
     description: "Converta notas de voz do iPhone para MP3 com total privacidade.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -60,6 +60,7 @@ export default function PortugueseM4aToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="pt"
         title="Converter M4A para MP3 Online Grátis"
         description="Converta notas de voz do iPhone e áudios M4A em MP3 com processamento local no seu navegador."
         url="/pt/m4a-to-mp3"

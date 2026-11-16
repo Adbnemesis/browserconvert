@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Changer la Vitesse Audio - BrowserConvert",
+    title: "Changer la Vitesse Audio ",
     description: "Accélérez ou ralentissez vos fichiers audio sans serveur distant.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function FrenchAudioSpeedChangerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="fr"
         title="Changer la Vitesse Audio en Ligne"
         description="Accélérez ou ralentissez des fichiers audio MP3 directement dans votre navigateur avec traitement local."
         url="/fr/audio-speed-changer"

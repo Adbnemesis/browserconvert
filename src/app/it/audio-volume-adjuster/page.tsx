@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Regolare Volume Audio - BrowserConvert",
+    title: "Regolare Volume Audio ",
     description: "Aumenta il volume di file MP3 direttamente nel tuo browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function ItalianAudioVolumeAdjusterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="it"
         title="Regolare Volume Audio Online Gratis"
         description="Amplifica il volume di tracce audio deboli direttamente nel tuo browser con privacy totale."
         url="/it/audio-volume-adjuster"

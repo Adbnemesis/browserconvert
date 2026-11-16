@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Audio Geschwindigkeit ändern - BrowserConvert",
+    title: "Audio Geschwindigkeit ändern ",
     description: "Audiodateien beschleunigen oder verlangsamen ohne Server-Upload.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function GermanAudioSpeedChangerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="de"
         title="Audio Geschwindigkeit ändern online"
         description="Beschleunigen oder verlangsamen Sie MP3-Audiodateien direkt im Browser bei 100% lokalem Datenschutz."
         url="/de/audio-speed-changer"

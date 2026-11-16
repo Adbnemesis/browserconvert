@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convertidor de Audio Online - BrowserConvert",
+    title: "Convertidor de Audio Online ",
     description: "Convierte archivos de audio directamente en tu navegador sin subir archivos a servidores.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -57,6 +57,7 @@ export default function SpanishAudioConverterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="es"
         title="Convertidor de Audio Online Gratis"
         description="Convierte entre MP3, WAV, M4A, FLAC, AAC y OGG con total privacidad y procesamiento local."
         url="/es/audio-converter"

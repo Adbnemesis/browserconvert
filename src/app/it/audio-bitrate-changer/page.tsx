@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Modificare Bitrate Audio - BrowserConvert",
+    title: "Modificare Bitrate Audio ",
     description: "Imposta il bitrate audio (kbps) direttamente nel tuo browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function ItalianAudioBitrateChangerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="it"
         title="Modificare Bitrate Audio Online Gratis"
         description="Regola il bitrate di file audio in 128k, 192k o 320 kbps direttamente nel tuo browser."
         url="/it/audio-bitrate-changer"

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cortador de Áudio Online - BrowserConvert",
+    title: "Cortador de Áudio Online ",
     description: "Corte e apare trechos de áudio sem enviar arquivos para a internet.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function PortugueseAudioCutterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="pt"
         title="Cortador de Áudio Online Grátis"
         description="Corte e apare músicas MP3, WAV, M4A e FLAC com reprodução ao vivo e 100% de privacidade no navegador."
         url="/pt/audio-cutter"

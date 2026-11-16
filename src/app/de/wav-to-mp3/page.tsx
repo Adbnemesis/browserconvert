@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WAV in MP3 Konverter - BrowserConvert",
+    title: "WAV in MP3 Konverter ",
     description: "WAV-Dateien zu MP3 komprimieren mit 100% lokaler Privatsphäre.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -64,6 +64,7 @@ export default function GermanWavToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="de"
         title="WAV in MP3 umwandeln kostenlos"
         description="Komprimieren Sie WAV-Audiodateien in MP3 mit bis zu 320 kbps und 100% lokaler Verarbeitung."
         url="/de/wav-to-mp3"

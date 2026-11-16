@@ -13,8 +13,12 @@ export default function robots(): MetadataRoute.Robots {
         // Explicitly allow AI search discovery bots for citation and answer retrieval
         userAgent: [
           "OAI-SearchBot",
+          "GPTBot",
+          "ChatGPT-User",
           "PerplexityBot",
           "Claude-SearchBot",
+          "ClaudeBot",
+          "anthropic-ai",
           "Google-Extended",
           "Applebot",
           "Bingbot",

@@ -40,6 +40,7 @@ export function HomeView({ locale = "en" }: HomeViewProps) {
         title={content.seoTitle}
         description={content.seoDescription}
         url={locale === "en" ? "/" : `/${locale}`}
+        locale={locale}
         faqs={content.faqs}
         howTo={content.howTo}
       />

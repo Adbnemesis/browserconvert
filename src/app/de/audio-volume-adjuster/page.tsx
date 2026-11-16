@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Audio Lautstärke anpassen - BrowserConvert",
+    title: "Audio Lautstärke anpassen ",
     description: "MP3 und Audio lauter machen direkt im Browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -47,6 +47,7 @@ export default function GermanAudioVolumeAdjusterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="de"
         title="Audio Lautstärke anpassen online"
         description="Verstärken Sie leise Audiodateien direkt im Browser bei 100% lokalem Datenschutz."
         url="/de/audio-volume-adjuster"

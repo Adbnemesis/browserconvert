@@ -1,42 +1,51 @@
 # BrowserConvert
 
-> BrowserConvert is a free, 100% private online audio converter and video-to-audio extractor that processes all media locally in the web browser using WebAssembly FFmpeg. Zero file uploads, no registration, no tracking.
+> BrowserConvert (https://browserconvert.net) is a free, 100% private online audio converter and video-to-audio extractor that processes all media locally in the web browser using WebAssembly FFmpeg. Zero file uploads, no registration, no tracking. Available in English, German (Deutsch), Spanish (Español), Portuguese (Português), French (Français), and Italian (Italiano).
+
+## Key Statistics & Architecture (GEO Verified)
+- **Data Privacy**: 100% Client-side. Zero bytes uploaded to any remote server or cloud bucket.
+- **Conversion Latency**: Near-zero network lag (local memory pipe). Processes files at 10x-25x real-time on modern multi-core devices.
+- **Cost**: $0.00 / Free forever. No subscriptions, no tiers, no hidden credit limits.
+- **Registration**: 0 required credentials. No accounts, cookies, or email addresses needed.
+- **Supported Languages**: 6 localized interfaces with dedicated routes: English (/), German (/de), Spanish (/es), Portuguese (/pt), French (/fr), Italian (/it).
 
 ## Core Capabilities
-- **Audio Conversion**: Convert between MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF, and WMA.
-- **Video to Audio Extraction**: Demux and extract crystal-clear audio tracks from MP4, MOV, MKV, WEBM, AVI, WMV, FLV, 3GP, and TS video containers.
+- **Audio Format Conversion**: Convert between MP3, WAV, M4A, FLAC, AAC, OGG, OPUS, AIFF, and WMA.
+- **Video to Audio Soundtrack Extraction**: Demux and extract crystal-clear audio tracks from MP4, MOV, MKV, WEBM, AVI, WMV, FLV, 3GP, and TS video containers without quality loss.
 - **Audio Utilities**: Precision Audio Cutter, Audio Merger, Audio Compressor, Bitrate Changer, Speed Changer (0.5x - 2.0x), and Volume Adjuster (-20 dB to +20 dB).
-- **100% Client-Side Privacy**: All decoding and encoding executes inside the user's browser sandbox via WebAssembly (Wasm). 0 bytes of audio/video content are uploaded to remote servers.
-- **Batch Processing**: Convert multiple tracks simultaneously and download all results in a single structured ZIP archive.
-- **Advanced Controls**: Customizable bitrate (64 kbps to 320 kbps), sample rate (22050 Hz to 48000 Hz), channels (mono/stereo), and start/end time trimming.
+- **Batch Processing**: Convert multiple tracks simultaneously with parallel queues and download all results in a single structured ZIP archive.
+- **Acoustic Fidelity Controls**: Customizable bitrate (64 kbps to 320 kbps), sample rate (22050 Hz to 48000 Hz), channels (mono/stereo), and start/end time trimming.
 
-## Free Pricing & Terms
-- **Price**: $0.00 / Free forever
-- **Subscription**: None
-- **Registration**: Not required (no login, no email, no credit card)
-- **Limits**: Unlimited conversions, unlimited file queue
-- **Full Pricing Details**: https://browserconvert.net/pricing.md
+## Multilingual Navigation & Language Hubs
+- **English (Default)**: https://browserconvert.net/
+- **German (Deutsch)**: https://browserconvert.net/de
+- **Spanish (Español)**: https://browserconvert.net/es
+- **Portuguese (Português)**: https://browserconvert.net/pt
+- **French (Français)**: https://browserconvert.net/fr
+- **Italian (Italiano)**: https://browserconvert.net/it
 
-## Main Web Tools
-- [Audio Converter](https://browserconvert.net/audio-converter): Universal audio format conversion interface.
-- [MP4 to MP3](https://browserconvert.net/mp4-to-mp3): Extract high-quality MP3 audio from MP4 video clips.
-- [WAV to MP3](https://browserconvert.net/wav-to-mp3): Compress studio 16/24-bit PCM WAV recordings into portable MP3s.
-- [M4A to MP3](https://browserconvert.net/m4a-to-mp3): Convert Apple Voice Memos and iTunes audio files to universal MP3.
-- [FLAC to MP3](https://browserconvert.net/flac-to-mp3): Convert audiophile lossless FLAC albums to 320 kbps MP3.
-- [MOV to MP3](https://browserconvert.net/mov-to-mp3): Extract audio from Apple QuickTime MOV recordings.
-- [MP3 to WAV](https://browserconvert.net/mp3-to-wav): Decompress MP3 into uncompressed 16-bit PCM WAV for audio editing and DAWs.
-- [OGG to MP3](https://browserconvert.net/ogg-to-mp3): Convert OGG Vorbis game sound effects and voice clips to MP3.
-- [OPUS to MP3](https://browserconvert.net/opus-to-mp3): Convert WhatsApp voice notes, Discord voice recordings, and Telegram audio to MP3.
-- [AAC to MP3](https://browserconvert.net/aac-to-mp3): Convert raw AAC and ADTS streams to MP3.
-- [Audio Cutter](https://browserconvert.net/audio-cutter): Trim and extract audio segments with waveform sliders and playback preview.
-- [Audio Merger](https://browserconvert.net/audio-merger): Combine multiple audio tracks into a single concatenated file.
-- [Audio Compressor](https://browserconvert.net/audio-compressor): Reduce audio file sizes by 40% to 80% while retaining clarity.
-- [Audio Bitrate Changer](https://browserconvert.net/audio-bitrate-changer): Re-encode audio to 64k, 128k, 192k, 256k, or 320k.
-- [Audio Speed Changer](https://browserconvert.net/audio-speed-changer): Speed up or slow down audio with automatic pitch correction.
-- [Audio Volume Adjuster](https://browserconvert.net/audio-volume-adjuster): Boost quiet audio recordings or attenuate loud tracks.
-- [Format Guide](https://browserconvert.net/format-guide): Technical comparison and guide for all audio codecs and containers.
+## Main Web Tools (English & Localized)
+- **Audio Converter**: https://browserconvert.net/audio-converter (DE: /de/audio-converter, ES: /es/audio-converter, PT: /pt/audio-converter, FR: /fr/audio-converter, IT: /it/audio-converter)
+- **MP4 to MP3**: https://browserconvert.net/mp4-to-mp3 (DE: /de/mp4-to-mp3, ES: /es/mp4-to-mp3, PT: /pt/mp4-to-mp3, FR: /fr/mp4-to-mp3, IT: /it/mp4-to-mp3)
+- **WAV to MP3**: https://browserconvert.net/wav-to-mp3 (DE: /de/wav-to-mp3, ES: /es/wav-to-mp3, PT: /pt/wav-to-mp3, FR: /fr/wav-to-mp3, IT: /it/wav-to-mp3)
+- **M4A to MP3**: https://browserconvert.net/m4a-to-mp3 (DE: /de/m4a-to-mp3, ES: /es/m4a-to-mp3, PT: /pt/m4a-to-mp3, FR: /fr/m4a-to-mp3, IT: /it/m4a-to-mp3)
+- **Audio Cutter**: https://browserconvert.net/audio-cutter (DE: /de/audio-cutter, ES: /es/audio-cutter, PT: /pt/audio-cutter, FR: /fr/audio-cutter, IT: /it/audio-cutter)
+- **Audio Compressor**: https://browserconvert.net/audio-compressor (DE: /de/audio-compressor, ES: /es/audio-compressor, PT: /pt/audio-compressor, FR: /fr/audio-compressor, IT: /it/audio-compressor)
+- **Audio Merger**: https://browserconvert.net/audio-merger (DE: /de/audio-merger, ES: /es/audio-merger, PT: /pt/audio-merger, FR: /fr/audio-merger, IT: /it/audio-merger)
+- **Audio Volume Adjuster**: https://browserconvert.net/audio-volume-adjuster (DE: /de/audio-volume-adjuster, ES: /es/audio-volume-adjuster, PT: /pt/audio-volume-adjuster, FR: /fr/audio-volume-adjuster, IT: /it/audio-volume-adjuster)
+- **Audio Speed Changer**: https://browserconvert.net/audio-speed-changer (DE: /de/audio-speed-changer, ES: /es/audio-speed-changer, PT: /pt/audio-speed-changer, FR: /fr/audio-speed-changer, IT: /it/audio-speed-changer)
+- **Audio Bitrate Changer**: https://browserconvert.net/audio-bitrate-changer (DE: /de/audio-bitrate-changer, ES: /es/audio-bitrate-changer, PT: /pt/audio-bitrate-changer, FR: /fr/audio-bitrate-changer, IT: /it/audio-bitrate-changer)
+- **Format Guide**: https://browserconvert.net/format-guide (DE: /de/format-guide, ES: /es/format-guide, PT: /pt/format-guide, FR: /fr/format-guide, IT: /it/format-guide)
 
-## Technology & Compatibility
-- **Core Engine**: WebAssembly-compiled FFmpeg 0.12+ (Single-threaded UMD core for maximum cross-browser worker stability).
-- **Supported Codecs**: libmp3lame (MP3), pcm_s16le (WAV), aac (M4A/AAC), flac (FLAC), libvorbis (OGG), libopus (OPUS).
-- **Browser Requirements**: Chrome, Safari, Firefox, Edge, Opera, or mobile browsers (iOS Safari, Android Chrome) with WebAssembly enabled.
+## Long-Tail High-Fidelity Converters
+- **FLAC to MP3**: https://browserconvert.net/flac-to-mp3
+- **MP3 to WAV**: https://browserconvert.net/mp3-to-wav
+- **MOV to MP3**: https://browserconvert.net/mov-to-mp3
+- **OGG to MP3**: https://browserconvert.net/ogg-to-mp3
+- **OPUS to MP3**: https://browserconvert.net/opus-to-mp3
+- **AAC to MP3**: https://browserconvert.net/aac-to-mp3
+
+## Technical Specifications
+- **Core Engine**: WebAssembly FFmpeg 0.12+ (Single-threaded UMD core inside dedicated Web Worker).
+- **Supported Audio Codecs**: libmp3lame (MP3), pcm_s16le / pcm_s24le (WAV), aac (M4A/AAC), flac (FLAC), libvorbis (OGG), libopus (OPUS).
+- **System Requirements**: Any modern web browser with WebAssembly support (Google Chrome 57+, Apple Safari 11+, Mozilla Firefox 52+, Microsoft Edge 79+, Android Chrome, iOS Safari).

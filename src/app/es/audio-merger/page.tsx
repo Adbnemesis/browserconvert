@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unir Audio Online - BrowserConvert",
+    title: "Unir Audio Online ",
     description: "Combina múltiples pistas de audio directamente en tu navegador.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -52,6 +52,7 @@ export default function SpanishAudioMergerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="es"
         title="Unir Audio Online Gratis"
         description="Combina múltiples pistas de audio MP3, WAV y M4A en un único archivo continuo con total privacidad."
         url="/es/audio-merger"

@@ -7,14 +7,14 @@ import { getHreflangAlternates, getTranslations } from "@/i18n";
 const t = getTranslations("fr");
 
 export const metadata: Metadata = {
-  title: `${t.home.title} | ${siteConfig.name}`,
+  title: `${t.home.title} `,
   description: t.home.subtitle,
   alternates: {
     canonical: `${siteConfig.url}/fr`,
     languages: getHreflangAlternates(""),
   },
   openGraph: {
-    title: `${t.home.title} | ${siteConfig.name}`,
+    title: `${t.home.title} `,
     description: t.home.subtitle,
     url: `${siteConfig.url}/fr`,
     images: [`${siteConfig.url}/og-image.png`],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${t.home.title} - BrowserConvert`,
+    title: `${t.home.title} `,
     description: t.home.subtitle,
     images: [`${siteConfig.url}/og-image.png`],
   },

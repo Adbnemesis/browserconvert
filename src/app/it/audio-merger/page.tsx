@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unire File Audio Online - BrowserConvert",
+    title: "Unire File Audio Online ",
     description: "Unisci file audio gratis direttamente nel tuo browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function ItalianAudioMergerPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="it"
         title="Unire File Audio Online Gratis"
         description="Combina più tracce MP3 e WAV in un unico brano direttamente nel tuo browser."
         url="/it/audio-merger"

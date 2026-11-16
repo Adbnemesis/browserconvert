@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tagliare Audio Online - BrowserConvert",
+    title: "Tagliare Audio Online ",
     description: "Ritaglia tracce audio direttamente nel tuo browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function ItalianAudioCutterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="it"
         title="Tagliare Audio Online Gratis"
         description="Ritaglia file MP3, WAV e M4A con precisione millimetrica direttamente nel tuo browser."
         url="/it/audio-cutter"

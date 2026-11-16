@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Audio schneiden online - BrowserConvert",
+    title: "Audio schneiden online ",
     description: "Audiodateien auf die Millisekunde genau zuschneiden direkt im Browser.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -51,6 +51,7 @@ export default function GermanAudioCutterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <SeoSchema
+        locale="de"
         title="Audio schneiden online kostenlos"
         description="Schneiden Sie MP3-, WAV- und M4A-Audiodateien mit 100% Datenschutz im Browser."
         url="/de/audio-cutter"

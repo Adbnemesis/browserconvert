@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convertisseur M4A en MP3 - BrowserConvert",
+    title: "Convertisseur M4A en MP3 ",
     description: "Convertissez les mémos vocaux Apple en MP3 avec une confidentialité absolue.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -63,6 +63,7 @@ export default function FrenchM4aToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="fr"
         title="Convertir M4A en MP3 Gratuit en Ligne"
         description="Transformez vos mémos vocaux Apple iPhone et fichiers M4A en MP3 universel directement dans votre navigateur."
         url="/fr/m4a-to-mp3"

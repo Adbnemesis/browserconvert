@@ -21,6 +21,7 @@ export function ContactView({ locale = "en" }: ContactViewProps) {
         title={content.seoTitle}
         description={content.seoDesc}
         url={canonicalUrl}
+        locale={locale}
         breadcrumbs={[{ label: content.breadcrumbLabel, href: canonicalUrl }]}
       />
 

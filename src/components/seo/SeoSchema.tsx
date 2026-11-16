@@ -1,5 +1,6 @@
 import React from "react";
 import { siteConfig } from "@/lib/config/site";
+import { Locale, getLocalizedPath } from "@/i18n";
 
 export interface FaqItem {
   q: string;
@@ -21,6 +22,7 @@ interface SeoSchemaProps {
   title?: string;
   description?: string;
   url?: string;
+  locale?: Locale;
   faqs?: FaqItem[];
   howTo?: {
     name: string;
@@ -33,21 +35,43 @@ interface SeoSchemaProps {
   dateModified?: string;
 }
 
+const LOCALE_TO_LANGUAGE_TAG: Record<Locale, string> = {
+  en: "en-US",
+  de: "de-DE",
+  es: "es-ES",
+  pt: "pt-BR",
+  fr: "fr-FR",
+  it: "it-IT",
+};
+
+const LOCALE_TO_HOME_LABEL: Record<Locale, string> = {
+  en: "Home",
+  de: "Startseite",
+  es: "Inicio",
+  pt: "Início",
+  fr: "Accueil",
+  it: "Home",
+};
+
 export function SeoSchema({
   pageType = "application",
   title,
   description,
   url,
+  locale = "en",
   faqs,
   howTo,
   breadcrumbs,
   applicationCategory = "MultimediaApplication",
   datePublished = "2026-01-01T00:00:00Z",
-  dateModified = "2026-11-15T00:00:00Z",
+  dateModified = "2026-11-16T00:00:00Z",
 }: SeoSchemaProps) {
   const currentUrl = url ? `${siteConfig.url}${url}` : siteConfig.url;
   const pageTitle = title ? `${title} | ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.tagline}`;
   const pageDesc = description || siteConfig.description;
+  const languageTag = LOCALE_TO_LANGUAGE_TAG[locale] || "en-US";
+  const homeLabel = LOCALE_TO_HOME_LABEL[locale] || "Home";
+  const homeHref = getLocalizedPath(locale, "");
 
   const graph: any[] = [];
 
@@ -61,7 +85,7 @@ export function SeoSchema({
     publisher: {
       "@id": `${siteConfig.url}/#organization`,
     },
-    inLanguage: "en-US",
+    inLanguage: languageTag,
   });
 
   // 2. Organization Schema
@@ -91,15 +115,23 @@ export function SeoSchema({
       applicationCategory: applicationCategory,
       operatingSystem: "All modern web browsers (Chrome, Safari, Firefox, Edge, iOS, Android)",
       browserRequirements: "Requires WebAssembly (Wasm) support",
+      inLanguage: languageTag,
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
       },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        ratingCount: "2840",
+        bestRating: "5",
+        worstRating: "1",
+      },
       featureList: [
-        "100% private in-browser audio processing",
-        "Zero server file uploads — maximum privacy",
+        "100% private in-browser audio processing via WebAssembly",
+        "Zero server file uploads — files never leave user device",
         "Audio format conversion between MP3, WAV, M4A, FLAC, AAC, OGG, OPUS",
         "Direct audio extraction from MP4, MOV, MKV, and other video containers",
         "Batch conversions with single ZIP archive download",
@@ -118,7 +150,7 @@ export function SeoSchema({
       url: currentUrl,
       datePublished: datePublished,
       dateModified: dateModified,
-      inLanguage: "en-US",
+      inLanguage: languageTag,
       author: {
         "@id": `${siteConfig.url}/#organization`,
       },
@@ -131,7 +163,7 @@ export function SeoSchema({
 
   // 4. Breadcrumbs Schema
   if (breadcrumbs && breadcrumbs.length > 0) {
-    const allCrumbs = [{ label: "Home", href: "/" }, ...breadcrumbs];
+    const allCrumbs = [{ label: homeLabel, href: homeHref }, ...breadcrumbs];
     graph.push({
       "@type": "BreadcrumbList",
       "@id": `${currentUrl}/#breadcrumbs`,

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convertisseur WAV en MP3 - BrowserConvert",
+    title: "Convertisseur WAV en MP3 ",
     description: "Compressez vos pistes audio WAV en MP3 avec une confidentialité totale.",
     images: [`${siteConfig.url}/og-image.png`],
   },
@@ -64,6 +64,7 @@ export default function FrenchWavToMp3Page() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <SeoSchema
+        locale="fr"
         title="Convertir WAV en MP3 Gratuit en Ligne"
         description="Compressez vos fichiers audio WAV en MP3 de 320 kbps avec traitement 100% local dans votre navigateur."
         url="/fr/wav-to-mp3"

@@ -20,6 +20,7 @@ export function PrivacyView({ locale = "en" }: PrivacyViewProps) {
         title={content.seoTitle}
         description={content.seoDesc}
         url={canonicalUrl}
+        locale={locale}
         breadcrumbs={[{ label: content.breadcrumbLabel, href: canonicalUrl }]}
       />
 
