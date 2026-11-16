@@ -14,16 +14,18 @@ import { triggerSmartlink } from "@/lib/ads/smartlink";
 
 interface ConverterProps {
   defaultOutputFormat?: OutputFormat;
+  initialOutputFormat?: OutputFormat;
   lockOutputFormat?: boolean;
   pageTitle?: string;
   dropzoneHeadline?: string;
   dropzoneSubheadline?: string;
-  acceptTypes?: string;
+  acceptTypes?: string | Record<string, string[]>;
   className?: string;
 }
 
 export function Converter({
   defaultOutputFormat = "mp3",
+  initialOutputFormat,
   lockOutputFormat = false,
   pageTitle,
   dropzoneHeadline,
@@ -31,10 +33,20 @@ export function Converter({
   acceptTypes,
   className = "",
 }: ConverterProps) {
+  const resolvedDefaultFormat = initialOutputFormat || defaultOutputFormat;
+  const formattedAcceptTypes =
+    typeof acceptTypes === "string"
+      ? acceptTypes
+      : acceptTypes && typeof acceptTypes === "object"
+      ? Object.entries(acceptTypes)
+          .flatMap(([mime, exts]) => [mime, ...exts])
+          .join(",")
+      : undefined;
+
   const [items, setItems] = useState<ConversionItem[]>([]);
   const [globalSettings, setGlobalSettings] = useState<ConversionSettings>({
-    outputFormat: defaultOutputFormat,
-    bitrate: SUPPORTED_OUTPUT_FORMATS[defaultOutputFormat]?.defaultBitrate || "192k",
+    outputFormat: resolvedDefaultFormat,
+    bitrate: SUPPORTED_OUTPUT_FORMATS[resolvedDefaultFormat]?.defaultBitrate || "192k",
     sampleRate: "original",
     channels: "original",
     volume: 1.0,
@@ -264,7 +276,7 @@ export function Converter({
       {/* 1. Dropzone Upload Area */}
       <Dropzone
         onFilesSelected={handleFilesSelected}
-        acceptTypes={acceptTypes}
+        acceptTypes={formattedAcceptTypes}
         headline={dropzoneHeadline}
         subheadline={dropzoneSubheadline}
       />

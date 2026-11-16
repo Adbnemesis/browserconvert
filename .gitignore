@@ -28,6 +28,10 @@ yarn-error.log*
 .env.*
 .env*.local
 
+# test scratch and verification screenshots
+scratch/
+public/test-screenshots/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

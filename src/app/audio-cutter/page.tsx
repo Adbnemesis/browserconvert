@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Scissors, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Cutter Online - Trim Audio & Music Files Free",
   description:
     "Free online audio cutter and trimmer. Cut and trim MP3, WAV, M4A, and FLAC audio files with precision. 100% private in-browser audio editing.",
   alternates: {
     canonical: `${siteConfig.url}/audio-cutter`,
+    languages: getHreflangAlternates("/audio-cutter"),
   },
   openGraph: {
     title: "Audio Cutter Online - Trim Audio & Music Files Free",

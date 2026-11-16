@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Gauge, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Bitrate Changer Online - Change MP3 kbps Free",
   description:
     "Change audio bitrate online for free. Adjust bitrates to 64k, 128k, 192k, 256k, or 320k kbps for MP3, M4A, and AAC files. 100% private in-browser tool.",
   alternates: {
     canonical: `${siteConfig.url}/audio-bitrate-changer`,
+    languages: getHreflangAlternates("/audio-bitrate-changer"),
   },
   openGraph: {
     title: "Audio Bitrate Changer Online - Change MP3 kbps Free",

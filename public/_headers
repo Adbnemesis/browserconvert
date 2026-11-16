@@ -1,0 +1,11 @@
+# Prevent search engines from indexing development & preview subdomains
+https://*.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+https://*.vercel.app/*
+  X-Robots-Tag: noindex, nofollow
+
+# Production static assets caching
+/ffmpeg/*
+  Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: same-origin

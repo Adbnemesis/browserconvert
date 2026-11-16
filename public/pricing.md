@@ -17,5 +17,5 @@
   - Volume Adjuster (-20 dB to +20 dB boost)
   - Batch ZIP download
   - Custom bitrate, sample rate, channels, and time trimming
-- **Support**: Free community support via support@browserconvert.net
+- **Support**: Free community support via adbnemesis88@gmail.com
 - **Commercial Use**: Fully permitted for personal, creative, and commercial use.

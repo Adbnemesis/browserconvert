@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { getLocaleFromPathname, getLocalizedPath, getTranslations } from "@/i18n";
 import {
   FileAudio,
   Menu,
@@ -25,6 +27,9 @@ export function Navbar() {
   const toolsDropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
+  const currentLocale = getLocaleFromPathname(pathname);
+  const t = getTranslations(currentLocale);
+
   // Close dropdown on click outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -39,19 +44,55 @@ export function Navbar() {
   }, []);
 
   const audioTools = [
-    { label: "Audio Cutter", href: "/audio-cutter", desc: "Trim audio start and end times", icon: Scissors },
-    { label: "Audio Merger", href: "/audio-merger", desc: "Join multiple tracks together", icon: Layers },
-    { label: "Audio Compressor", href: "/audio-compressor", desc: "Reduce audio file size", icon: Minimize2 },
-    { label: "Bitrate Changer", href: "/audio-bitrate-changer", desc: "Change kbps compression rate", icon: Gauge },
-    { label: "Speed Changer", href: "/audio-speed-changer", desc: "Speed up or slow down audio", icon: FastForward },
-    { label: "Volume Adjuster", href: "/audio-volume-adjuster", desc: "Boost or soften audio volume", icon: Volume2 },
+    {
+      label: t.nav.tools.cutter.title,
+      href: getLocalizedPath(currentLocale, "/audio-cutter"),
+      desc: t.nav.tools.cutter.desc,
+      icon: Scissors,
+    },
+    {
+      label: t.nav.tools.merger.title,
+      href: getLocalizedPath(currentLocale, "/audio-merger"),
+      desc: t.nav.tools.merger.desc,
+      icon: Layers,
+    },
+    {
+      label: t.nav.tools.compressor.title,
+      href: getLocalizedPath(currentLocale, "/audio-compressor"),
+      desc: t.nav.tools.compressor.desc,
+      icon: Minimize2,
+    },
+    {
+      label: t.nav.tools.bitrate.title,
+      href: getLocalizedPath(currentLocale, "/audio-bitrate-changer"),
+      desc: t.nav.tools.bitrate.desc,
+      icon: Gauge,
+    },
+    {
+      label: t.nav.tools.speed.title,
+      href: getLocalizedPath(currentLocale, "/audio-speed-changer"),
+      desc: t.nav.tools.speed.desc,
+      icon: FastForward,
+    },
+    {
+      label: t.nav.tools.volume.title,
+      href: getLocalizedPath(currentLocale, "/audio-volume-adjuster"),
+      desc: t.nav.tools.volume.desc,
+      icon: Volume2,
+    },
   ];
+
+  const homeHref = getLocalizedPath(currentLocale, "");
+  const audioConverterHref = getLocalizedPath(currentLocale, "/audio-converter");
+  const videoToMp3Href = getLocalizedPath(currentLocale, "/mp4-to-mp3");
+  const formatGuideHref = getLocalizedPath(currentLocale, "/format-guide");
+  const aboutHref = getLocalizedPath(currentLocale, "/about");
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-white/10 bg-white/95 dark:bg-[#09090b]/90 backdrop-blur-md transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo with Tactile Audio Hover Animation */}
-        <Link href="/" className="group flex items-center gap-2.5 transition-all">
+        {/* Brand Logo */}
+        <Link href={homeHref} className="group flex items-center gap-2.5 transition-all">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white shadow-sm transition-all duration-200 group-hover:scale-110 group-hover:rotate-[-4deg] group-hover:shadow-md">
             <FileAudio className="h-4 w-4" />
           </div>
@@ -60,36 +101,46 @@ export function Navbar() {
               {siteConfig.name}
             </span>
             <span className="hidden text-[11px] text-slate-500 dark:text-zinc-400 sm:block -mt-0.5">
-              In-browser audio tools
+              {currentLocale === "de"
+                ? "Audio-Tools im Browser"
+                : currentLocale === "es"
+                ? "Herramientas de audio"
+                : currentLocale === "pt"
+                ? "Ferramentas de áudio"
+                : currentLocale === "fr"
+                ? "Outils audio en ligne"
+                : currentLocale === "it"
+                ? "Strumenti audio nel browser"
+                : "In-browser audio tools"}
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links with Magnetic Pill Hover */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           <Link
-            href="/audio-converter"
+            href={audioConverterHref}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
-              pathname === "/audio-converter"
+              pathname === audioConverterHref
                 ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
                 : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
-            Audio Converter
+            {t.nav.audioConverter}
           </Link>
 
           <Link
-            href="/mp4-to-mp3"
+            href={videoToMp3Href}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
-              pathname === "/mp4-to-mp3"
+              pathname === videoToMp3Href
                 ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
                 : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
-            Video to MP3
+            {t.nav.videoToMp3}
           </Link>
 
-          {/* Tools Dropdown with Animated Item Hover */}
+          {/* Tools Dropdown */}
           <div className="relative" ref={toolsDropdownRef}>
             <button
               type="button"
@@ -102,7 +153,7 @@ export function Navbar() {
               aria-expanded={toolsDropdownOpen}
               aria-haspopup="true"
             >
-              <span>Audio Tools</span>
+              <span>{t.nav.audioTools}</span>
               <ChevronDown
                 className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${
                   toolsDropdownOpen ? "rotate-180 text-brand-500" : ""
@@ -142,39 +193,41 @@ export function Navbar() {
           </div>
 
           <Link
-            href="/format-guide"
+            href={formatGuideHref}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
-              pathname === "/format-guide"
+              pathname === formatGuideHref
                 ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
                 : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
-            Format Guide
+            {t.nav.formatGuide}
           </Link>
 
           <Link
-            href="/about"
+            href={aboutHref}
             className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
-              pathname === "/about"
+              pathname === aboutHref
                 ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 font-semibold ring-1 ring-brand-500/30"
                 : "text-slate-650 dark:text-slate-300 hover:bg-brand-500/10 hover:text-brand-500"
             }`}
           >
-            About
+            {t.nav.about}
           </Link>
         </nav>
 
-        {/* Right Actions: Privacy Badge & Theme Toggle */}
-        <div className="hidden sm:flex items-center gap-3">
-          <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
+        {/* Right Actions: Privacy Badge, Language Switcher, Theme Toggle */}
+        <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden lg:flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
             <ShieldCheck className="h-3.5 w-3.5" />
-            <span>100% Client-Side Privacy</span>
+            <span>{t.nav.privacyBadge}</span>
           </div>
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
 
-        {/* Mobile Actions: Theme Toggle + Menu Button */}
-        <div className="flex items-center gap-1 md:hidden">
+        {/* Mobile Actions: Language Switcher, Theme Toggle, Menu Button */}
+        <div className="flex items-center gap-1.5 md:hidden">
+          <LanguageSwitcher isMobile />
           <ThemeToggle />
           <button
             type="button"
@@ -193,43 +246,53 @@ export function Navbar() {
         <div className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 md:hidden shadow-lg animate-in slide-in-from-top-2 duration-200">
           <div className="space-y-1">
             <Link
-              href="/"
+              href={homeHref}
               onClick={() => setMobileMenuOpen(false)}
               className="block rounded-md px-3 py-2 text-base font-medium text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800"
             >
-              Home
+              {currentLocale === "de"
+                ? "Startseite"
+                : currentLocale === "es"
+                ? "Inicio"
+                : currentLocale === "pt"
+                ? "Início"
+                : currentLocale === "fr"
+                ? "Accueil"
+                : "Home"}
             </Link>
             <Link
-              href="/audio-converter"
+              href={audioConverterHref}
               onClick={() => setMobileMenuOpen(false)}
               className="block rounded-md px-3 py-2 text-base font-medium text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800"
             >
-              Audio Converter
+              {t.nav.audioConverter}
             </Link>
             <Link
-              href="/mp4-to-mp3"
+              href={videoToMp3Href}
               onClick={() => setMobileMenuOpen(false)}
               className="block rounded-md px-3 py-2 text-base font-medium text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800"
             >
-              Video to MP3
+              {t.nav.videoToMp3}
             </Link>
             <Link
-              href="/format-guide"
+              href={formatGuideHref}
               onClick={() => setMobileMenuOpen(false)}
               className="block rounded-md px-3 py-2 text-base font-medium text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800"
             >
-              Format Guide
+              {t.nav.formatGuide}
             </Link>
             <Link
-              href="/about"
+              href={aboutHref}
               onClick={() => setMobileMenuOpen(false)}
               className="block rounded-md px-3 py-2 text-base font-medium text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800"
             >
-              About
+              {t.nav.about}
             </Link>
 
             <div className="pt-3 pb-1 border-t border-slate-100 dark:border-slate-800">
-              <div className="px-3 text-xs font-medium text-slate-400 dark:text-zinc-500">Audio tools</div>
+              <div className="px-3 text-xs font-medium text-slate-400 dark:text-zinc-500">
+                {t.nav.audioTools}
+              </div>
               <div className="mt-2 grid grid-cols-2 gap-1">
                 {audioTools.map((tool) => (
                   <Link
@@ -248,7 +311,7 @@ export function Navbar() {
             <div className="pt-4">
               <div className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 py-2.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
                 <ShieldCheck className="h-4 w-4" />
-                <span>Files never leave your device. 100% Local.</span>
+                <span>{t.nav.privacyBadge}</span>
               </div>
             </div>
           </div>

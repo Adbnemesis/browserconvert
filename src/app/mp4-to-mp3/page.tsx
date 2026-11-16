@@ -10,12 +10,15 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { Film, FileAudio, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "MP4 to MP3 Converter - Extract Audio from MP4 Online Free",
   description:
     "Convert MP4 to MP3 online for free. Extract audio from MP4 video files directly in your browser with 320kbps high quality. 100% private, no server uploads.",
   alternates: {
     canonical: `${siteConfig.url}/mp4-to-mp3`,
+    languages: getHreflangAlternates("/mp4-to-mp3"),
   },
   openGraph: {
     title: "MP4 to MP3 Converter - Extract Audio from MP4 Online Free",

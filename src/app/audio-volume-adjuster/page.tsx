@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Volume2, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Volume Adjuster Online - Boost or Soften Volume Free",
   description:
     "Adjust audio volume online for free. Boost quiet audio recordings or reduce overly loud audio tracks up to 200%. 100% private in-browser volume booster.",
   alternates: {
     canonical: `${siteConfig.url}/audio-volume-adjuster`,
+    languages: getHreflangAlternates("/audio-volume-adjuster"),
   },
   openGraph: {
     title: "Audio Volume Adjuster Online - Boost or Soften Volume Free",

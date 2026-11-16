@@ -10,12 +10,15 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { SUPPORTED_OUTPUT_FORMATS } from "@/lib/config/formats";
 import { FileAudio, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",
   description:
     "Free online audio converter. Convert between MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS with custom bitrates and sample rates. 100% private in-browser processing.",
   alternates: {
     canonical: `${siteConfig.url}/audio-converter`,
+    languages: getHreflangAlternates("/audio-converter"),
   },
   openGraph: {
     title: "Online Audio Converter - Convert MP3, WAV, M4A, FLAC, OGG, OPUS",

@@ -10,12 +10,15 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2, Sliders, ArrowRight } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "WAV to MP3 Converter - Convert Lossless WAV to MP3 Online",
   description:
     "Convert WAV to MP3 online for free. Compress large uncompressed WAV recordings into high-quality 320kbps or 192kbps MP3s. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/wav-to-mp3`,
+    languages: getHreflangAlternates("/wav-to-mp3"),
   },
   openGraph: {
     title: "WAV to MP3 Converter - Convert Lossless WAV to MP3 Online Free",

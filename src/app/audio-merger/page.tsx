@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Layers, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Merger Online - Join Multiple Audio Files Together",
   description:
     "Free online audio merger and joiner. Combine multiple MP3, WAV, and M4A audio files into one continuous track. 100% private in-browser audio concatenation.",
   alternates: {
     canonical: `${siteConfig.url}/audio-merger`,
+    languages: getHreflangAlternates("/audio-merger"),
   },
   openGraph: {
     title: "Audio Merger Online - Join Multiple Audio Files Together Free",

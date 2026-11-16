@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { ConversionItem } from "@/lib/conversion/types";
 import { QueueItem } from "./QueueItem";
 import { Play, DownloadCloud, Trash2, StopCircle, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/lib/config/site";
 import { KofiIcon } from "@/components/common/KofiIcon";
+import { getLocaleFromPathname, getTranslations } from "@/i18n";
 
 interface QueueListProps {
   items: ConversionItem[];
@@ -28,6 +30,10 @@ export function QueueList({
   onClearAll,
   onCancel,
 }: QueueListProps) {
+  const pathname = usePathname();
+  const currentLocale = getLocaleFromPathname(pathname);
+  const t = getTranslations(currentLocale);
+
   if (items.length === 0) return null;
 
   const completedCount = items.filter((i) => i.status === "completed").length;
@@ -88,7 +94,7 @@ export function QueueList({
             className="inline-flex items-center gap-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-2.5 py-1.5 text-xs font-medium text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-zinc-100 disabled:opacity-40 transition-colors btn-tactile"
           >
             <Trash2 className="h-3 w-3" />
-            <span>Clear</span>
+            <span>{t.converter.clearAll}</span>
           </button>
         </div>
       </div>
@@ -113,8 +119,8 @@ export function QueueList({
               <KofiIcon className="h-4 w-4" />
             </div>
             <div>
-              <p className="font-medium text-slate-900 dark:text-zinc-100">Files ready! Enjoying BrowserConvert?</p>
-              <p className="text-slate-500 dark:text-zinc-400">Support us on Ko-fi to help keep this tool 100% private and ad-free.</p>
+              <p className="font-medium text-slate-900 dark:text-zinc-100">{t.kofi.bannerTitle}</p>
+              <p className="text-slate-500 dark:text-zinc-400">{t.kofi.bannerSubtitle}</p>
             </div>
           </div>
           <a
@@ -123,7 +129,7 @@ export function QueueList({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-lg bg-[#00b4a4] hover:bg-[#009e8f] text-white font-medium px-3 py-1.5 shrink-0 transition-colors shadow-xs"
           >
-            <span>Support on Ko-fi</span>
+            <span>{t.kofi.bannerButton}</span>
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>

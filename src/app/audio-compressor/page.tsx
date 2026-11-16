@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { Minimize2, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Compressor Online - Reduce Audio File Size Free",
   description:
     "Compress audio files online for free. Reduce the file size of MP3, WAV, FLAC, and M4A without sacrificing clarity. 100% private in-browser compression.",
   alternates: {
     canonical: `${siteConfig.url}/audio-compressor`,
+    languages: getHreflangAlternates("/audio-compressor"),
   },
   openGraph: {
     title: "Audio Compressor Online - Reduce Audio File Size Free",

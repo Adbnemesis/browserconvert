@@ -10,12 +10,15 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "M4A to MP3 Converter - Convert Apple Voice Memos & Audio Online",
   description:
     "Convert M4A to MP3 online for free. Transform Apple Voice Memos and iTunes M4A audio files into universal MP3 format. Fast, free, and 100% private in your browser.",
   alternates: {
     canonical: `${siteConfig.url}/m4a-to-mp3`,
+    languages: getHreflangAlternates("/m4a-to-mp3"),
   },
   openGraph: {
     title: "M4A to MP3 Converter - Convert Apple Voice Memos & Audio Online Free",

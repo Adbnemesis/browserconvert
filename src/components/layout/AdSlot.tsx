@@ -3,11 +3,11 @@
 import React, { useEffect, useRef } from "react";
 
 interface AdSlotProps {
-  position: "headerBanner" | "inContent" | "footerBanner";
+  position?: "headerBanner" | "inContent" | "footerBanner";
   className?: string;
 }
 
-export function AdSlot({ position, className = "" }: AdSlotProps) {
+export function AdSlot({ position = "headerBanner", className = "" }: AdSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

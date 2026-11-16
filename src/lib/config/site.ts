@@ -36,7 +36,7 @@ export const siteConfig: SiteConfig = {
     github: "https://github.com/browserconvert/browserconvert",
     kofi: "https://ko-fi.com/nemistory",
   },
-  contactEmail: "support@browserconvert.net",
+  contactEmail: "adbnemesis88@gmail.com",
   ads: {
     enabled: process.env.NEXT_PUBLIC_ADS_ENABLED === "true",
     client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "",

@@ -9,12 +9,15 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { FastForward, ShieldCheck, CheckCircle2, HelpCircle } from "lucide-react";
 
+import { getHreflangAlternates } from "@/i18n";
+
 export const metadata: Metadata = {
   title: "Audio Speed Changer Online - Change Audio Playback Speed Free",
   description:
     "Speed up or slow down audio files online. Adjust tempo from 0.5x to 2.0x without pitch distortion. 100% private in-browser tool for MP3, WAV, and M4A.",
   alternates: {
     canonical: `${siteConfig.url}/audio-speed-changer`,
+    languages: getHreflangAlternates("/audio-speed-changer"),
   },
   openGraph: {
     title: "Audio Speed Changer Online - Change Audio Playback Speed Free",
