@@ -28,14 +28,16 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
 
   // Close dropdown on click outside
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, []);
 
@@ -66,9 +68,7 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
 
       {isOpen && (
         <div
-          className={`absolute ${
-            isMobile ? "right-0 bottom-full mb-2" : "right-0 mt-2"
-          } z-50 w-44 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-1.5 shadow-xl transition-all`}
+          className="absolute right-0 top-full mt-2 z-50 w-48 max-h-[85vh] overflow-y-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#121215] p-1.5 shadow-2xl transition-all"
         >
           <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 dark:text-zinc-400">
             Language / Idioma

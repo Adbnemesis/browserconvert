@@ -216,7 +216,7 @@ export function Navbar() {
         </nav>
 
         {/* Right Actions: Privacy Badge, Language Switcher, Theme Toggle */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2.5">
           <div className="hidden lg:flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
             <ShieldCheck className="h-3.5 w-3.5" />
             <span>{t.nav.privacyBadge}</span>
