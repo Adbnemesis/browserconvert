@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Globe, Check } from "lucide-react";
 import {
   LOCALES,
@@ -21,12 +22,17 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const router = useRouter();
 
   const currentLocale = getLocaleFromPathname(pathname);
   const currentConfig = LOCALE_CONFIG[currentLocale];
+  const canonicalPath = getCanonicalPath(pathname);
 
-  // Close dropdown on click outside
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Close dropdown on click/tap outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -40,17 +46,6 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
       document.removeEventListener("touchstart", handleClickOutside);
     };
   }, []);
-
-  const handleSelectLanguage = (targetLocale: Locale) => {
-    if (targetLocale === currentLocale) {
-      setIsOpen(false);
-      return;
-    }
-    const canonicalPath = getCanonicalPath(pathname);
-    const targetUrl = getLocalizedPath(targetLocale, canonicalPath);
-    setIsOpen(false);
-    router.push(targetUrl);
-  };
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
@@ -77,11 +72,13 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
             {LOCALES.map((loc) => {
               const config = LOCALE_CONFIG[loc];
               const isSelected = loc === currentLocale;
+              const targetUrl = getLocalizedPath(loc, canonicalPath);
+
               return (
-                <button
+                <Link
                   key={loc}
-                  type="button"
-                  onClick={() => handleSelectLanguage(loc)}
+                  href={targetUrl}
+                  onClick={() => setIsOpen(false)}
                   className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                     isSelected
                       ? "bg-brand-500/10 text-brand-600 dark:text-brand-400 font-semibold"
@@ -93,7 +90,7 @@ export function LanguageSwitcher({ className = "", isMobile = false }: LanguageS
                     <span>{config.nativeName}</span>
                   </span>
                   {isSelected && <Check className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />}
-                </button>
+                </Link>
               );
             })}
           </div>

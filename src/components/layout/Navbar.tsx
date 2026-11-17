@@ -6,7 +6,14 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/config/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { getLocaleFromPathname, getLocalizedPath, getTranslations } from "@/i18n";
+import {
+  LOCALES,
+  LOCALE_CONFIG,
+  getLocaleFromPathname,
+  getCanonicalPath,
+  getLocalizedPath,
+  getTranslations,
+} from "@/i18n";
 import {
   FileAudio,
   Menu,
@@ -29,6 +36,13 @@ export function Navbar() {
 
   const currentLocale = getLocaleFromPathname(pathname);
   const t = getTranslations(currentLocale);
+  const canonicalPath = getCanonicalPath(pathname);
+
+  // Close menus on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setToolsDropdownOpen(false);
+  }, [pathname]);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -305,6 +319,35 @@ export function Navbar() {
                     <span>{tool.label}</span>
                   </Link>
                 ))}
+              </div>
+            </div>
+
+            {/* Mobile Language Selector */}
+            <div className="pt-3 pb-1 border-t border-slate-100 dark:border-slate-800">
+              <div className="px-3 text-xs font-medium text-slate-400 dark:text-zinc-500 mb-2">
+                Language / Idioma
+              </div>
+              <div className="grid grid-cols-3 gap-1.5 px-1">
+                {LOCALES.map((loc) => {
+                  const cfg = LOCALE_CONFIG[loc];
+                  const isSel = loc === currentLocale;
+                  const targetUrl = getLocalizedPath(loc, canonicalPath);
+                  return (
+                    <Link
+                      key={loc}
+                      href={targetUrl}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-xs font-medium border transition-colors ${
+                        isSel
+                          ? "bg-brand-500/15 text-brand-600 dark:text-brand-400 border-brand-500/30 font-semibold"
+                          : "border-slate-200 dark:border-white/10 text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-white/5"
+                      }`}
+                    >
+                      <span>{cfg.flag}</span>
+                      <span>{cfg.name}</span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
