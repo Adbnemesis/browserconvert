@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "OPUS to MP3 Converter - Convert WhatsApp & Discord Voice to MP3",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert OPUS to MP3 online for free. Transform WhatsApp voice messages, Discord recordings, and Telegram audio clips into universal MP3 format. 100% private in your browser.",
   alternates: {
     canonical: `${siteConfig.url}/opus-to-mp3`,
+    languages: getHreflangAlternates("/opus-to-mp3"),
   },
   openGraph: {
     title: "OPUS to MP3 Converter - Convert WhatsApp & Discord Voice to MP3 Online",

@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2, AlertTriangle } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "MP3 to WAV Converter - Convert MP3 to Uncompressed 16-Bit WAV",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert MP3 to WAV online for free. Decompress MP3 audio into standard 16-bit PCM WAV for DAWs, music editing, and DJ hardware. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/mp3-to-wav`,
+    languages: getHreflangAlternates("/mp3-to-wav"),
   },
   openGraph: {
     title: "MP3 to WAV Converter - Convert MP3 to Uncompressed 16-Bit WAV Free",

@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "OGG to MP3 Converter - Convert Vorbis OGG Audio to MP3 Online",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert OGG to MP3 online for free. Transform OGG Vorbis game sound effects, music tracks, and voice notes into universal MP3. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/ogg-to-mp3`,
+    languages: getHreflangAlternates("/ogg-to-mp3"),
   },
   openGraph: {
     title: "OGG to MP3 Converter - Convert Vorbis OGG Audio to MP3 Online Free",

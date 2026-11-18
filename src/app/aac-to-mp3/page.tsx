@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "AAC to MP3 Converter - Convert Advanced Audio Coding to MP3",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert AAC to MP3 online for free. Transform raw AAC audio streams and streaming tracks into universal MP3 format with customizable bitrates. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/aac-to-mp3`,
+    languages: getHreflangAlternates("/aac-to-mp3"),
   },
   openGraph: {
     title: "AAC to MP3 Converter - Convert Advanced Audio Coding to MP3 Free",

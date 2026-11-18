@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/mp4-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
     { path: "/wav-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
     { path: "/m4a-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/flac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/mov-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/mp3-to-wav", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/ogg-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/opus-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/aac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
     { path: "/audio-cutter", changeFrequency: "weekly" as const, priority: 0.85 },
     { path: "/audio-compressor", changeFrequency: "weekly" as const, priority: 0.85 },
     { path: "/audio-merger", changeFrequency: "weekly" as const, priority: 0.85 },
@@ -23,15 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "monthly" as const, priority: 0.5 },
   ];
 
-  // English-only long-tail routes
-  const englishOnlyRoutes = [
-    { path: "/mov-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
-    { path: "/mp3-to-wav", changeFrequency: "weekly" as const, priority: 0.9 },
-    { path: "/flac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
-    { path: "/ogg-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
-    { path: "/opus-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
-    { path: "/aac-to-mp3", changeFrequency: "weekly" as const, priority: 0.9 },
-  ];
+  // Long-tail routes
+  const englishOnlyRoutes: { path: string; changeFrequency: "daily" | "weekly" | "monthly"; priority: number }[] = [];
 
   const releaseDate = new Date("2026-11-16T00:00:00.000Z");
 

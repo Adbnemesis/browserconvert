@@ -90,11 +90,42 @@ export function getCanonicalPath(pathname: string): string {
   return pathname === "/" ? "" : pathname;
 }
 
+export const VALID_CANONICAL_ROUTES = new Set([
+  "",
+  "/",
+  "/audio-converter",
+  "/mp4-to-mp3",
+  "/wav-to-mp3",
+  "/m4a-to-mp3",
+  "/flac-to-mp3",
+  "/mov-to-mp3",
+  "/mp3-to-wav",
+  "/ogg-to-mp3",
+  "/opus-to-mp3",
+  "/aac-to-mp3",
+  "/audio-cutter",
+  "/audio-compressor",
+  "/audio-merger",
+  "/audio-volume-adjuster",
+  "/audio-speed-changer",
+  "/audio-bitrate-changer",
+  "/format-guide",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+]);
+
 /**
- * Constructs a localized path for a given locale and canonical path
+ * Constructs a localized path for a given locale and canonical path.
+ * If the path is not a recognized canonical route, falls back to the locale homepage.
  */
 export function getLocalizedPath(locale: Locale, canonicalPath: string): string {
   const cleanPath = canonicalPath.startsWith("/") ? canonicalPath : canonicalPath ? `/${canonicalPath}` : "";
+  const pathToCheck = cleanPath || "/";
+  if (!VALID_CANONICAL_ROUTES.has(pathToCheck) && !VALID_CANONICAL_ROUTES.has(cleanPath)) {
+    return locale === DEFAULT_LOCALE ? "/" : `/${locale}`;
+  }
   if (locale === DEFAULT_LOCALE) {
     return cleanPath || "/";
   }

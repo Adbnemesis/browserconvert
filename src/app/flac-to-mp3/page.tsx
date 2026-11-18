@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { FileAudio, HelpCircle, CheckCircle2 } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "FLAC to MP3 Converter - Convert Hi-Res FLAC to 320kbps MP3",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert FLAC to MP3 online for free. Transform lossless FLAC albums into high-fidelity 320kbps or 192kbps MP3 files for smartphones and car stereos. 100% private.",
   alternates: {
     canonical: `${siteConfig.url}/flac-to-mp3`,
+    languages: getHreflangAlternates("/flac-to-mp3"),
   },
   openGraph: {
     title: "FLAC to MP3 Converter - Convert Hi-Res FLAC to 320kbps MP3 Online",

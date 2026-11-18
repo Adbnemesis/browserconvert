@@ -9,6 +9,7 @@ import { SeoSchema } from "@/components/seo/SeoSchema";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { ComparisonTable } from "@/components/seo/ComparisonTable";
 import { Film, HelpCircle, CheckCircle2 } from "lucide-react";
+import { getHreflangAlternates } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "MOV to MP3 Converter - Extract Audio from QuickTime MOV Videos",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     "Convert QuickTime MOV to MP3 online for free. Extract audio from iPhone videos and Mac screen recordings in high quality. 100% private in-browser conversion.",
   alternates: {
     canonical: `${siteConfig.url}/mov-to-mp3`,
+    languages: getHreflangAlternates("/mov-to-mp3"),
   },
   openGraph: {
     title: "MOV to MP3 Converter - Extract Audio from QuickTime MOV Videos",
